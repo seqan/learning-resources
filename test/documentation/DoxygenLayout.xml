@@ -7,7 +7,8 @@
 
         <tab type="usergroup" visible="yes" title="Setup" intro="">
         </tab>
-        <tab type="usergroup" visible="yes" title="Tutorial" intro="">
+        <tab type="usergroup" visible="yes" title="Nanocourse" intro="">
+            <tab type="user" visible="yes" title="Compact Data Structures" url="\ref compact_data_structures"     intro=""/>
         </tab>
         <tab type="usergroup" visible="yes" title="About" intro="">
             <tab type="user" visible="yes" title="Copyright"            url="\ref about_copyright"     intro=""/>
