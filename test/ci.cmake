@@ -30,7 +30,6 @@ file(MAKE_DIRECTORY ${LR_TEST_CLONE_DIR}/googletest/include/)
 add_library (lr_test INTERFACE)
 target_compile_options (lr_test INTERFACE "-pedantic"  "-Wall" "-Wextra" "-Werror" "-DNO_WARN_X86_INTRINSICS")
 target_link_libraries (lr_test INTERFACE "pthread")
-target_include_directories (lr_test INTERFACE "${SEQAN3_CLONE_DIR}/test/include/")
 add_library (lr::test ALIAS lr_test)
 
 # seqan3::test::unit specifies required flags, includes and libraries

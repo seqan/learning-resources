@@ -44,34 +44,34 @@ matrix:
   include:
   - << : *linux-gcc-9
     env:
-      - BUILD=unit
+      - BUILD=snippet
       - BUILD_TYPE=Release
       - CXXFLAGS="-std=c++2a"
       - CMAKE_VERSION=3.7.2
   - << : *linux-gcc-8
     env:
-      - BUILD=unit
+      - BUILD=snippet
       - BUILD_TYPE=Release
       - CMAKE_VERSION=3.7.2
   - << : *linux-gcc-7
     env:
-      - BUILD=unit
+      - BUILD=snippet
       - BUILD_TYPE=Release
       - CMAKE_VERSION=3.7.2
   - << : *linux-gcc-9
     env:
-      - BUILD=unit
+      - BUILD=snippet
       - BUILD_TYPE=Debug
       - CXXFLAGS="-std=c++2a"
       - CMAKE_VERSION=3.7.2
   - << : *linux-gcc-8
     env:
-      - BUILD=unit
+      - BUILD=snippet
       - BUILD_TYPE=Debug
       - CMAKE_VERSION=3.7.2
   - << : *linux-gcc-7
     env:
-      - BUILD=unit
+      - BUILD=snippet
       - BUILD_TYPE=Debug
       - CMAKE_VERSION=3.7.2
   - os: linux
@@ -114,7 +114,7 @@ before_script:
   - cd ../learning-resources-build
   - cmake ../learning-resources/test/${BUILD} -DCMAKE_BUILD_TYPE=${BUILD_TYPE}
   - |
-    if [[ "${BUILD}" =~ ^(unit)$ ]]; then
+    if [[ "${BUILD}" =~ ^(snippet)$ ]]; then
       make -j2 gtest_project
     fi
 
