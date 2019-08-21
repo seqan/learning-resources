@@ -5,11 +5,11 @@
 This HowTo gives an introduction into compact data structures. It is designed independently of SeqAn but
 it covers design patterns and concepts that are the foundations of efficient C++ used throughout the library.
 
-\tutorial_head{Easy, 120 min, , [Compact Data Structures (Navarro) ](https://www.cambridge.org/core/books/compact-data-structures/68A5983E6F1176181291E235D0B7EB44)}
+\tutorial_head{Easy, 120 min, , [Compact Data Structures (Navarro)](https://www.cambridge.org/core/books/compact-data-structures/68A5983E6F1176181291E235D0B7EB44)}
 
 # Motivation
 
-A compact data structures maintains data, and the desired extra data structures
+A compact data structure maintains data, and the desired extra data structures
 over it, in a form that not only uses less space than usual, but is able to access and
 query the data in compact form, that is, without decompressing them. Thus, a com-
 pact data structure allows us to fit and efficiently query, navigate, and manipulate
@@ -27,20 +27,20 @@ Therefore, an efficient implementation is of utmost importance.
 
 A bitvector is a bit array \f$B[1, n]\f$ of length \f$n\f$ of values \f$v \in {0,1}\f$ (bits).
 
-In c++ there is no type that defines a single bit, such that you could use `std::vector<bit>` for this purpose.
-If you would use let's say `std::vector<bool>` instead, you use 1 byte = 8 bit for each entry,
+In C++ there is no type that defines a single bit, such that you could use `std::vector<bit>` for this purpose.
+If you would use, let's say, `std::vector<bool>` instead, you would use 1 byte = 8 bit for each entry,
 or even worse `std::vector<int>` which uses 4 byte = 32 bit.
 
 Let us design a compact data structure that stores single bits as values
 while still supporting the basic operations:
 
-* \f$read(B, i)\f$: returns the bit \f$B[i]\f$, for any \f$1 ≤ i ≤ n\f$.
-* \f$write(B, i, x)\f$: writes the bit \f$x \in {0,1}\f$ to \f$B[i]\f$, for any \f$1 ≤ i ≤ n\f$.
+* \f$read(B, i)\f$: returns the bit \f$B[i]\f$, for any \f$1 \leq i \leq n\f$.
+* \f$write(B, i, x)\f$: writes the bit \f$x \in {0,1}\f$ to \f$B[i]\f$, for any \f$1 \leq i \leq n\f$.
 
 ## A compact representation of bitvectors
 
 As noted above we need to represent bits using larger entities available in the C++ language.
-It usually pays off, if you choose an integer with the size of a machine word `w`, which is 64 on modern architectures.
+It usually pays off if you choose an integer with the size of a machine word `w`, which is 64 on modern architectures.
 We will use a `std::vector` over `uint64_t` for our representation.
 
 \assignment{A compact bitvector}
@@ -51,14 +51,8 @@ Construct a `std::vector` over `uint64_t` of a length that can store at least 60
 
 \solution
 
-```cpp
-#include <vector>
+\include test/snippet/nanocourse/solution1.cpp
 
-int main()
-{
-    std::vector<uint64_t> B(10, 0u);
-}
-```
 \endsolution
 
 ### Access the compact bitvector
@@ -86,22 +80,7 @@ bool read(std::vector<uint64_t> const & B, size_t const i)
 
 \solution
 
-```cpp
-#include <iostream>
-#include <vector>
-
-bool read(std::vector<uint64_t> const & B, size_t const i)
-{
-    return (B[i / 64] >> (63 - (i % 64))) & 1;
-}
-
-int main()
-{
-    std::vector<uint64_t> B(10, 0u);
-
-    std::cout << read(B, 2) << std::endl; // prints 0
-}
-```
+\include test/snippet/nanocourse/solution2.cpp
 
 \endsolution
 
@@ -128,31 +107,7 @@ void write(std::vector<uint64_t> & B, size_t const i, bool const x)
 
 \solution
 
-```cpp
-#include <iostream>
-#include <vector>
-
-void write(std::vector<uint64_t> & B, size_t const i, bool const x)
-{
-    uint64_t mask = static_cast<uint64_t>(1) << (63 - (i % 64));
-
-    if (x == 1)
-        B[i / 64] |= mask;
-    else
-        B[i / 64] &= ~mask;
-}
-
-int main()
-{
-    std::vector<uint64_t> B(10, 0u);
-
-    std::cout << read(B, 63) << std::endl; // prints 0
-    write(B, 63, 1);                       // writes a 1 at position 63 in the bitvector
-    std::cout << read(B, 63) << std::endl; // prints 1
-    write(B, 63, 1);                       // writes a 0 at position 63 in the bitvector
-    std::cout << read(B, 63) << std::endl; // prints 0 again
-}
-```
+\include test/snippet/nanocourse/solution3.cpp
 
 \endsolution
 
@@ -160,10 +115,10 @@ int main()
 
 Two very useful operations that a bitvector should support are the following:
 
-* \f$rank_v(B, i)\f$: returns the number of occurrences of bit \f$v ∈ {0, 1}\f$ in \f$B[1, i]\f$,
-for any \f$0 ≤ i ≤ n\f$; in particular \f$rank_v(B, 0) = 0\f$. If omitted, we assume \f$v = 1\f$.
-* \f$select_v(B, j)\f$: returns the position in \f$B\f$ of the j-th occurrence of bit \f$v ∈ {0, 1}\f$,
-for any \f$j ≥ 0\f$; we assume \f$select_v(B, 0) = 0\f$ and \f$select_v(B, j) = n + 1\f$ if \f$j >
+* \f$rank_v(B, i)\f$: returns the number of occurrences of bit \f$v \in {0, 1}\f$ in \f$B[1, i]\f$,
+for any \f$0 \leq i \leq n\f$; in particular \f$rank_v(B, 0) = 0\f$. If omitted, we assume \f$v = 1\f$.
+* \f$select_v(B, j)\f$: returns the position in \f$B\f$ of the j-th occurrence of bit \f$v \in {0, 1}\f$,
+for any \f$j \geq 0\f$; we assume \f$select_v(B, 0) = 0\f$ and \f$select_v(B, j) = n + 1\f$ if \f$j >
 rank_v(B, n)\f$. If omitted, we assume \f$v = 1\f$.
 
 We will implement those operation for our compact bitvector representation.
@@ -235,7 +190,7 @@ your program should print the following:
 
 If you print your blocks too, there should be 100 entries: `1,2,...,25,1,2,...25,1,2,...,25,1,2,...25`.
 
-If you are not so experienced with c++, you can use the following backbone:
+If you are not so experienced with C++, you can use the following backbone:
 
 \hint
 
@@ -280,42 +235,7 @@ void construct(std::vector<uint16_t> & blocks,
 
 \solution
 
-```cpp
-void construct(std::vector<uint16_t> & blocks,
-               std::vector<uint64_t> & superblocks,
-               std::vector<uint64_t> const & B)
-{
-    size_t block_pos{0u};
-    size_t super_block_pos{0u};
-
-    uint16_t block_count{0u};
-    uint64_t super_block_count{0u};
-
-    for (size_t i = 1u; i <= B.size() * 64; ++i)
-    {
-        if (i % 64 == 0u)
-        {
-            blocks[block_pos] = block_count;
-
-            ++block_pos; // move to the next position
-
-            if (i % 1600 == 0u)
-            {
-                super_block_count += block_count; // update superblock count
-
-                superblocks[super_block_pos] = super_block_count;
-
-                ++super_block_pos; // move to the next position
-                block_count = 0u;   // reset block count
-            }
-        }
-
-        if (read(B, i - 1) == true)
-            ++block_count;
-
-    }
-}
-```
+\include test/snippet/nanocourse/solution4.cpp
 
 Note that most compilers provide special bit operations on integers.
 One example is **popcount** that counts the number of `1s` in an integer.
@@ -325,38 +245,9 @@ we could directly use popcount on every entry of b to get the value for the bloc
 
 The code could then look like this (**This is compiler specific (GCC)**):
 
-```cpp
-void construct(std::vector<uint16_t> & blocks,
-               std::vector<uint64_t> & superblocks,
-               std::vector<uint64_t> const & B)
-{
-    size_t block_pos{0u};
-    size_t super_block_pos{0u};
-
-    uint16_t block_count{0u};
-    uint64_t super_block_count{0u};
-
-    for (size_t i = 0u; i < B.size(); ++i)
-    {
-        block_count += __builtin_popcount(B[i]);
-        blocks[block_pos] = block_count;
-        ++block_pos;
-
-        if ((i + 1) % 25 == 0u)
-        {
-            super_block_count += block_count; // update superblock count
-
-            superblocks[super_block_pos] = super_block_count;
-
-            ++super_block_pos; // move to the next position
-            block_count = 0u;   // reset block count
-        }
-    }
-}
-```
+\include test/snippet/nanocourse/solution4_intrinsic.cpp
 
 If you have some time to spare, increase the size of B, and do come runtime tests for construction.
 The construction using popcount should be considerably faster.
 
 \endsolution
-
