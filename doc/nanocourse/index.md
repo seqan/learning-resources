@@ -185,10 +185,10 @@ int main()
 your program should print the following:
 
 ```
-25 50 75 100
+0 25 50 75
 ```
 
-If you print your blocks too, there should be 100 entries: `1,2,...,25,1,2,...25,1,2,...,25,1,2,...25`.
+If you print your blocks too, there should be 100 entries: `0,1,2,...,24,0,1,2,...24,0,1,2,...,24,0,1,2,...24`.
 
 If you are not so experienced with C++, you can use the following backbone:
 
@@ -205,15 +205,10 @@ void construct(std::vector<uint16_t> & blocks,
     uint16_t block_count{0u};
     uint64_t superblock_count{0u};
 
-    // Note that we start from 1 to make the modulo computations easier.
-    for (size_t i = 1u; i <= B.size() * 64; ++i)
+    for (size_t i = 0u; i < B.size() * 64; ++i)
     {
         if (/*whenever we reach the end of a block. Hint: use the modulo operation on i*/)
         {
-            // TODO: store value of count in the current block entry
-
-            ++block_pos; // move to the next position
-
             if (/*whenever we even reach the end of a superblock. Hint: use the modulo operation on i*/)
             {
                 superblock_count += block_count; // update superblock count
@@ -223,6 +218,10 @@ void construct(std::vector<uint16_t> & blocks,
                 ++superblock_pos; // move to the next position
                 block_count = 0u;   // reset block count
             }
+
+            // TODO: store value of count in the current block entry
+
+            ++block_pos; // move to the next position
         }
 
         if (/*bitvector B has a 1 at position i - 1*/)
@@ -249,5 +248,75 @@ The code could then look like this (**This is compiler specific (GCC)**):
 
 If you have some time to spare, increase the size of B, and do come runtime tests for construction.
 The construction using popcount should be considerably faster.
+
+\endsolution
+
+### Functions rank and select
+
+Now that we have the helper data structures of block and superblocks,
+we will implement the actual support for rank and select queries, namely the function
+
+\assignment{Rank queries}
+
+Implement a function
+
+```cpp
+uint64_t rank(std::vector<uint64_t> const & B,
+              std::vector<uint16_t> const & blocks,
+              std::vector<uint64_t> const & superblocks,
+              size_t const i)
+```
+
+that returns the number of occurrences of bit \f$v \in {0, 1}\f$ in \f$B[1, i]\f$,
+for any \f$0 \leq i \leq n\f$; in particular \f$rank_v(B, 0) = 0\f$. If omitted, we assume \f$v = 1\f$.
+
+Use the same example of the bitvector and block/superblock sizes as in the previous assignment.
+
+Given the following main function:
+
+\snippet test/snippet/nanocourse/solution5.cpp main
+
+Your program should output
+
+```
+3
+```
+
+If you are inexperienced with C++ you can use the following backbone:
+
+\hint
+```cpp
+uint64_t rank(std::vector<uint64_t> const & B,
+              std::vector<uint16_t> const & blocks,
+              std::vector<uint64_t> const & superblocks,
+              size_t const i)
+{
+    uint64_t rank{0};
+
+    rank += superblocks[/* The super block position */];
+    rank += blocks[/* The block position */];
+
+    for (size_t j = ((i - 1) / 64) * 64; j < i; ++j)
+    {
+        /* Add 1 to the rank if the B at position j has a 1.*/
+    }
+
+    return rank;
+}
+```
+
+\endhint
+
+\endassignment
+
+\solution
+
+Here is the rank function:
+
+\snippet test/snippet/nanocourse/solution5.cpp solution
+
+Here is the full solution:
+
+\include test/snippet/nanocourse/solution5.cpp
 
 \endsolution

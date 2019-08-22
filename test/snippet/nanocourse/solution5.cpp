@@ -40,6 +40,27 @@ void construct(std::vector<uint16_t> & blocks,
     }
 }
 
+//![solution]
+uint64_t rank(std::vector<uint64_t> const & B,
+              std::vector<uint16_t> const & blocks,
+              std::vector<uint64_t> const & superblocks,
+              size_t const i)
+{
+    uint64_t rank{0};
+
+    rank += superblocks[(i - 1) / 1600];
+    rank += blocks[(i - 1) / 64];
+
+    for (size_t j = ((i - 1) / 64) * 64; j < i; ++j)
+    {
+        rank += read(B, i);
+    }
+
+    return rank;
+}
+//![solution]
+
+//![main]
 int main()
 {
     std::vector<uint64_t> B(6400 / 64, 2);
@@ -49,7 +70,6 @@ int main()
 
     construct(blocks, superblocks, B);
 
-    for (auto a : blocks)
-        std::cout << a << " ";
-    std::cout << std::endl;
+    std::cout << rank(B, blocks, superblocks, 200) << std::endl;
 }
+//![main]
