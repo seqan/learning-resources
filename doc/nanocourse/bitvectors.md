@@ -282,7 +282,7 @@ Your program should output
 3
 ```
 
-If you are inexperienced with C++ you can use the following backbone:
+If you are inexperienced with C++, you can use the following backbone:
 
 \hint
 ```cpp
