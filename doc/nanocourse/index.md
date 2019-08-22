@@ -185,10 +185,10 @@ int main()
 your program should print the following:
 
 ```
-25 50 75 100
+0 25 50 75
 ```
 
-If you print your blocks too, there should be 100 entries: `1,2,...,25,1,2,...25,1,2,...,25,1,2,...25`.
+If you print your blocks too, there should be 100 entries: `0,1,2,...,24,0,1,2,...24,0,1,2,...,24,0,1,2,...24`.
 
 If you are not so experienced with C++, you can use the following backbone:
 
@@ -205,15 +205,10 @@ void construct(std::vector<uint16_t> & blocks,
     uint16_t block_count{0u};
     uint64_t superblock_count{0u};
 
-    // Note that we start from 1 to make the modulo computations easier.
-    for (size_t i = 1u; i <= B.size() * 64; ++i)
+    for (size_t i = 0u; i < B.size() * 64; ++i)
     {
         if (/*whenever we reach the end of a block. Hint: use the modulo operation on i*/)
         {
-            // TODO: store value of count in the current block entry
-
-            ++block_pos; // move to the next position
-
             if (/*whenever we even reach the end of a superblock. Hint: use the modulo operation on i*/)
             {
                 superblock_count += block_count; // update superblock count
@@ -223,6 +218,10 @@ void construct(std::vector<uint16_t> & blocks,
                 ++superblock_pos; // move to the next position
                 block_count = 0u;   // reset block count
             }
+
+            // TODO: store value of count in the current block entry
+
+            ++block_pos; // move to the next position
         }
 
         if (/*bitvector B has a 1 at position i - 1*/)

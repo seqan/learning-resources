@@ -16,14 +16,10 @@ void construct(std::vector<uint16_t> & blocks,
     uint16_t block_count{0u};
     uint64_t super_block_count{0u};
 
-    for (size_t i = 1u; i <= B.size() * 64; ++i)
+    for (size_t i = 0u; i < B.size() * 64; ++i)
     {
         if (i % 64 == 0u)
         {
-            blocks[block_pos] = block_count;
-
-            ++block_pos; // move to the next position
-
             if (i % 1600 == 0u)
             {
                 super_block_count += block_count; // update superblock count
@@ -33,11 +29,14 @@ void construct(std::vector<uint16_t> & blocks,
                 ++super_block_pos; // move to the next position
                 block_count = 0u;   // reset block count
             }
+
+            blocks[block_pos] = block_count;
+
+            ++block_pos; // move to the next position
         }
 
-        if (read(B, i - 1) == true)
+        if (read(B, i) == true)
             ++block_count;
-
     }
 }
 
@@ -50,7 +49,7 @@ int main()
 
     construct(blocks, superblocks, B);
 
-    for (auto a : superblocks)
+    for (auto a : blocks)
         std::cout << a << " ";
     std::cout << std::endl;
 }
