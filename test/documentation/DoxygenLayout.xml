@@ -4,11 +4,11 @@
     <navindex>
         <tab type="mainpage" visible="yes" title=""/>
     <!--     <tab type="pages" visible="yes" title="" intro=""/> -->
-
-        <tab type="usergroup" visible="yes" title="Setup" intro="">
-        </tab>
-        <tab type="usergroup" visible="yes" title="Nanocourse" intro="">
-            <tab type="user" visible="yes" title="Compact Data Structures" url="\ref compact_data_structures"     intro=""/>
+        <tab type="usergroup" visible="yes" title="Nanocourses" intro="">
+            <tab type="usergroup" visible="yes" title="Compact Data Structures" intro="">
+                <tab type="user" visible="yes" title="Setup" url="\ref setup_compact_data_structures"     intro=""/>
+                <tab type="user" visible="yes" title="Bitvectors" url="\ref compact_data_structures"     intro=""/>
+            </tab>
         </tab>
         <tab type="usergroup" visible="yes" title="About" intro="">
             <tab type="user" visible="yes" title="Copyright"            url="\ref about_copyright"     intro=""/>
