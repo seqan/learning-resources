@@ -1,14 +1,21 @@
 #include <iostream>
 #include <vector>
 
-bool read(std::vector<uint64_t> const & B, size_t const i)
+struct Bitvector
 {
-    return (B[i / 64] >> (63 - (i % 64))) & 1;
-}
+    std::vector<uint64_t> data;
+
+    Bitvector(size_t const count) : data((count + 63) / 64, 0u) {};
+
+    bool read(size_t const i) const
+    {
+        return (data[i / 64] >> (63 - (i % 64))) & 1;
+    }
+};
 
 int main()
 {
-    std::vector<uint64_t> B(10, 0u);
+    Bitvector B(10);
 
-    std::cout << read(B, 2) << std::endl; // prints 0
+    std::cout << B.read(2) << std::endl; // prints 0
 }

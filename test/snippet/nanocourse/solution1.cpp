@@ -1,7 +1,14 @@
 #include <cinttypes>
 #include <vector>
 
+struct Bitvector
+{
+    std::vector<uint64_t> data;
+
+    Bitvector(size_t const count) : data((count + 63) / 64, 0u) {};
+};
+
 int main()
 {
-    std::vector<uint64_t> B(10, 0u);
+    Bitvector B(10);
 }

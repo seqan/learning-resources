@@ -1,75 +1,102 @@
 #include <iostream>
 #include <vector>
 
-bool read(std::vector<uint64_t> const & B, size_t const i)
+struct Bitvector
 {
-    return (B[i / 64] >> (63 - (i % 64))) & 1;
-}
+    std::vector<uint64_t> data;
+    std::vector<uint16_t> blocks;
+    std::vector<uint64_t> superblocks;
+    uint64_t block_size;
+    uint64_t superblock_size;
 
-void construct(std::vector<uint16_t> & blocks,
-               std::vector<uint64_t> & superblocks,
-               std::vector<uint64_t> const & B)
-{
-    size_t block_pos{0u};
-    size_t super_block_pos{0u};
+    Bitvector(size_t const count) : data((count + 63) / 64, 0u) {};
 
-    uint16_t block_count{0u};
-    uint64_t super_block_count{0u};
-
-    for (size_t i = 0u; i < B.size() * 64; ++i)
+    bool read(size_t const i) const
     {
-        if (i % 64 == 0u)
+        return (data[i / 64] >> (63 - (i % 64))) & 1;
+    }
+
+    void write(size_t const i, bool const value)
+    {
+        uint64_t mask = static_cast<uint64_t>(1) << (63 - (i % 64));
+
+        if (value == true)
+            data[i / 64] |= mask;
+        else
+            data[i / 64] &= ~mask;
+    }
+
+    size_t size() const
+    {
+        return data.size() * 64u;
+    }
+
+    void construct(size_t const block_size_new = 64u, size_t const superblock_size_new = 512u)
+    {
+        block_size = block_size_new;
+        superblock_size = superblock_size_new;
+        blocks = std::vector<uint16_t>((size() + block_size - 1) / block_size, 0u);
+        superblocks = std::vector<uint64_t>((size() + superblock_size - 1) / superblock_size, 0u);
+
+        size_t block_pos{0u};
+        size_t super_block_pos{0u};
+
+        uint16_t block_count{0u};
+        uint64_t super_block_count{0u};
+
+        for (size_t i = 0u; i < size(); ++i)
         {
-            if (i % 1600 == 0u)
+            if (i % block_size == 0u)
             {
-                super_block_count += block_count; // update superblock count
+                if (i % superblock_size == 0u)
+                {
+                    super_block_count += block_count; // update superblock count
 
-                superblocks[super_block_pos] = super_block_count;
+                    superblocks[super_block_pos] = super_block_count;
 
-                ++super_block_pos; // move to the next position
-                block_count = 0u;   // reset block count
+                    ++super_block_pos; // move to the next position
+                    block_count = 0u;   // reset block count
+                }
+
+                blocks[block_pos] = block_count;
+
+                ++block_pos; // move to the next position
             }
 
-            blocks[block_pos] = block_count;
-
-            ++block_pos; // move to the next position
+            if (read(i) == true)
+                ++block_count;
         }
-
-        if (read(B, i) == true)
-            ++block_count;
     }
-}
 
-//![solution]
-uint64_t rank(std::vector<uint64_t> const & B,
-              std::vector<uint16_t> const & blocks,
-              std::vector<uint64_t> const & superblocks,
-              size_t const i)
-{
-    uint64_t rank{0};
-
-    rank += superblocks[(i - 1) / 1600];
-    rank += blocks[(i - 1) / 64];
-
-    for (size_t j = ((i - 1) / 64) * 64; j < i; ++j)
+    //![solution]
+    uint64_t rank(size_t const i) const
     {
-        rank += read(B, i);
-    }
+        uint64_t rank{0};
 
-    return rank;
-}
-//![solution]
+        rank += superblocks[(i - 1) / superblock_size];
+        rank += blocks[(i - 1) / block_size];
+
+        for (size_t j = ((i - 1) / block_size) * block_size; j < i; ++j)
+        {
+            rank += read(j);
+        }
+        return rank;
+    }
+    //![solution]
+};
 
 //![main]
 int main()
 {
-    std::vector<uint64_t> B(6400 / 64, 2);
+    Bitvector B(6400);
 
-    std::vector<uint16_t> blocks(6400 / 64, 0);
-    std::vector<uint64_t> superblocks(6400 / 1600, 0);
+    for (size_t i = 0; i < 100; ++i)
+        B.write(i * 64, 1);
 
-    construct(blocks, superblocks, B);
+    B.construct(64, 1600);
 
-    std::cout << rank(B, blocks, superblocks, 200) << std::endl;
+    std::cout << B.rank(1) << std::endl;  // 1
+    std::cout << B.rank(64) << std::endl; // 1
+    std::cout << B.rank(65) << std::endl; // 2
 }
 //![main]

@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#include "bitvector.hpp"
+
 //![bwt_construction]
 std::string bwt_construction(std::string const & text)
 {
@@ -40,46 +42,28 @@ std::string bwt_construction(std::string const & text)
 //![bwt_construction]
 
 //![occurrence_table_computation]
-// Lets's rename the type `std::vector<uint64_t>` to `bitvector` for a more readable code:
-using bitvector = std::vector<uint64_t>;
-
-void write(bitvector & B, size_t const i, bool const x)
-{
-    uint64_t mask = static_cast<uint64_t>(1) << (63 - (i % 64));
-
-    if (x == 1)
-        B[i / 64] |= mask;
-    else
-        B[i / 64] &= ~mask;
-}
-
-bool read(bitvector const & B, size_t const i)
-{
-    return (B[i / 64] >> (63 - (i % 64))) & 1;
-}
-
 struct occurrence_table
 {
     // The list of bitvectors:
-    std::vector<bitvector> bitvector_data;
+    std::vector<Bitvector> bitvector_data;
 
     // We want that 5 bitvectors are filled depending on the bwt,
     // so let's customise the constructor of occurrence_table:
     occurrence_table(std::string const & bwt)
     {
         // resize the 5 bitvectors to the length of the bwt:
-        bitvector_data = std::vector<bitvector>(5, bitvector((bwt.size() + 63)/ 64));
+        bitvector_data = std::vector<Bitvector>(5, Bitvector((bwt.size() + 63)/ 64));
 
         // fill the bitvectors
         for (size_t i = 0; i < bwt.size(); ++i)
         {
             switch (bwt[i])
             {
-                case '$': write(bitvector_data[0], i, 1); break;
-                case 'i': write(bitvector_data[1], i, 1); break;
-                case 'm': write(bitvector_data[2], i, 1); break;
-                case 'p': write(bitvector_data[3], i, 1); break;
-                case 's': write(bitvector_data[4], i, 1); break;
+                case '$': bitvector_data[0].write(i, 1); break;
+                case 'i': bitvector_data[1].write(i, 1); break;
+                case 'm': bitvector_data[2].write(i, 1); break;
+                case 'p': bitvector_data[3].write(i, 1); break;
+                case 's': bitvector_data[4].write(i, 1); break;
                 default: break;
             }
         }
@@ -108,7 +92,7 @@ int main()
     {
         std::cout << sigma[s++] << "  ";
         for (size_t i = 0; i < bwt.size(); ++i)
-            std::cout << read(bitv, i) << " ";
+            std::cout << bitv.read(i) << " ";
         std::cout << "\n";
     }
 }
