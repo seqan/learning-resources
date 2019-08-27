@@ -6,6 +6,8 @@ struct Bitvector
     std::vector<uint64_t> data;
     std::vector<uint16_t> blocks;
     std::vector<uint64_t> superblocks;
+    uint64_t block_size;
+    uint64_t superblock_size;
 
     Bitvector(size_t const count) : data((count + 63) / 64, 0u) {};
 
@@ -29,8 +31,10 @@ struct Bitvector
         return data.size() * 64u;
     }
 
-    void construct(size_t const block_size = 64u, size_t const superblock_size = 512u)
+    void construct(size_t const block_size_new = 64u, size_t const superblock_size_new = 512u)
     {
+        block_size = block_size_new;
+        superblock_size = superblock_size_new;
         blocks = std::vector<uint16_t>((size() + block_size - 1) / block_size, 0u);
         superblocks = std::vector<uint64_t>((size() + superblock_size - 1) / superblock_size, 0u);
 
@@ -40,11 +44,11 @@ struct Bitvector
         uint16_t block_count{0u};
         uint64_t super_block_count{0u};
 
-        for (size_t i = 0u; i < data.size(); ++i)
+        for (size_t i = 0u; i < size(); ++i)
         {
-            if ((i * 64) % block_size == 0u)
+            if (i % block_size == 0u)
             {
-                if ((i * 64) % superblock_size == 0u)
+                if (i % superblock_size == 0u)
                 {
                     super_block_count += block_count; // update superblock count
 
@@ -59,25 +63,22 @@ struct Bitvector
                 ++block_pos; // move to the next position
             }
 
-            block_count += __builtin_popcountll(data[i]);
+            if (read(i) == true)
+                ++block_count;
         }
     }
+
+    uint64_t rank(size_t const i) const
+    {
+        uint64_t rank{0};
+
+        rank += superblocks[(i - 1) / superblock_size];
+        rank += blocks[(i - 1) / block_size];
+
+        for (size_t j = ((i - 1) / block_size) * block_size; j < i; ++j)
+        {
+            rank += read(j);
+        }
+        return rank;
+    }
 };
-
-int main()
-{
-    Bitvector B(6400);
-
-    for (size_t i = 0; i < 100; ++i)
-        B.write(i * 64, 1);
-
-    B.construct(64, 1600);
-
-    for (auto a : B.blocks)
-        std::cout << a << " ";
-    std::cout << std::endl;
-
-    for (auto a : B.superblocks)
-        std::cout << a << " ";
-    std::cout << std::endl;
-}

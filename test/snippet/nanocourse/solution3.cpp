@@ -1,28 +1,35 @@
 #include <iostream>
 #include <vector>
 
-void write(std::vector<uint64_t> & B, size_t const i, bool const x)
+struct Bitvector
 {
-    uint64_t mask = static_cast<uint64_t>(1) << (63 - (i % 64));
+    std::vector<uint64_t> data;
 
-    if (x == 1)
-        B[i / 64] |= mask;
-    else
-        B[i / 64] &= ~mask;
-}
+    Bitvector(size_t const count) : data((count + 63) / 64, 0u) {};
 
-bool read(std::vector<uint64_t> const & B, size_t const i)
-{
-    return (B[i / 64] >> (63 - (i % 64))) & 1;
-}
+    bool read(size_t const i) const
+    {
+        return (data[i / 64] >> (63 - (i % 64))) & 1;
+    }
+
+    void write(size_t const i, bool const value)
+    {
+        uint64_t mask = static_cast<uint64_t>(1) << (63 - (i % 64));
+
+        if (value == true)
+            data[i / 64] |= mask;
+        else
+            data[i / 64] &= ~mask;
+    }
+};
 
 int main()
 {
-    std::vector<uint64_t> B(10, 0u);
+    Bitvector B(10);
 
-    std::cout << read(B, 63) << std::endl; // prints 0
-    write(B, 63, 1);                       // writes a 1 at position 63 in the bitvector
-    std::cout << read(B, 63) << std::endl; // prints 1
-    write(B, 63, 1);                       // writes a 0 at position 63 in the bitvector
-    std::cout << read(B, 63) << std::endl; // prints 0 again
+    std::cout << B.read(63) << std::endl; // prints 0
+    B.write(63, 1);                       // writes a 1 at position 63 in the bitvector
+    std::cout << B.read(63) << std::endl; // prints 1
+    B.write(63, 0);                       // writes a 0 at position 63 in the bitvector
+    std::cout << B.read(63) << std::endl; // prints 0 again
 }
