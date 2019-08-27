@@ -45,31 +45,31 @@ std::string bwt_construction(std::string const & text)
 struct occurrence_table
 {
     // The list of bitvectors:
-    std::vector<Bitvector> bitvector_data;
+    std::vector<Bitvector> data;
 
     // We want that 5 bitvectors are filled depending on the bwt,
     // so let's customise the constructor of occurrence_table:
     occurrence_table(std::string const & bwt)
     {
-        // resize the 5 bitvectors, blocks and superblocks:
-        bitvector_data = std::vector<Bitvector>(5, Bitvector((bwt.size() + 63)/ 64));
+        // resize the 5 bitvectors to the length of the bwt:
+        data.resize(5, Bitvector((bwt.size() + 63)/ 64));
 
         // fill the bitvectors
         for (size_t i = 0; i < bwt.size(); ++i)
         {
             switch (bwt[i])
             {
-                case '$': bitvector_data[0].write(i, 1); break;
-                case 'i': bitvector_data[1].write(i, 1); break;
-                case 'm': bitvector_data[2].write(i, 1); break;
-                case 'p': bitvector_data[3].write(i, 1); break;
-                case 's': bitvector_data[4].write(i, 1); break;
+                case '$': data[0].write(i, 1); break;
+                case 'i': data[1].write(i, 1); break;
+                case 'm': data[2].write(i, 1); break;
+                case 'p': data[3].write(i, 1); break;
+                case 's': data[4].write(i, 1); break;
                 default: break;
             }
         }
 
-        for (Bitvector & bitv : bitvector_data)
-            bitv.construct(3, 12);
+        for (Bitvector & bitv : data)
+            bitv.construct(3, 6);
     }
 
     bool read(char const chr, size_t const i)
@@ -86,11 +86,9 @@ struct occurrence_table
             default: break;
         }
 
-        return bitvector_data[c].rank(i + 1);
+        return data[c].rank(i + 1);
     }
 };
-
-
 //![occurrence_table_computation]
 
 //![main]
@@ -110,12 +108,12 @@ int main()
 
     std::string sigma{"$imps"};
     size_t s{};
-    for (auto & bitv : Occ.bitvector_data)
+    for (auto & bitv : Occ.data)
     {
         std::cout << sigma[s++] << "  ";
         for (size_t i = 1; i < bwt.size() + 1; ++i)
             std::cout << bitv.rank(i) << " ";
-        std::cout << "\n";
+        std::cout << '\n';
     }
 }
 //![main]

@@ -7,7 +7,13 @@ struct Bitvector
     std::vector<uint16_t> blocks;
     std::vector<uint64_t> superblocks;
 
-    Bitvector(size_t const count) : data((count + 63) / 64, 0u) {};
+    uint64_t block_size;
+    uint64_t superblock_size;
+
+    Bitvector(size_t const count)
+    {
+        data.resize((count + 63) / 64); // the +63 are a trick to round up the fraction.
+    }
 
     bool read(size_t const i) const
     {
@@ -24,34 +30,35 @@ struct Bitvector
             data[i / 64] &= ~mask;
     }
 
-    size_t size() const
+    void construct(size_t const new_block_size = 64, size_t const new_superblock_size = 512)
     {
-        return data.size() * 64u;
-    }
+        block_size = new_block_size;
+        superblock_size = new_superblock_size;
 
-    void construct(size_t const block_size = 64u, size_t const superblock_size = 512u)
-    {
-        blocks = std::vector<uint16_t>((size() + block_size - 1) / block_size, 0u);
-        superblocks = std::vector<uint64_t>((size() + superblock_size - 1) / superblock_size, 0u);
+        size_t number_of_bits = data.size() * 64;
 
-        size_t block_pos{0u};
-        size_t super_block_pos{0u};
+        blocks.resize((number_of_bits + block_size - 1) / block_size, 0);
+        superblocks.resize((number_of_bits + superblock_size - 1) / superblock_size, 0);
 
-        uint16_t block_count{0u};
-        uint64_t super_block_count{0u};
+        size_t block_pos{0};
+        size_t super_block_pos{0};
 
-        for (size_t i = 0u; i < data.size(); ++i)
+        uint16_t block_count{0};
+        uint64_t super_block_count{0};
+
+        // now we only need to iterate over each 64bit integer because we can count the 1's en bloc
+        for (size_t i = 0; i < data.size(); ++i)
         {
-            if ((i * 64) % block_size == 0u)
+            if ((i * 64) % block_size == 0)
             {
-                if ((i * 64) % superblock_size == 0u)
+                if ((i * 64) % superblock_size == 0)
                 {
                     super_block_count += block_count; // update superblock count
 
                     superblocks[super_block_pos] = super_block_count;
 
                     ++super_block_pos; // move to the next position
-                    block_count = 0u;   // reset block count
+                    block_count = 0;   // reset block count
                 }
 
                 blocks[block_pos] = block_count;
@@ -75,9 +82,9 @@ int main()
 
     for (auto a : B.blocks)
         std::cout << a << " ";
-    std::cout << std::endl;
+    std::cout << '\n';
 
     for (auto a : B.superblocks)
         std::cout << a << " ";
-    std::cout << std::endl;
+    std::cout << '\n';
 }
