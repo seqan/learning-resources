@@ -6,8 +6,9 @@
     <!--     <tab type="pages" visible="yes" title="" intro=""/> -->
         <tab type="usergroup" visible="yes" title="Nanocourses" intro="">
             <tab type="usergroup" visible="yes" title="Compact Data Structures" intro="">
-                <tab type="user" visible="yes" title="Setup" url="\ref setup_compact_data_structures"     intro=""/>
-                <tab type="user" visible="yes" title="Bitvectors" url="\ref compact_data_structures"     intro=""/>
+                <tab type="user" visible="yes" title="Setup" url="\ref setup_compact_data_structures"     intro=""/>""/>
+                <tab type="user" visible="yes" title="Bitvectors" url="\ref bitvectors"     intro=""/>""/>
+                <tab type="user" visible="yes" title="FM Index" url="\ref fm_index"     intro=""/>
             </tab>
         </tab>
         <tab type="usergroup" visible="yes" title="About" intro="">

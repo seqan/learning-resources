@@ -1,4 +1,4 @@
-# Compact Data Structures - An introduction {#compact_data_structures}
+# Compact Data Structures - Bitvectors {#bitvectors}
 
 [TOC]
 
