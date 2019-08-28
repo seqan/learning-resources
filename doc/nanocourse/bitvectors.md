@@ -171,7 +171,7 @@ struct Bitvector
 ### Write to the compact bitvector
 
 We now want to support writing to our bitvector by implementing the member function `write(i, x)`.
-This is a bit more tricky so we recommend this is a bonus question for experienced C++ users.
+This is a bit more tricky so we recommend this as a bonus question for experienced C++ users.
 Otherwise you may just copy and paste the solution.
 
 \assignment{Writing}
