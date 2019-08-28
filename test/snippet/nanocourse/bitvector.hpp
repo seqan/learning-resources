@@ -9,7 +9,7 @@ struct Bitvector
     uint64_t block_size;
     uint64_t superblock_size;
 
-    Bitvector(size_t const count) : data((count + 63) / 64, 0u) {};
+    Bitvector(size_t const count) : data((count + 63) / 64, 0) {};
 
     bool read(size_t const i) const
     {
@@ -35,27 +35,28 @@ struct Bitvector
     {
         block_size = block_size_new;
         superblock_size = superblock_size_new;
-        blocks = std::vector<uint16_t>((size() + block_size - 1) / block_size, 0u);
-        superblocks = std::vector<uint64_t>((size() + superblock_size - 1) / superblock_size, 0u);
 
-        size_t block_pos{0u};
-        size_t super_block_pos{0u};
+        blocks.resize((size() + block_size - 1) / block_size, 0);
+        superblocks.resize((size() + superblock_size - 1) / superblock_size, 0);
 
-        uint16_t block_count{0u};
-        uint64_t super_block_count{0u};
+        size_t block_pos{0};
+        size_t super_block_pos{0};
 
-        for (size_t i = 0u; i < size(); ++i)
+        uint16_t block_count{0};
+        uint64_t super_block_count{0};
+
+        for (size_t i = 0; i < size(); ++i)
         {
-            if (i % block_size == 0u)
+            if (i % block_size == 0)
             {
-                if (i % superblock_size == 0u)
+                if (i % superblock_size == 0)
                 {
                     super_block_count += block_count; // update superblock count
 
                     superblocks[super_block_pos] = super_block_count;
 
                     ++super_block_pos; // move to the next position
-                    block_count = 0u;   // reset block count
+                    block_count = 0;   // reset block count
                 }
 
                 blocks[block_pos] = block_count;
