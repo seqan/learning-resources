@@ -84,17 +84,18 @@ int main()
 
 ### Access the compact bitvector
 
-The bitvector needs to support access to the single bits by a member function `read(i)`,
+The bitvector needs to support access to the single bits via a member function `read(i)`,
 which returns either `0` or `1` depending on the bit at position `i`.
 
-We now face the problem that we do not store single bits but groups of 64bits in one `64bit` integer.
-For example, if the data vector would contain the entry `17`, the 64bit binary representation of `17` is
+We now face the problem that we do not store single bits but groups of 64 bits in one `uint64_t` integer.
+For example, if the data vector would contain the entry `17`, the 64 bit binary representation of `17` is
 
 ```
+0         8         16        24        32        40        48        56
 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0001 0001
 ```
 
-It thus represents a group of 64 bits where the bits at position 59 and 63 (starting from 0) are set to 1.
+It thus represents a group of 64 bits where the bits at position 59 and 63 (starting from the left and 0) are set to 1.
 
 So how do we access single bits within the integer? This can be achieved using bit manipulation.
 
@@ -134,17 +135,17 @@ struct Bitvector
 
     Bitvector(size_t const count)
     {
-        data.resize((count + 63) / 64); // the +63 are a trick to round up the fraction.
+        data.resize((count + 63) / 64); // the +63 is a trick to round up the fraction.
     }
 
     bool read(size_t const i) const
     {
         // We need to find the correct group for bit i.
-        // For example, if i is 10 it will be the 10th bit in the first 64bit-group,
+        // For example, if i is 10 it will be the 10th bit in the first 64 bit-group,
         // if i is 70 it will be the 6th bit in the second.
         size_t group_index = /*TODO: In which data entry (group) can we find bit i?*/;
 
-        // Now that we identified the correct entry. We nee to know the relative position of i within its group,
+        // Now that we identified the correct entry. We need to know the relative position of i within its group,
         // e.g. for i == 70, the group_index is 1 (second group starting with 0) and the relative position x is 6.
         size_t x = /*TODO: what is the relative position of bit i?*/;
 
