@@ -46,33 +46,37 @@ matrix:
     env:
       - BUILD=snippet
       - BUILD_TYPE=Release
-      - CXXFLAGS="-std=c++2a"
+      - CXXFLAGS="-std=c++2a -fsanitize=address"
       - CMAKE_VERSION=3.7.2
   - << : *linux-gcc-8
     env:
       - BUILD=snippet
       - BUILD_TYPE=Release
+      - CXXFLAGS="-fsanitize=undefined -fuse-ld=gold"
       - CMAKE_VERSION=3.7.2
   - << : *linux-gcc-7
     env:
       - BUILD=snippet
       - BUILD_TYPE=Release
+      - CXXFLAGS="-fsanitize=address"
       - CMAKE_VERSION=3.7.2
   - << : *linux-gcc-9
     env:
       - BUILD=snippet
       - BUILD_TYPE=Debug
-      - CXXFLAGS="-std=c++2a"
+      - CXXFLAGS="-std=c++2a -fsanitize=undefined -fuse-ld=gold"
       - CMAKE_VERSION=3.7.2
   - << : *linux-gcc-8
     env:
       - BUILD=snippet
       - BUILD_TYPE=Debug
+      - CXXFLAGS="-fsanitize=address"
       - CMAKE_VERSION=3.7.2
   - << : *linux-gcc-7
     env:
       - BUILD=snippet
       - BUILD_TYPE=Debug
+      - CXXFLAGS="-fsanitize=undefined -fuse-ld=gold"
       - CMAKE_VERSION=3.7.2
   - os: linux
     compiler: 'doxygen'
