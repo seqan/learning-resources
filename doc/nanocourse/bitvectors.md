@@ -84,10 +84,23 @@ int main()
 
 ### Access the compact bitvector
 
-We now want to support access to our bitvector by implementing the member function `read(i)`,
+The bitvector needs to support access to the single bits via a member function `read(i)`,
 which returns either `0` or `1` depending on the bit at position `i`.
 
---- explain bit operations ---
+We now face the problem that we do not store single bits but groups of 64 bits in one `uint64_t` integer.
+For example, if the data vector would contain the entry `17`, the 64 bit binary representation of `17` is
+
+```
+0         8         16        24        32        40        48        56
+0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0001 0001
+```
+
+It thus represents a group of 64 bits where the bits at position 59 and 63 (starting from the left and 0) are set to 1.
+
+So how do we access single bits within the integer? This can be achieved using bit manipulation.
+
+Read up on basic bit manipulation mechanisms in [this tutorial](https://en.wikipedia.org/wiki/Bit_manipulation)
+if you are new to this.
 
 \assignment{Reading}
 
@@ -97,12 +110,8 @@ and complete the code:
 ```cpp
     bool read(size_t const i) const
     {
-        bool x;
-
-        // ... your implementation goes here
-        // x should be set to true if the bit at position i is set to 1 and set to false otherwise.
-
-        return x;
+        // manipulate the bits of the correct entry to identify whether position i is set to 0 or 1
+        // return true if the bit at position i is set to 1 and false otherwise.
     }
 ```
 
@@ -116,7 +125,40 @@ Your program should output
 0
 ```
 
-since there is nothing set to 1 yet.
+If you are unexperienced with C++ we provide the backbone of read function and you can fill in the *TODOs*:
+
+\hint
+```cpp
+struct Bitvector
+{
+    std::vector<uint64_t> data;
+
+    Bitvector(size_t const count)
+    {
+        data.resize((count + 63) / 64); // the +63 is a trick to round up the fraction.
+    }
+
+    bool read(size_t const i) const
+    {
+        // We need to find the correct group for bit i.
+        // For example, if i is 10 it will be the 10th bit in the first 64 bit-group,
+        // if i is 70 it will be the 6th bit in the second.
+        size_t group_index = /*TODO: In which data entry (group) can we find bit i?*/;
+
+        // Now that we identified the correct entry. We need to know the relative position of i within its group,
+        // e.g. for i == 70, the group_index is 1 (second group starting with 0) and the relative position x is 6.
+        size_t x = /*TODO: what is the relative position of bit i?*/;
+
+        // Now that we identified the correct entry and relative position,
+        // we need to move the bit of interest to the right most position in order to look at it.
+        // This can be done using a right shift of (63 - x) positions.
+        // If the then use the logical AND operator with 1 (bit representation 0..01)
+        // we set every bit but the last to zero, so we have either 0..0 or 0..1 which is either false or true.
+        return (data[group_index] >> (63 - x)) & 1;
+    }
+};
+```
+\endhint
 
 \endassignment
 
@@ -129,8 +171,8 @@ since there is nothing set to 1 yet.
 ### Write to the compact bitvector
 
 We now want to support writing to our bitvector by implementing the member function `write(i, x)`.
-This is a bit more tricky.
-Hints?
+This is a bit more tricky so we recommend this as a bonus question for experienced C++ users.
+Otherwise you may just copy and paste the solution.
 
 \assignment{Writing}
 
