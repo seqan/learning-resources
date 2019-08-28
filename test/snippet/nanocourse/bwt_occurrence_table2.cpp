@@ -72,7 +72,7 @@ struct occurrence_table
             bitv.construct(3, 6);
     }
 
-    bool read(char const chr, size_t const i)
+    size_t read(char const chr, size_t const i)
     {
         size_t c{}; // the index of the character
 
@@ -108,11 +108,11 @@ int main()
 
     std::string sigma{"$imps"};
     size_t s{};
-    for (auto & bitv : Occ.data)
+    for (auto chr : sigma)
     {
-        std::cout << sigma[s++] << "  ";
-        for (size_t i = 1; i < bwt.size() + 1; ++i)
-            std::cout << bitv.rank(i) << " ";
+        std::cout << chr << "  ";
+        for (size_t i = 0; i < bwt.size(); ++i)
+            std::cout << Occ.read(chr, i) << " ";
         std::cout << '\n';
     }
 }

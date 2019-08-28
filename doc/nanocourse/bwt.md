@@ -323,5 +323,27 @@ struct occurrence_table
 
 # Backward Search
 
-count
+Now that we have the helper data structures, we can conduct an efficient pattern search within out bwt.
 
+The pseudo code to compute the number of occurrences of a pattern \f$P[0..m-1]\f$ in \f$T[0..n-1]\f$ is the following:
+
+```python
+(1)  count(P[0..m-1])
+(2)  i = m - 1, a = 0, b = n - 1;
+(3)  while ((a <= b) AND (i >= 0)) do
+(4)      c = P[i];
+(5)      a = C(c) + Occ(c, a - 1)
+(6)      b = C(c) + Occ(c, b) - 1;
+(7)      i = i - 1;
+(8)
+(9)  if (b < a) then return not found;
+(10) else return found (b - a + 1) occurrences;
+```
+
+\assignment{Backward search}
+
+Using all of your code so far, implement a function
+`size_t count(std::string const & P, std::string const & bwt, std::vector<uint16_t> C, occurrence_table Occ)`
+that returns the number of occurrences of pattern `P`.
+
+\endassignment
