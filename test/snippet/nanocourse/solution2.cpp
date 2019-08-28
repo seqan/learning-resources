@@ -5,7 +5,10 @@ struct Bitvector
 {
     std::vector<uint64_t> data;
 
-    Bitvector(size_t const count) : data((count + 63) / 64, 0u) {};
+    Bitvector(size_t const count)
+    {
+        data.resize((count + 63) / 64); // the +63 are a trick to round up the fraction.
+    }
 
     bool read(size_t const i) const
     {
@@ -13,9 +16,11 @@ struct Bitvector
     }
 };
 
+//![main]
 int main()
 {
     Bitvector B(10);
 
-    std::cout << B.read(2) << std::endl; // prints 0
+    std::cout << B.read(2) << '\n'; // prints 0
 }
+//![main]

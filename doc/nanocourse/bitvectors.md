@@ -41,11 +41,38 @@ while still supporting the basic operations:
 
 As noted above we need to represent bits using larger entities available in the C++ language.
 It usually pays off if you choose an integer with the size of a machine word `w`, which is 64 on modern architectures.
-We will use a `std::vector` over `uint64_t` for our representation.
+Therefor, we will use the C++ type `uint64_t` for our representation.
 
 \assignment{A compact bitvector}
 
-Construct a `std::vector` over `uint64_t` of a length that can store at least 600 bits, initialised with zeros.
+Implement a new data structure called `Bitvector` (a `struct`) that has a member variable called `data` of type
+`std::vector` over `uint64_t`. The constructor should have one parameter that is the number of bits you would
+like to store in your bitvector.
+
+If you aren't an experienced C++ programmer, take a look at this backbone and fill in the *TODOs*:
+
+\hint
+```cpp
+#include <cinttypes>
+#include <vector>
+
+struct Bitvector // the new data structure
+{
+    std::vector<uint64_t> data; // the data storage (64 bit integers instead of single bits)
+
+    // The constructor takes one parameter as input called 'count'.
+    // After the colon `:` we initialise the data member with the constructor of std::vector(size, value).
+    // The `value` in our case is '0' because we want everything set to zero.
+    // Your task is to fill in the number for `size`.
+    Bitvector(size_t const count) : data(/*TODO: How many integers do you need to represent `count` bits?*/, 0) {};
+};
+
+int main()
+{
+    Bitvector B(10); // construct an instance B of type Bitvector that can store at least 10 bits
+}
+```
+\endhint
 
 \endassignment
 
@@ -57,24 +84,39 @@ Construct a `std::vector` over `uint64_t` of a length that can store at least 60
 
 ### Access the compact bitvector
 
-We now want to support access to our bitvector by implementing the function `read(B, i)`.
+We now want to support access to our bitvector by implementing the member function `read(i)`,
+which returns either `0` or `1` depending on the bit at position `i`.
 
 --- explain bit operations ---
 
 \assignment{Reading}
 
-Complete the following implementation of a function that can access the compact bitvector:
+Copy and paste the following implementation of a function into your Bitvector struct
+and complete the code:
 
 ```cpp
+    bool read(size_t const i) const
+    {
+        bool x;
 
-bool read(std::vector<uint64_t> const & B, size_t const i)
-{
-    // ... your implementation goes here
+        // ... your implementation goes here
+        // x should be set to true if the bit at position i is set to 1 and set to false otherwise.
 
-    // return x; // x = true if the bit is set to 1 and x = false otherwise
-}
+        return x;
+    }
+```
+
+Given the following main function
+
+\snippet test/snippet/nanocourse/solution2.cpp main
+
+Your program should output
 
 ```
+0
+```
+
+since there is nothing set to 1 yet.
 
 \endassignment
 
@@ -86,7 +128,7 @@ bool read(std::vector<uint64_t> const & B, size_t const i)
 
 ### Write to the compact bitvector
 
-We now want to support writing to our bitvector by implementing the function `write(B, i, x)`.
+We now want to support writing to our bitvector by implementing the member function `write(i, x)`.
 This is a bit more tricky.
 Hints?
 
@@ -95,12 +137,10 @@ Hints?
 Complete the following implementation of a function that can access the compact bitvector:
 
 ```cpp
-
-void write(std::vector<uint64_t> & B, size_t const i, bool const x)
-{
-    // ... your implementation goes here
-}
-
+    void write(size_t const i, bool const x)
+    {
+        // ... your implementation goes here
+    }
 ```
 
 \endassignment
@@ -141,93 +181,102 @@ In order to support rank and select queries we need two helper data structures (
 
 The block and superblock values obviously need to be stored using an arithmetic data type
 (e.g. `uint8_t`, `uint16_t`, `uint32_t`, `uint64_t`).
-Given arbitrary bitvector of length n, word length `w = 64 bits` and a superblock length of `s = 64 * 25 = 1600 bits`.
-Which type would you choose for superblock entries, and which type for block entries and why?
+Given an arbitrary bitvector of length n, word length `w = 64 bits`
+and a superblock length of `s = 64 * 25 = 1600 bits`,
+which type would you choose for superblock entries, and which type for block entries and why?
 
 \endassignment
 
 \solution
 
-If a superblock spans is 1600 bits, then the last block value within a superblock can at most count 1599 `1s`.
+If a superblock spans 1600 bits, then the last block value within a superblock can at most count 1599 `1s`.
 Thus, a `uint16_t` is the smallest type that is still able represent this number
-and should be preferred to larger typed, to reduces the space of the block array.
+and should be preferred to larger types to reduce the space of the block data structure.
 
 Since we do not know how large our bitvector might be, one should choose a large data type, like `uint64_t`,
 to store to prefix sums for the superblock values.
 
 \endsolution
 
-Now that we now which data types to work with, let's implement the data structures.
+Now that we know which data types to work with, let's implement the data structures.
 
 \assignment{Compute the block and superblock arrays}
 
-Given a bitvector `B` from the previous assignments that can store `6400 bits` (what's the length?),
-compute the entries of the arrays by iterating over the bitvector.
+Given a bitvector `B` from the previous assignments:
+1. Add the member variables `std::vector<uint16_t> blocks` and `std::vector<uint64_t> superblocks`.
+2. Add the member variables `uint16_t block_size` and `uint16_t superblock_size`.
+3. Add a member function `void construct(size_t const new_block_size = 64, size_t const new_superblock_size = 512)`
+that overwrites the member variables `block_size` and `superblock_size`
+and then fills the member variables `blocks` and `superblocks`.
 
 With the following main function:
 
-```cpp
-int main()
-{
-    std::vector<uint64_t> B(6400 / 64, 2);
-
-    std::vector<uint16_t> blocks(6400 / 64, 0);
-    std::vector<uint64_t> superblocks(6400 / 1600, 0);
-
-    construct(blocks, superblocks, B);
-
-    for (auto a : superblocks)
-        std::cout << a << " ";
-    std::cout << std::endl;
-}
-```
+\snippet test/snippet/nanocourse/solution4.cpp main
 
 your program should print the following:
 
 ```
+Superblocks:
 0 25 50 75
+
+Blocks:
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
 ```
 
-If you print your blocks too, there should be 100 entries: `0,1,2,...,24,0,1,2,...24,0,1,2,...,24,0,1,2,...24`.
-
-If you are not so experienced with C++, you can use the following backbone:
+If you aren't experienced with C++, you can use the following backbone and fill in the *TODOs*:
 
 \hint
 
 ```cpp
-void construct(std::vector<uint16_t> & blocks,
-               std::vector<uint64_t> & superblocks,
-               std::vector<uint64_t> const & B)
-{
-    size_t block_pos{0u};
-    size_t superblock_pos{0u};
-
-    uint16_t block_count{0u};
-    uint64_t superblock_count{0u};
-
-    for (size_t i = 0u; i < B.size() * 64; ++i)
+    // The member function takes two parameters:
+    // `block_size` which is defaulted to be 64 and `superblock_size` which is defaulted to 512.
+    // Defaulted means that you can also call the function without parameters `construct()`.
+    void construct(size_t const new_block_size = 64, size_t const new_superblock_size = 512)
     {
-        if (/*whenever we reach the end of a block. Hint: use the modulo operation on i*/)
+        block_size = new_block_size;            // overwrite the member variable with the new value
+        superblock_size = new_superblock_size;  // overwrite the member variable with the new value
+
+        size_t number_of_bits = data.size() * 64;
+
+        // resize the two arrays of blocks and superblocks
+        blocks.resize(/*TODO: how many blocks do I need?*/);
+        superblocks.resize(/*TODO: how many super blocks do I need?*/);
+
+        // keep track of the current (super)block
+        size_t block_pos{0};
+        size_t super_block_pos{0};
+
+        // keep track of the current (super)block count value
+        uint16_t block_count{0};
+        uint64_t super_block_count{0};
+
+        // iterate over the data member and count the number of 1's.
+        for (size_t i = 0; i < number_of_bits; ++i)
         {
-            if (/*whenever we even reach the end of a superblock. Hint: use the modulo operation on i*/)
+            if (/*TODO: When do we reach the end of a block? Hint: Use the modulo operation (%) on i*/)
             {
-                superblock_count += block_count; // update superblock count
+                if (/*TODO: When do we reach the end of a superblock? Hint: Use the modulo operation (%) on i*/)
+                {
+                    super_block_count += block_count; // update superblock count
 
-                // TODO: store the value of superblock_count into the current super block entry
+                    // TODO: store the value of super_block_count into the current superblock entry (at super_block_pos)
 
-                ++superblock_pos; // move to the next position
-                block_count = 0u;   // reset block count
+                    ++super_block_pos; // move to the next position
+                    block_count = 0;   // reset block count
+                }
+
+                // TODO: store value of block_count in the current block entry (at super_block_pos)
+
+                ++block_pos; // move to the next position
             }
 
-            // TODO: store value of count in the current block entry
-
-            ++block_pos; // move to the next position
+            if (read(i) == true)
+                ++block_count;
         }
-
-        if (/*bitvector B has a 1 at position i - 1*/)
-            ++block_count;
     }
-}
 ```
 \endhint
 \endassignment
@@ -246,25 +295,25 @@ The code could then look like this (**This is compiler specific (GCC)**):
 
 \include test/snippet/nanocourse/solution4_intrinsic.cpp
 
-If you have some time to spare, increase the size of B, and do come runtime tests for construction.
+If you have some time to spare, increase the size of B, and do some runtime tests for the construction.
 The construction using popcount should be considerably faster.
 
 \endsolution
 
-### Functions rank and select
+### Rank queries
 
 Now that we have the helper data structures of block and superblocks,
-we will implement the actual support for rank and select queries, namely the function
+we will implement the actual support for rank queries.
 
 \assignment{Rank queries}
 
-Implement a function
+Implement a member function
 
 ```cpp
-uint64_t rank(std::vector<uint64_t> const & B,
-              std::vector<uint16_t> const & blocks,
-              std::vector<uint64_t> const & superblocks,
-              size_t const i)
+    uint64_t rank(size_t const i) const
+    {
+        // your code here
+    }
 ```
 
 that returns the number of occurrences of bit \f$v \in {0, 1}\f$ in \f$B[1, i]\f$,
@@ -279,30 +328,29 @@ Given the following main function:
 Your program should output
 
 ```
-3
+1
+1
+2
 ```
 
 If you are inexperienced with C++, you can use the following backbone:
 
 \hint
 ```cpp
-uint64_t rank(std::vector<uint64_t> const & B,
-              std::vector<uint16_t> const & blocks,
-              std::vector<uint64_t> const & superblocks,
-              size_t const i)
-{
-    uint64_t rank{0};
-
-    rank += superblocks[/* The super block position */];
-    rank += blocks[/* The block position */];
-
-    for (size_t j = ((i - 1) / 64) * 64; j < i; ++j)
+    uint64_t rank(size_t const i) const
     {
-        /* Add 1 to the rank if the B at position j has a 1.*/
-    }
+        uint64_t rank{0};
 
-    return rank;
-}
+        rank += superblocks[/*TODO: the position of the superblock entry to use*/];
+        rank += blocks[/*TODO: the position of the block entry to use*/];
+
+        // go through the remaining block bit-by-bit
+        for (size_t j = ((i - 1) / block_size) * block_size; j < i; ++j)
+        {
+            /*TODO: increase `rank` by 1 if there is a 1 at position j in data. Hint: Use a function we implemented.*/
+        }
+        return rank;
+    }
 ```
 
 \endhint

@@ -131,18 +131,19 @@ from the \ref bitvectors "bitvector tutorial".
 
 \assignment{Implement the occurrence table via bitvectors}
 
-Copy the code from the \ref bitvectors "bitvector tutorial" for accessing the bitvector data structure.
+We will use the bitvector data structure from the previous \ref bitvectors "bitvector tutorial".
+For simplicity, copy and paste the following code summary into a file called `bitvector.hpp` in your source directory.
+We will then be able to include the code into our current solution `cpp` file without any effort.
 
-Since the occurrence table is a bit more complex, we implement the functionality within a new struct.
+Since the occurrence table is a bit more complex, we will implement the occurrence functionality within a new struct.
 
 ```cpp
+#include "bitvector.hpp"
+
 struct occurrence_table
 {
-    // Lets's rename the type `std::vector<uint64_t>` to `bitvector` for a more readable code:
-    using bitvector = std::vector<uint64_t>;
-
     // The list of bitvectors:
-    std::vector<bitvector> bitvector_data;
+    std::vector<Bitvector> data;
 
     // We want that 5 bitvectors are filled depending on the bwt,
     // so let's customise the constructor of occurrence_table:
@@ -176,35 +177,19 @@ Here is a backbone for the function if you need it:
 
 \hint
 ```cpp
-void write(bitvector & B, size_t const i, bool const x)
-{
-    uint64_t mask = static_cast<uint64_t>(1) << (63 - (i % 64));
-
-    if (x == 1)
-        B[i / 64] |= mask;
-    else
-        B[i / 64] &= ~mask;
-}
-
-bool read(bitvector const & B, size_t const i)
-{
-    return (B[i / 64] >> (63 - (i % 64))) & 1;
-}
+#include "bitvector.hpp"
 
 struct occurrence_table
 {
-    // Lets's rename the type `std::vector<uint64_t>` to `bitvector` for a more readable code:
-    using bitvector = std::vector<uint64_t>;
-
     // The list of bitvectors:
-    std::vector<bitvector> bitvector_data;
+    std::vector<Bitvector> data;
 
     // We want that 5 bitvectors are filled depending on the bwt,
     // so let's customise the constructor of occurrence_table:
     occurrence_table(std::string const & bwt)
     {
         // resize the 5 bitvectors to the length of the bwt:
-        bitvector_data = std::vector<bitvector>(5, bitvector(bwt.size()));
+        data.resize(/*TODO: How many Bitvectors?*/, Bitvector(/*TODO: How large should each bitvector be?*/));
 
         // fill the bitvectors
         for (size_t i = 0; i < bwt.size(); ++i)
@@ -242,34 +227,99 @@ struct occurrence_table
 
 \endsolution
 
-Now when we use the occurrence table, we want to answer for example the query
+Now when we use the occurrence table, we actually want to answer for example the query
 "How many characters `s` have I found up until position `i` in the bwt"?
 
 This means we have to count number of `1`'s the bitvector for character `s` up until position `i`.
 Does this sound familiar? Yes, it is a **rank query**.
-We have implemented rank and select support for our bitvector data structure in the
+We have implemented rank support for our bitvector data structure in the
 \ref bitvectors "bitvector tutorial" so lets make use of this to implement access to the occurrence table.
 
 \assignment{Access the occurrence table}
 
-1. Copy and paste the rank support from the \ref bitvectors "bitvector tutorial".
-2. Add the following two names and two lists to your `occurence_table` struct:
+1. Adapt your constructor to also construct the helper data structures of your bitvector.
+Choose a block size of `3` bits and a superblock size of `6` bits
+(This is not recommended for real world data but serves as a toy example for the small bwt).
+2. Implement the member function `size_t read(char chr, size_t i)` that returns the number of
+occurrences of `chr` up until position `i` in the bwt using the rank support for the bitvectors.
 
-```cpp
-    using block = std::vector<uint16_t>;
-    using superblock = std::vector<uint64_t>;
+Now given the following main function we can print the actual occurrence table:
 
-    // The list of blocks:
-    std::vector<block> block_data;
-    // The list of superblocks:
-    std::vector<superblock> superblock_data;
+\snippet test/snippet/nanocourse/bwt_occurrence_table2.cpp main
+
+The output should look like this:
+```
+   i p s s m $ p i s s i i
+   -----------------------
+$  0 0 0 0 0 1 1 1 1 1 1 1
+i  1 1 1 1 1 1 1 2 2 2 3 4
+m  0 0 0 0 1 1 1 1 1 1 1 1
+p  0 1 1 1 1 1 2 2 2 2 2 2
+s  0 0 1 2 2 2 2 2 3 4 4 4
 ```
 
-3. Adapt your constructor to also compute and store the blocks and superblocks for each bitvector.
-4. Implement function `size_t read(occurence_table const & Occ, char chr, size_t i)` that returns number of
-occurrence of `chr` up until position `i` in the bwt using the rank support for the bitvectors.
+\hint
 
+Here is a backbone for the function if you need it:
+
+\endhint
+```cpp
+struct occurrence_table
+{
+    // The list of bitvectors:
+    std::vector<Bitvector> data;
+
+    // We want that 5 bitvectors are filled depending on the bwt,
+    // so let's customise the constructor of occurrence_table:
+    occurrence_table(std::string const & bwt)
+    {
+        // resize the 5 bitvectors to the length of the bwt:
+        data.resize(5, Bitvector((bwt.size() + 63)/ 64));
+
+        // fill the bitvectors
+        for (size_t i = 0; i < bwt.size(); ++i)
+        {
+            switch (bwt[i])
+            {
+                case '$': data[0].write(i, 1); break;
+                case 'i': data[1].write(i, 1); break;
+                case 'm': data[2].write(i, 1); break;
+                case 'p': data[3].write(i, 1); break;
+                case 's': data[4].write(i, 1); break;
+                default: break;
+            }
+        }
+
+        // construct the helper data structures
+        for (Bitvector & bitv : data)
+            /*TODO: Call the construct member function with block size 3 and superblock size 6*/;
+    }
+
+    bool read(char const chr, size_t const i)
+    {
+        size_t c{}; // the index of the character
+
+        switch (chr)
+        {
+            case '$': c = 0; break;
+            case 'i': c = 1; break;
+            case 'm': c = 2; break;
+            case 'p': c = 3; break;
+            case 's': c = 4; break;
+            default: break;
+        }
+
+        return /*TODO: For the bitvector at position c in data, call the rank member function at position i + 1*/;
+    }
+};
+```
 \endassignment
+
+\solution
+
+\snippet test/snippet/nanocourse/bwt_occurrence_table2.cpp occurrence_table_computation
+
+\endsolution
 
 # Backward Search
 

@@ -45,25 +45,25 @@ std::string bwt_construction(std::string const & text)
 struct occurrence_table
 {
     // The list of bitvectors:
-    std::vector<Bitvector> bitvector_data;
+    std::vector<Bitvector> data;
 
     // We want that 5 bitvectors are filled depending on the bwt,
     // so let's customise the constructor of occurrence_table:
     occurrence_table(std::string const & bwt)
     {
         // resize the 5 bitvectors to the length of the bwt:
-        bitvector_data = std::vector<Bitvector>(5, Bitvector((bwt.size() + 63)/ 64));
+        data.resize(5, Bitvector((bwt.size() + 63)/ 64));
 
         // fill the bitvectors
         for (size_t i = 0; i < bwt.size(); ++i)
         {
             switch (bwt[i])
             {
-                case '$': bitvector_data[0].write(i, 1); break;
-                case 'i': bitvector_data[1].write(i, 1); break;
-                case 'm': bitvector_data[2].write(i, 1); break;
-                case 'p': bitvector_data[3].write(i, 1); break;
-                case 's': bitvector_data[4].write(i, 1); break;
+                case '$': data[0].write(i, 1); break;
+                case 'i': data[1].write(i, 1); break;
+                case 'm': data[2].write(i, 1); break;
+                case 'p': data[3].write(i, 1); break;
+                case 's': data[4].write(i, 1); break;
                 default: break;
             }
         }
@@ -88,12 +88,12 @@ int main()
 
     std::string sigma{"$imps"};
     size_t s{};
-    for (auto & bitv : Occ.bitvector_data)
+    for (auto & bitv : Occ.data)
     {
         std::cout << sigma[s++] << "  ";
         for (size_t i = 0; i < bwt.size(); ++i)
             std::cout << bitv.read(i) << " ";
-        std::cout << "\n";
+        std::cout << '\n';
     }
 }
 //![main]

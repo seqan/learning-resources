@@ -74,6 +74,6 @@ int main()
     std::cout << "$ i m p s\n" << "---------\n";
     for (auto c : count_table)
         std::cout << c << " ";
-    std::cout << std::endl;
+    std::cout << '\n';
 }
 //![main]
