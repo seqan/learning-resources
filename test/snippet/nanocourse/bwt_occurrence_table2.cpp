@@ -41,6 +41,21 @@ std::string bwt_construction(std::string const & text)
 }
 //![bwt_construction]
 
+//![to_index]
+size_t to_index(char const chr)
+{
+    switch (chr)
+    {
+        case '$': return 0;
+        case 'i': return 1;
+        case 'm': return 2;
+        case 'p': return 3;
+        case 's': return 4;
+        default: throw std::logic_error{"There is an illegal character in your text."};
+    }
+}
+//![to_index]
+
 //![occurrence_table_computation]
 struct occurrence_table
 {
@@ -56,17 +71,7 @@ struct occurrence_table
 
         // fill the bitvectors
         for (size_t i = 0; i < bwt.size(); ++i)
-        {
-            switch (bwt[i])
-            {
-                case '$': data[0].write(i, 1); break;
-                case 'i': data[1].write(i, 1); break;
-                case 'm': data[2].write(i, 1); break;
-                case 'p': data[3].write(i, 1); break;
-                case 's': data[4].write(i, 1); break;
-                default: break;
-            }
-        }
+            data[to_index(bwt[i])].write(i, 1);
 
         for (Bitvector & bitv : data)
             bitv.construct(3, 6);
@@ -74,19 +79,7 @@ struct occurrence_table
 
     size_t read(char const chr, size_t const i)
     {
-        size_t c{}; // the index of the character
-
-        switch (chr)
-        {
-            case '$': c = 0; break;
-            case 'i': c = 1; break;
-            case 'm': c = 2; break;
-            case 'p': c = 3; break;
-            case 's': c = 4; break;
-            default: break;
-        }
-
-        return data[c].rank(i + 1);
+        return data[to_index(chr)].rank(i + 1);
     }
 };
 //![occurrence_table_computation]
@@ -107,7 +100,6 @@ int main()
     std::cout << "\n   -----------------------\n";
 
     std::string sigma{"$imps"};
-    size_t s{};
     for (auto chr : sigma)
     {
         std::cout << chr << "  ";

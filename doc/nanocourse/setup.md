@@ -72,7 +72,7 @@ mkdir source
 
 Now we need to create a file named `Makefile` inside `nanocourse` with the following contents:
 ```make
-SOURCES=$(shell find . -name source/*.cpp)
+SOURCES=$(shell find source -name *.cpp)
 OBJECTS=$(SOURCES:%.cpp=%)
 
 all: $(OBJECTS)
@@ -81,7 +81,7 @@ ifndef CXX
 endif
 
 %: %.cpp
-	$(CXX) -std=c++17 -O3 -march=native -pedantic -Wall -Wextra -Werror -c $< -o $(notdir $@)
+	$(CXX) -std=c++17 -O3 -march=native -pedantic -Wall -Wextra -Werror -Isource -c $< -o $(notdir $@)
 ```
 
 # Compiling and Running
@@ -92,12 +92,12 @@ First we create the file `hello_world.cpp` in the `source` directory with the fo
 
 \include test/snippet/setup/hello_world.cpp
 
-To compile it we run `make` inside the `nanocourse` directory and then execute the binary.
+To compile it, we run `make` inside the `nanocourse` directory and then execute the binary.
 
-``
+```bash
 make
 ./hello_world
-``
+```
 
 The output should be `Hello world`.
 

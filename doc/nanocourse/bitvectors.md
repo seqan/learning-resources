@@ -5,16 +5,16 @@
 This HowTo gives an introduction into compact data structures. It is designed independently of SeqAn but
 it covers design patterns and concepts that are the foundations of efficient C++ used throughout the library.
 
-\tutorial_head{Easy, 120 min, , [Compact Data Structures (Navarro)](https://www.cambridge.org/core/books/compact-data-structures/68A5983E6F1176181291E235D0B7EB44)}
+\tutorial_head{Easy, 120 min, , [Compact Data Structures (Navarro)]
+(https://www.cambridge.org/core/books/compact-data-structures/68A5983E6F1176181291E235D0B7EB44)}
 
 # Motivation
 
-A compact data structure maintains data, and the desired extra data structures
-over it, in a form that not only uses less space than usual, but is able to access and
-query the data in compact form, that is, without decompressing them. Thus, a com-
-pact data structure allows us to fit and efficiently query, navigate, and manipulate
-much larger datasets in main memory than what would be possible if we used the
-data represented in plain form and classical data structures on top.
+A compact data structure maintains data, and the desired extra data structures over it, in a form that not only uses
+less space than usual, but is able to access and query the data in compact form, that is, without decompressing them.
+Thus, a compact data structure allows us to fit and efficiently query, navigate, and manipulate much larger datasets
+in main memory than what would be possible if we used the data represented in plain form and classical data
+structures on top.
 
 A good source of reading (which is online available for free):
 [Gonzalo Navarro, Compact Data Structures]
@@ -25,17 +25,16 @@ A good source of reading (which is online available for free):
 Bitvectors are fundamental in the implementation of most compact data structures.
 Therefore, an efficient implementation is of utmost importance.
 
-A bitvector is a bit array \f$B[1, n]\f$ of length \f$n\f$ of values \f$v \in {0,1}\f$ (bits).
+A bitvector is a bit array \f$B[0, n)\f$ of length \f$n\f$ of values \f$v \in {0,1}\f$ (bits).
 
 In C++ there is no type that defines a single bit, such that you could use `std::vector<bit>` for this purpose.
 If you would use, let's say, `std::vector<bool>` instead, you would use 1 byte = 8 bit for each entry,
 or even worse `std::vector<int>` which uses 4 byte = 32 bit.
 
-Let us design a compact data structure that stores single bits as values
-while still supporting the basic operations:
+Let us design a compact data structure that stores single bits as values while still supporting the basic operations:
 
-* \f$read(B, i)\f$: returns the bit \f$B[i]\f$, for any \f$1 \leq i \leq n\f$.
-* \f$write(B, i, x)\f$: writes the bit \f$x \in {0,1}\f$ to \f$B[i]\f$, for any \f$1 \leq i \leq n\f$.
+* \f$read(B, i)\f$: returns the bit \f$B[i]\f$, for any \f$0 \leq i < n\f$.
+* \f$write(B, i, x)\f$: writes the bit \f$x \in {0,1}\f$ to \f$B[i]\f$, for any \f$0 \leq i < n\f$.
 
 ## A compact representation of bitvectors
 
@@ -49,7 +48,7 @@ Implement a new data structure called `Bitvector` (a `struct`) that has a member
 `std::vector` over `uint64_t`. The constructor should have one parameter that is the number of bits you would
 like to store in your bitvector.
 
-If you aren't an experienced C++ programmer, take a look at this backbone and fill in the *TODOs*:
+If you are inexperienced with C++, take a look at this backbone and fill in the *TODOs*:
 
 \hint
 ```cpp
@@ -125,7 +124,7 @@ Your program should output
 0
 ```
 
-If you are unexperienced with C++ we provide the backbone of read function and you can fill in the *TODOs*:
+If you are inexperienced with C++, use the provided backbone of the `read` function and fill in the *TODOs*:
 
 \hint
 ```cpp
@@ -209,15 +208,15 @@ We will implement those operation for our compact bitvector representation.
 
 In order to support rank and select queries we need two helper data structures (given machine world length `w`):
 
-1. **Superblocks**: We divide the bitvector into superblocks of length `s = w · k bits`,
+1. **Superblocks**: We divide the bitvector into superblocks of length `s = w * k bits`,
    where `k` is parameter to choose.
    We then store the store the rank values at the beginnings of the corresponding superblock in an array `R`.
 
 2. **Blocks**: We further divide the bitvector into blocks of length `w`.
    We then store the store the rank values at the beginnings of the corresponding block,
-   **but relatively to their corresponding superblock**, in an array `R'`.
+   **but relatively to their corresponding superblock**, in an array `R`.
 
---- picture ---
+\todo picture
 
 \assignment{Data types}
 
@@ -268,7 +267,7 @@ Blocks:
 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
 ```
 
-If you aren't experienced with C++, you can use the following backbone and fill in the *TODOs*:
+If you are inexperienced with C++, you can use the following backbone and fill in the *TODOs*:
 
 \hint
 

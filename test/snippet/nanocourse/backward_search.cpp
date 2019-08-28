@@ -85,25 +85,25 @@ struct occurrence_table
             bitv.construct(3, 6);
     }
 
-    size_t read(char const chr, int const i)
+    size_t read(char const chr, size_t const i) const
     {
-        if (i < 0)
-            return 0;
-
         return data[to_index(chr)].rank(i + 1);
     }
 };
 
-size_t count(std::string const & P, std::string const & bwt, std::vector<uint16_t> C, occurrence_table Occ)
+size_t count(std::string const & P,
+             std::string const & bwt,
+             std::vector<uint16_t> const & C,
+             occurrence_table const & Occ)
 {
-    int i = P.size() - 1;
-    int a = 0;
-    int b = bwt.size() - 1;
+    int64_t i = P.size() - 1;
+    size_t a = 0;
+    size_t b = bwt.size() - 1;
 
     while ((a <= b) && (i >= 0))
     {
         char c = P[i];
-        a = C[to_index(c)] + Occ.read(c, a - 1);
+        a = C[to_index(c)] + (a ? Occ.read(c, a - 1) : 0);
         b = C[to_index(c)] + Occ.read(c, b) - 1;
 
         i = i - 1;
