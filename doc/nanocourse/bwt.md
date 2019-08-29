@@ -232,11 +232,10 @@ p  0 1 1 1 1 1 2 2 2 2 2 2
 s  0 0 1 2 2 2 2 2 3 4 4 4
 ```
 
-\hint
-
 If you are inexperienced with C++, you can use the following backbone:
 
-\endhint
+\hint
+
 ```cpp
 struct occurrence_table
 {
@@ -265,6 +264,8 @@ struct occurrence_table
     }
 };
 ```
+\endhint
+
 \endassignment
 
 \solution
@@ -300,7 +301,69 @@ size_t count(std::string const & P,
              std::string const & bwt,
              std::vector<uint16_t> const & C,
              occurrence_table const & Occ)
+{
+    // your code goes here
+}
 ```
 that returns the number of occurrences of pattern `P`.
 
+Given the following main function:
+
+\snippet test/snippet/nanocourse/backward_search.cpp main
+
+Your program should output
+
+```
+2
+1
+```
+If you are inexperienced with C++, you can use the following backbone:
+
+\hint
+
+```cpp
+size_t count(std::string const & P,
+             std::string const & bwt,
+             std::vector<uint16_t> const & C,
+             occurrence_table const & Occ)
+{
+    int64_t i = /*TODO: where do we start our search in the pattern?*/;
+    size_t a =  /*TODO: what is the lower bound to start?*/;
+    size_t b =  /*TODO: what is the upper bound to start?*/;
+
+    while ((a <= b) && (i >= 0))
+    {
+        char c = /*TODO: The character at position i in P.*/;
+
+        // Note that () ? x : y in the next line takes care of the case that a is 0
+        // because a - 1 would be negative and Occ.read at a negative position is invalid.
+        a = /*TODO: C at the index of c*/ + (a ? Occ.read(c, a - 1) : 0);
+
+        b = /*TODO: C at the index of c*/ +  /*TODO: read Occ at position b with character c*/ - 1;
+
+        i = i - 1;
+    }
+
+    if (b < a)
+        return 0;
+    else
+        return (b - a + 1);
+}
+```
+\endhint
+
 \endassignment
+
+\solution
+
+\snippet test/snippet/nanocourse/backward_search.cpp solution
+
+\endsolution
+
+Here is the full solution in case you need it:
+
+\solution
+
+\include test/snippet/nanocourse/backward_search.cpp
+
+\endsolution

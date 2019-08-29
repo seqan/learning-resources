@@ -91,6 +91,7 @@ struct occurrence_table
     }
 };
 
+//![solution]
 size_t count(std::string const & P,
              std::string const & bwt,
              std::vector<uint16_t> const & C,
@@ -114,6 +115,7 @@ size_t count(std::string const & P,
     else
         return (b - a + 1);
 }
+//![solution]
 
 //![main]
 int main()
