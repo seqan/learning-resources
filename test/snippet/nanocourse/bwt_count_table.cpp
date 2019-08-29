@@ -39,6 +39,21 @@ std::string bwt_construction(std::string const & text)
 }
 //![bwt_construction]
 
+//![to_index]
+size_t to_index(char const chr)
+{
+    switch (chr)
+    {
+        case '$': return 0;
+        case 'i': return 1;
+        case 'm': return 2;
+        case 'p': return 3;
+        case 's': return 4;
+        default: throw std::logic_error{"There is an illegal character in your text."};
+    }
+}
+//![to_index]
+
 //![count_table_computation]
 std::vector<uint16_t> compute_count_table(std::string const & bwt)
 {
@@ -46,15 +61,8 @@ std::vector<uint16_t> compute_count_table(std::string const & bwt)
 
     for (auto chr : bwt)
     {
-        switch (chr)
-        {
-            case '$': ++count_table[1]; ++count_table[2]; ++count_table[3]; ++count_table[4]; break;
-            case 'i': ++count_table[2]; ++count_table[3]; ++count_table[4]; break;
-            case 'm': ++count_table[3]; ++count_table[4]; break;
-            case 'p': ++count_table[4]; break;
-            case 's': break;
-            default: break;
-        }
+        for (size_t i = to_index(chr) + 1; i < 5; ++i)
+            ++count_table[i];
     }
 
     return count_table;

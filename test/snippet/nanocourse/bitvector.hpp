@@ -6,10 +6,14 @@ struct Bitvector
     std::vector<uint64_t> data;
     std::vector<uint16_t> blocks;
     std::vector<uint64_t> superblocks;
+
     uint64_t block_size;
     uint64_t superblock_size;
 
-    Bitvector(size_t const count) : data((count + 63) / 64, 0) {};
+    Bitvector(size_t const count)
+    {
+        data.resize((count + 63) / 64); // the +63 are a trick to round up the fraction.
+    }
 
     bool read(size_t const i) const
     {
@@ -26,18 +30,15 @@ struct Bitvector
             data[i / 64] &= ~mask;
     }
 
-    size_t size() const
+    void construct(size_t const new_block_size = 64, size_t const new_superblock_size = 512)
     {
-        return data.size() * 64u;
-    }
+        block_size = new_block_size;
+        superblock_size = new_superblock_size;
 
-    void construct(size_t const block_size_new = 64u, size_t const superblock_size_new = 512u)
-    {
-        block_size = block_size_new;
-        superblock_size = superblock_size_new;
+        size_t number_of_bits = data.size() * 64;
 
-        blocks.resize((size() + block_size - 1) / block_size, 0);
-        superblocks.resize((size() + superblock_size - 1) / superblock_size, 0);
+        blocks.resize((number_of_bits + block_size - 1) / block_size, 0);
+        superblocks.resize((number_of_bits + superblock_size - 1) / superblock_size, 0);
 
         size_t block_pos{0};
         size_t super_block_pos{0};
@@ -45,7 +46,7 @@ struct Bitvector
         uint16_t block_count{0};
         uint64_t super_block_count{0};
 
-        for (size_t i = 0; i < size(); ++i)
+        for (size_t i = 0; i < number_of_bits; ++i)
         {
             if (i % block_size == 0)
             {
