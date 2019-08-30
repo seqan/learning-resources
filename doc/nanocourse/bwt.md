@@ -367,3 +367,57 @@ Here is the full solution in case you need it:
 \include test/snippet/nanocourse/backward_search.cpp
 
 \endsolution
+
+# Real data example with SeqAn3
+
+In the following section, we will conduct a search in an FM-index using SeqAn3.
+We will search for 100'000 reads within chr4 of the Drosophila genome and count how many reads occur more than 100
+times, indicating a repeat region!
+
+As a first step, set up SeqAn3 by following the [Setup tutorial](https://docs.seqan.de/seqan/3-master-user/setup.html)
+and add an executable `count_occurrences` to the `CMakeLists.txt`.
+Create a new file `count_occurrences.cpp` in the `source` directory with the following content:
+
+```cpp
+#include <seqan3/io/sequence_file/all.hpp>
+#include <seqan3/search/all.hpp>
+
+using namespace seqan3;
+
+int main()
+{
+    sequence_file_input reference_in{"../reference.fasta.gz"}; // Read the reference (only 1 contig).
+    sequence_file_input query_in{"../reads.fasta.gz", fields<field::SEQ>{}}; // Read the query file (multiple contigs).
+
+    fm_index index{get<field::SEQ>(*reference_in.begin())}; // Create an FM-index from the reference.
+
+    size_t counter{0u};
+
+    for (auto & [seq] : query_in) // For each read in our query file.
+        counter += std::ranges::size(search(seq, index)) > 100; // Count if there are more than 100 occurrences.
+
+    std::cout << "Found " << counter << " queries with more than 100 exact hits.\n";
+}
+```
+
+The above code basically does the same things as you just implemented in this nanocourse.
+The SeqAn library provides a lot of commonly needed functionality when working with high throughput sequencing,
+such that you do not need to implement your own data structures and algorithms.
+
+We use the [`sequence_file_input`](https://docs.seqan.de/seqan/3-master-user/classseqan3_1_1sequence__file__input.html)
+to handle reference and read input - the format and content of the files is taken care of automatically.
+The [`fm_index`](https://docs.seqan.de/seqan/3-master-user/classseqan3_1_1fm__index.html) encapsulates a suffix array, occurrence table and count table just like we implemented it ourselves before.
+By calling [`search`](https://docs.seqan.de/seqan/3-master-user/group__submodule__search__algorithm.html) we can
+compute every position that a query matches the index; unless configured in another way, this will report *every exact*
+hit within our reference.
+
+To use this example, download the
+[reference file](http://ftp.imp.fu-berlin.de/pub/SeqAn/learning_resources/nanocourse/reference.fasta.gz) and
+[read file](http://ftp.imp.fu-berlin.de/pub/SeqAn/learning_resources/nanocourse/reads.fasta.gz) into the `tutorial`
+directory.
+Run `cmake -DCMAKE_CXX_FLAGS="-O3 -march=native" ../source` within the `build` directory and execute the program via
+`./count_occurrences` and measure runtime and memory consumption via, for example,
+`/usr/bin/time -v ./count_occurrences`.
+
+If you want to learn more about SeqAn3, we recommend you start with the [tutorials]
+(https://docs.seqan.de/seqan/3-master-user/tutorial_first_example.html).
