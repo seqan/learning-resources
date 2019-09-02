@@ -22,33 +22,38 @@ A good source of reading (which is online available for free):
 
 # Bitvectors
 
-Bitvectors are fundamental in the implementation of most compact data structures.
+Bitvectors are fundamental in the implementation of most compact data structures because of their compactness.
+For example, they can be used to mark positions of an array or to encode and compress data.
 Therefore, an efficient implementation is of utmost importance.
 
 A bitvector is a bit array \f$B[0, n)\f$ of length \f$n\f$ of values \f$v \in {0,1}\f$ (bits).
 
 In C++ there is no type that defines a single bit, such that you could use `std::vector<bit>` for this purpose.
-If you would use, let's say, `std::vector<bool>` instead, you would use 1 byte = 8 bit for each entry,
-or even worse `std::vector<int>` which uses 4 byte = 32 bit.
+If you would use, let's say, `std::vector<bool>` instead, you would use 1 byte = 8 bit for each entry
+(note that many compilers actually optimize this special case to indeed a single bit representation but let's
+assume we want a global solution), or even worse `std::vector<int>` which uses 4 byte = 32 bit.
 
 Let us design a compact data structure that stores single bits as values while still supporting the basic operations:
 
-* \f$read(B, i)\f$: returns the bit \f$B[i]\f$, for any \f$0 \leq i < n\f$.
-* \f$write(B, i, x)\f$: writes the bit \f$x \in {0,1}\f$ to \f$B[i]\f$, for any \f$0 \leq i < n\f$.
+* \f$read(B, i)\f$: returns the bit \f$B[i]\f$, for any \f$0 \leq i < n\f$ in constant time.
+* \f$write(B, i, x)\f$: writes the bit \f$x \in {0,1}\f$ to \f$B[i]\f$, for any \f$0 \leq i < n\f$ in constant time.
 
 ## A compact representation of bitvectors
 
 As noted above we need to represent bits using larger entities available in the C++ language.
-It usually pays off if you choose an integer with the size of a machine word `w`, which is 64 on modern architectures.
-Therefor, we will use the C++ type `uint64_t` for our representation.
+It usually pays off if you choose an integer with the size of a machine word `w`, which is 64 on modern architectures,
+because most compilers offer a special set of functions for integers of this size.
+Therefore, we will use the C++ type `uint64_t` for our representation.
+In the previous sections we talked about *arrays* of bits, as in a consecutive storage of bits.
+In C++ we will the use type `std::vector` for storing values.
 
 \assignment{A compact bitvector}
 
-Implement a new data structure called `Bitvector` (a `struct`) that has a member variable called `data` of type
+Implement a new data structure (a `struct`) called `Bitvector` that has a member variable called `data` of type
 `std::vector` over `uint64_t`. The constructor should have one parameter that is the number of bits you would
 like to store in your bitvector.
 
-If you are inexperienced with C++, take a look at this backbone and fill in the *TODOs*:
+If you are inexperienced with C++, take a look at this code snippet and fill in the *TODO*:
 
 \hint
 ```cpp
@@ -59,11 +64,12 @@ struct Bitvector // the new data structure
 {
     std::vector<uint64_t> data; // the data storage (64 bit integers instead of single bits)
 
-    // The constructor takes one parameter as input called 'count'.
-    // After the colon `:` we initialise the data member with the constructor of std::vector(size, value).
-    // The `value` in our case is '0' because we want everything set to zero.
-    // Your task is to fill in the number for `size`.
-    Bitvector(size_t const count) : data(/*TODO: How many integers do you need to represent `count` bits?*/, 0) {};
+    // The constructor takes one parameter as input called 'count' which is the number of bits you want to store.
+    // Your data vector now needs to be resized to store these bits.
+    Bitvector(size_t const count)
+    {
+        data.resize(/*TODO: How many integers do you need to represent `count` bits?*/);
+    }
 };
 
 int main()
@@ -87,14 +93,17 @@ The bitvector needs to support access to the single bits via a member function `
 which returns either `0` or `1` depending on the bit at position `i`.
 
 We now face the problem that we do not store single bits but groups of 64 bits in one `uint64_t` integer.
-For example, if the data vector would contain the entry `17`, the 64 bit binary representation of `17` is
+For example, let a data vector contain the number `17`.
+
+The 64 bit binary representation of `17` is
 
 ```
 0         8         16        24        32        40        48        56
 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0001 0001
 ```
 
-It thus represents a group of 64 bits where the bits at position 59 and 63 (starting from the left and 0) are set to 1.
+It thus represents a group of 64 bits where the bits at position 59 and 63
+(starting from the left and 0) are set to 1.
 
 So how do we access single bits within the integer? This can be achieved using bit manipulation.
 
@@ -114,6 +123,8 @@ and complete the code:
     }
 ```
 
+Your function should be able to access the bitvector in constant time (don't use loops)!
+
 Given the following main function
 
 \snippet test/snippet/nanocourse/solution2.cpp main
@@ -124,7 +135,7 @@ Your program should output
 0
 ```
 
-If you are inexperienced with C++, use the provided backbone of the `read` function and fill in the *TODOs*:
+If you are inexperienced with C++, use the provided code snippet of the `read` function and fill in the *TODOs*:
 
 \hint
 ```cpp
@@ -196,13 +207,13 @@ Complete the following implementation of a function that can access the compact 
 
 Two very useful operations that a bitvector should support are the following:
 
-* \f$rank_v(B, i)\f$: returns the number of occurrences of bit \f$v \in {0, 1}\f$ in \f$B[1, i]\f$,
-for any \f$0 \leq i \leq n\f$; in particular \f$rank_v(B, 0) = 0\f$. If omitted, we assume \f$v = 1\f$.
+* \f$rank_v(B, i)\f$: returns the number of occurrences of bit \f$v \in {0, 1}\f$ in \f$B[0, i)\f$,
+for any \f$0 \leq i \leq n\f$. If omitted, we assume \f$v = 1\f$.
 * \f$select_v(B, j)\f$: returns the position in \f$B\f$ of the j-th occurrence of bit \f$v \in {0, 1}\f$,
-for any \f$j \geq 0\f$; we assume \f$select_v(B, 0) = 0\f$ and \f$select_v(B, j) = n + 1\f$ if \f$j >
-rank_v(B, n)\f$. If omitted, we assume \f$v = 1\f$.
+for any \f$j \geq 0\f$; we assume \f$select_v(B, 0) = -1\f$ and \f$select_v(B, j) = n\f$ if \f$j >
+rank_v(B, n - 1)\f$. If omitted, we assume \f$v = 1\f$.
 
-We will implement those operation for our compact bitvector representation.
+We will implement the rank operation for our compact bitvector representation.
 
 ### Helper data structures
 
@@ -210,10 +221,10 @@ In order to support rank and select queries we need two helper data structures (
 
 1. **Superblocks**: We divide the bitvector into superblocks of length `s = w * k bits`,
    where `k` is parameter to choose.
-   We then store the store the rank values at the beginnings of the corresponding superblock in an array `R`.
+   We then store the rank values at the beginnings of the corresponding superblock in an array `R`.
 
 2. **Blocks**: We further divide the bitvector into blocks of length `w`.
-   We then store the store the rank values at the beginnings of the corresponding block,
+   We then store the rank values at the beginnings of the corresponding block,
    **but relatively to their corresponding superblock**, in an array `R`.
 
 \todo picture
@@ -267,7 +278,7 @@ Blocks:
 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
 ```
 
-If you are inexperienced with C++, you can use the following backbone and fill in the *TODOs*:
+If you are inexperienced with C++, you can use the following code snippet and fill in the *TODOs*:
 
 \hint
 
@@ -374,7 +385,7 @@ Your program should output
 2
 ```
 
-If you are inexperienced with C++, you can use the following backbone:
+If you are inexperienced with C++, you can use the following code snippet:
 
 \hint
 ```cpp
