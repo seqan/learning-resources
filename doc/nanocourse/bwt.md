@@ -371,7 +371,7 @@ Here is the full solution in case you need it:
 # Real data example with SeqAn3
 
 In the following section, we will conduct a search in an FM-index using SeqAn3.
-We will search for 100'000 reads within chr4 of the Drosophila genome and count how many reads occur more than 100
+We will search for 1'000'000 reads within chr4 of the Drosophila genome and count how many reads occur more than 100
 times, indicating a repeat region!
 
 As a first step, set up SeqAn3 by following the [Setup tutorial](https://docs.seqan.de/seqan/3-master-user/setup.html)
