@@ -24,7 +24,8 @@ The Burrows-Wheeler transform (BWT) can be obtained by the following steps:
 2. Lexicographically sort the rows of \f$M\f$.
 3. Construct the transformed text \f$T^{bwt}\f$ by taking the last column \f$L\f$ of \f$M\f$.
 
-\todo Picture.
+\htmlonly <style>div.image img[src="bwt.png"]{width:1000px;}</style> \endhtmlonly
+\image html doc/nanocourse/bwt.png
 
 Instead of actually constructing the huge matrix, we can also construct the suffix array in \f$O(n)\f$ time and
 space, and then construct the BWT from that:
