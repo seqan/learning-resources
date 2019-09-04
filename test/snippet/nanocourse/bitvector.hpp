@@ -74,13 +74,14 @@ struct Bitvector
     {
         uint64_t rank{0};
 
-        rank += superblocks[(i - 1) / superblock_size];
-        rank += blocks[(i - 1) / block_size];
+        rank += superblocks[i / superblock_size];
+        rank += blocks[i / block_size];
 
-        for (size_t j = ((i - 1) / block_size) * block_size; j < i; ++j)
+        for (size_t j = (i / block_size) * block_size; j < i; ++j)
         {
             rank += read(j);
         }
+
         return rank;
     }
 };

@@ -398,7 +398,7 @@ If you are inexperienced with C++, you can use the following code snippet:
         rank += blocks[/*TODO: the position of the block entry to use*/];
 
         // go through the remaining block bit-by-bit
-        for (size_t j = ((i - 1) / block_size) * block_size; j < i; ++j)
+        for (size_t j = (i / block_size) * block_size; j < i; ++j)
         {
             /*TODO: increase `rank` by 1 if there is a 1 at position j in data. Hint: Use a function we implemented.*/
         }
