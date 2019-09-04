@@ -41,8 +41,8 @@ Let us design a compact data structure that stores single bits as values while s
 ## A compact representation of bitvectors
 
 As noted above we need to represent bits using larger entities available in the C++ language.
-It usually pays off if you choose an integer with the size of a machine word `w`, which is 64 on modern architectures,
-because most compilers offer a special set of functions for integers of this size.
+It usually pays off if you choose an integer with the size of a machine word \f$w\f$, which is 64 on modern
+architectures, because most compilers offer a special set of functions for integers of this size.
 Therefore, we will use the C++ type `uint64_t` for our representation.
 In the previous sections we talked about *arrays* of bits, as in a consecutive storage of bits.
 In C++ we will the use type `std::vector` for storing values.
@@ -217,15 +217,15 @@ We will implement the rank operation for our compact bitvector representation.
 
 ### Helper data structures
 
-In order to support rank and select queries we need two helper data structures (given machine world length `w`):
+In order to support rank and select queries we need two helper data structures (given machine world length \f$w\f$):
 
-1. **Superblocks**: We divide the bitvector into superblocks of length `s = w * k bits`,
-   where `k` is parameter to choose.
-   We then store the rank values at the beginnings of the corresponding superblock in an array `R`.
+1. **Superblocks**: We divide the bitvector into superblocks of length \f$s = w \cdot k bits\f$,
+   where \f$k\f$ is parameter to choose.
+   We then store the rank values at the beginnings of the corresponding superblock in an array \f$R\f$.
 
-2. **Blocks**: We further divide the bitvector into blocks of length `w`.
+2. **Blocks**: We further divide the bitvector into blocks of length \f$w\f$.
    We then store the rank values at the beginnings of the corresponding block,
-   **but relatively to their corresponding superblock**, in an array `R`.
+   **but relatively to their corresponding superblock**, in an array \f$R\f$.
 
 \htmlonly <style>div.image img[src="bitvector.png"]{width:1000px;}</style> \endhtmlonly
 \image html doc/nanocourse/bitvector.png
@@ -234,8 +234,8 @@ In order to support rank and select queries we need two helper data structures (
 
 The block and superblock values obviously need to be stored using an arithmetic data type
 (e.g. `uint8_t`, `uint16_t`, `uint32_t`, `uint64_t`).
-Given an arbitrary bitvector of length n, word length `w = 64 bits`
-and a superblock length of `s = 64 * 25 = 1600 bits`,
+Given an arbitrary bitvector of length n, word length \f$w = 64\f$ bits
+and a superblock length of \f$s = 64 * 25 = 1600\f$ bits,
 which type would you choose for superblock entries, and which type for block entries and why?
 
 \endassignment
@@ -341,14 +341,14 @@ If you are inexperienced with C++, you can use the following code snippet and fi
 Note that most compilers provide special bit operations on integers.
 One example is **popcount** that counts the number of `1s` in an integer.
 This would be very helpful in our application because instead of iterating over every position in our bitvector `B`
-we could directly use popcount on every entry of b to get the value for the block
+we could directly use popcount on every entry of `B` to get the value for the block
 (of course this only works since we chose the block size wisely).
 
 The code could then look like this (**This is compiler specific (GCC)**):
 
 \include test/snippet/nanocourse/solution4_intrinsic.cpp
 
-If you have some time to spare, increase the size of B, and do some runtime tests for the construction.
+If you have some time to spare, increase the size of `B`, and do some runtime tests for the construction.
 The construction using popcount should be considerably faster.
 
 \endsolution
@@ -369,7 +369,7 @@ Implement a member function
     }
 ```
 
-that returns the number of occurrences of bit \f$v \in {0, 1}\f$ in \f$B[1, i]\f$,
+that returns the number of occurrences of bit \f$v \in {0, 1}\f$ in \f$B[0, i)\f$,
 for any \f$0 \leq i \leq n\f$; in particular \f$rank_v(B, 0) = 0\f$. If omitted, we assume \f$v = 1\f$.
 
 Use the same example of the bitvector and block/superblock sizes as in the previous assignment.

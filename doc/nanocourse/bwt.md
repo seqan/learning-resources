@@ -18,7 +18,8 @@ We will see that it is possible to conduct exact searches using only the BWT and
 
 # Theoretical Background: Burrows-Wheeler transform and LF-Mapping
 
-The Burrows-Wheeler transform (BWT) can be obtained by the following steps:
+The Burrows-Wheeler transform (BWT) of a text \f$T\f$ ending with a special character \f$\$\f$ can be obtained by
+the following steps:
 
 1. Form a conceptual matrix \f$M\f$ whose rows are the \f$n\f$ cyclic shifts of the text \f$T\f$.
 2. Lexicographically sort the rows of \f$M\f$.
@@ -48,8 +49,8 @@ a function \f$LF : [0..n) \rightarrow [0..n)\f$ that maps the rank of a cyclic s
 
 This property is the key when searching in the BWT.
 
-In order to conduct the LF-Mapping efficiently, we need two helper data structures, namely the occurence table `Occ`
-and the count table `C`.
+In order to conduct the LF-Mapping efficiently, we need two helper data structures, namely the occurence table \f$Occ\f$
+and the count table \f$C\f$.
 
 # Helper data structures: Occ & C
 
@@ -216,7 +217,7 @@ We have implemented rank support for our bitvector data structure in the
 Choose a block size of `3` bits and a superblock size of `6` bits
 (This is not recommended for real world data but serves as a toy example for the small bwt).
 2. Implement the member function `size_t read(char chr, size_t i) const` that returns the number of
-occurrences of `chr` up until position `i` in the bwt using the rank support for the bitvectors.
+occurrences of `chr` up until position `i` in the `bwt` using the rank support for the bitvectors.
 
 Now given the following main function we can print the actual occurrence table:
 
