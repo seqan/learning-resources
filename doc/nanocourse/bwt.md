@@ -249,7 +249,7 @@ struct occurrence_table
     occurrence_table(std::string const & bwt)
     {
         // resize the 5 bitvectors to the length of the bwt:
-        data.resize(5, Bitvector((bwt.size() + 63)/ 64));
+        data.resize(5, Bitvector(bwt.size()));
 
         // fill the bitvectors
         for (size_t i = 0; i < bwt.size(); ++i)
