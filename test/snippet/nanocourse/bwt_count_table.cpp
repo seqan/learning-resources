@@ -1,10 +1,10 @@
+//![bwt_construction]
 #include <algorithm>
 #include <iostream>
 #include <numeric>
 #include <string>
 #include <vector>
 
-//![bwt_construction]
 std::string bwt_construction(std::string const & text)
 {
     std::string bwt{};

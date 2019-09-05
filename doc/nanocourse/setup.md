@@ -12,6 +12,7 @@ In this short guide you will learn how to set up your work environment for worki
 # Software
 Requirements:
   - gcc >= 7
+  - cmake >= 3.4
   - wget
 
 We will briefly explain how to install GCC-7 on some popular operating systems, but we recommend using the latest version of GCC available. For more information refer to your operating system's documentation.
@@ -51,38 +52,32 @@ where `/home/user/miniconda3/` is the path to your conda installation. \htmlonly
 
 \attention After installing, `g++ --version` should print the desired version. If not, you may have to use, for example, `g++-7 --version` or even specify the full path to your executable.
 
-Furthermore `echo $CXX` should print the executable of the desired `g++` version. Otherwise run
-`export CXX=<executable>` (replace `<executable>` witht the path to `g++`).
+Similarly you need to install cmake, e.g. `apt install cmake`.
 
 # Directory Structure
 For this project, we recommend the following directory layout:
 
 ```
 nanocourse
-├── source
-└── Makefile
+├── build
+└── source
+    ├── CMakeLists.txt
+    └── hello_world.cpp
 ```
 
 To create these directories, you can follow this script:
 ```
 mkdir nanocourse
 cd nanocourse
-mkdir source
+mkdir source build
 ```
 
-Now we need to create a file named `Makefile` inside `nanocourse` with the following contents:
-```make
-SOURCES=$(shell find source -name *.cpp)
-OBJECTS=$(SOURCES:%.cpp=%)
+Now we need to create a file named `CMakeLists.txt` inside `source` with the following contents:
 
-all: $(OBJECTS)
-ifndef CXX
-	$(error CXX is undefined)
-endif
+\include test/snippet/setup/CMakeLists.txt
 
-%: %.cpp
-	$(CXX) -std=c++17 -O3 -march=native -pedantic -Wall -Wextra -Werror -Isource -c $< -o $(notdir $@)
-```
+Alternatively, you can download the file [here]
+(https://raw.githubusercontent.com/seqan/learning-resources/master/test/snippet/setup/CMakeLists.txt).
 
 # Compiling and Running
 
@@ -92,15 +87,37 @@ First we create the file `hello_world.cpp` in the `source` directory with the fo
 
 \include test/snippet/setup/hello_world.cpp
 
-To compile it, we run `make` inside the `nanocourse` directory and then execute the binary.
+Alternatively, you can download the file [here]
+(https://raw.githubusercontent.com/seqan/learning-resources/master/test/snippet/setup/hello_world.cpp).
+
+To compile it, we run the following commands inside the `build` directory:
 
 ```bash
+cmake ../source
 make
 ./hello_world
 ```
 
 The output should be `Hello world`.
 
+\remark Depending on the standard C++ on your system, you may need to specify the compiler via `-DCMAKE_CXX_COMPILER=`, for example:
+```bash
+cmake ../source -DCMAKE_CXX_COMPILER=/path/to/executable/g++-7
+```
+
+\note In some situations it can happen that the correct assembler is not found.
+You will see an error during the cmake configuration that says something like: `... could not understand flag m ...`.
+In this case you can try to export the Path:
+```
+export PATH=/util/bin:$PATH
+```
+and try running cmake again.
+
 # Adding a new source file to your project
 
-All files inside the `source` directory that end with `cpp` are automatically compiled when running `make`.
+For example, to add the new `task1.cpp` file to your `CMakeLists.txt`, append the following line to your file:
+```cmake
+add_executable (task1 task1.cpp)
+```
+
+To compile the new file, run `cmake .` and `make` inside the `build` folder.
