@@ -11,6 +11,8 @@ include (CheckCXXSourceCompiles)
 include (FindPackageHandleStandardArgs)
 include (FindPackageMessage)
 
+find_package (SeqAn3 REQUIRED PATHS "${CMAKE_CURRENT_LIST_DIR}/../submodules/seqan3/build_system/")
+
 # ----------------------------------------------------------------------------
 # Paths to folders.
 # ----------------------------------------------------------------------------
@@ -35,7 +37,7 @@ add_library (lr::test ALIAS lr_test)
 # seqan3::test::unit specifies required flags, includes and libraries
 # needed for unit test cases in seqan3/test/unit
 add_library (lr_test_unit INTERFACE)
-target_link_libraries (lr_test_unit INTERFACE "gtest_main" "gtest" "lr::test")
+target_link_libraries (lr_test_unit INTERFACE "gtest_main" "gtest" "lr::test" "seqan3::seqan3")
 target_include_directories (lr_test_unit INTERFACE "${LR_TEST_CLONE_DIR}/googletest/include/")
 add_library (lr::test::unit ALIAS lr_test_unit)
 
