@@ -17,6 +17,7 @@ macro (lr_snippet test_name_prefix snippet snippet_base_path)
     set (target "${snippet_target_name}_snippet")
 
     add_executable (${target} "${snippet_base_path}/${snippet}")
+    target_compile_definitions (${target} PUBLIC DATA_DIR="${CMAKE_BINARY_DIR}/data")
     target_link_libraries (${target} lr::test::unit)
     set_target_properties(${target}
         PROPERTIES
@@ -40,5 +41,17 @@ endmacro ()
 
 lr_require_ccache ()
 lr_require_test ()
+
+ExternalProject_Add(
+    "biocpp-data"
+    URL "http://ftp.seqan.de/workshop/2020/biocpp-data.tar.gz"
+    URL_HASH "SHA256=f86b421bcc4586ce6ed95513c22aba1e6d41a4777046dc7d4e32b4fbd103ea11"
+    DOWNLOAD_NAME "${ARG_FILE}"
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND ""
+    INSTALL_COMMAND ""
+    TEST_COMMAND ""
+    SOURCE_DIR "${CMAKE_BINARY_DIR}/data"
+)
 
 lr_snippets ("snippet" "${CMAKE_SOURCE_DIR}")
