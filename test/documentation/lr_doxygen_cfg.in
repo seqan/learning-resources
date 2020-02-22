@@ -10,6 +10,8 @@ INPUT                  = ${LR_DOXYGEN_SOURCE_DIR}/doc                   \
 EXAMPLE_PATH           = ${LR_DOXYGEN_SOURCE_DIR}
 IMAGE_PATH             = ${LR_DOXYGEN_SOURCE_DIR}
 
+EXCLUDE_PATTERNS       = */biocpp/presentation/*
+
 ## DOT SUPPORT
 HAVE_DOT               = ${LR_DOXYGEN_HAVE_DOT}
 DOT_IMAGE_FORMAT       = svg
