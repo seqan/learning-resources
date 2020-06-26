@@ -1,0 +1,858 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>BioC++ - solving daily bioinformatic tasks with C++ efficiently</title>
+
+        <link rel="stylesheet" href="reveal.js/css/reset.css">
+        <link rel="stylesheet" href="reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="reveal.js/css/theme/white.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+
+<style>
+.rrahn {
+    background: url('img/rrahn.jpg') no-repeat left top;
+    background-size: 2.5em 2.5em;
+    height: 2.5em;
+    padding-left: 3em;
+}
+.marehr {
+    background: url('img/marehr.jpg') no-repeat left top;
+    background-size: 2.5em 2.5em;
+    height: 2.5em;
+    padding-left: 3em;
+}
+.slide-background::before {
+    content: "";
+    opacity: 1;
+    top: 0.3em;
+    left: 0;
+    height: 1.4em;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+
+    background-image: url(img/denbi.svg), url(img/elixir.svg), url(img/mpi.svg), url(img/fu.svg);
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: 30% 0em, 10%, 60% 0em, 90% 0em;
+    background-size: auto 100%, auto 100%, auto 100%, auto 100%;
+}
+.backgrounds .slide-background:not(:first-child)::after {
+    content: "René Rahn, Marcel Ehrhardt";
+    font-size: 0.75em;
+    opacity: 1;
+    bottom: 0.3em;
+    left: 0.5em;
+    height: 1.4em;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+
+    /* background-image: url(img/denbi.svg), url(img/mpi.svg), url(img/fu.svg);
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: 10% 0em, 50% 0em, 90% 0em;
+    background-size: auto 100%, auto 100%, auto 100%; */
+}
+.live-coding
+{
+    background: url(img/source_code.svg) no-repeat center;
+    background-size: 8em;
+    height: 6em;
+}
+.time-slot, .small
+{
+    font-size: 0.75em;
+}
+</style>
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+
+<section>
+<h1>BioC++</h1>
+<h3>solving daily bioinformatic tasks<br>with C++ efficiently</h3>
+
+<p class='rrahn' style='text-align: left'> René Rahn (Max Planck Institute for Molecular Genetics)</p>
+<p class='marehr' style='text-align: left'> Marcel Ehrhardt (Free University Berlin)</p>
+</section>
+
+<section data-transition="none-out">
+<h3>Schedule<small>*</small>:</h3>
+<ul>
+    <li class="fragment"><span class='time-slot'>09:00 - 09:30</span> Setup</li>
+    <li class="fragment"><span class='time-slot'>09:30 - 10:00</span> Introduction Talk</li>
+    <li class="fragment"><span class='time-slot'>10:00 - 10:30</span> FASTQ -> FASTA conversion <span class='small'>(sequence files)</span></li>
+    <li class="fragment"><em class='time-slot'>10:30 - 10:45 Coffee-Break</em></li>
+    <li class="fragment"><span class='time-slot'>10:45 - 11:45</span> Simple quality filter <span class='small'>(range / lambda / tuple)</span></li>
+    <li class="fragment"><em class='time-slot'>11:45 - 14:30 "short break"</em></li>
+    <li class="fragment"><span class='time-slot'>14:30 - 16:10</span> Extended quality filter <span class='small'>(view / concept)</span></li>
+    <li class="fragment"><span class='time-slot'>16:10 - 16:30</span> Evaluation & Wrap-Up Talk</li>
+</ul>
+</section>
+
+<section data-transition="none-in">
+<h3>Schedule<small>*</small>:</h3>
+<ul>
+    <li class="fragment highlight-blue grow"><span class='time-slot'>09:00 - 09:30</span> Setup</li>
+    <li><span class='time-slot'>09:30 - 10:00</span> Introduction Talk</li>
+    <li><span class='time-slot'>10:00 - 10:30</span> FASTQ -> FASTA conversion <span class='small'>(sequence files)</span></li>
+    <li><em class='time-slot'>10:30 - 10:45 Coffee-Break</em></li>
+    <li><span class='time-slot'>10:45 - 11:45</span> Simple quality filter <span class='small'>(range / lambda / tuple)</span></li>
+    <li><em class='time-slot'>11:45 - 14:30 "short break"</em></li>
+    <li><span class='time-slot'>14:30 - 16:10</span> Extended quality filter <span class='small'>(view / concept)</span></li>
+    <li><span class='time-slot'>16:10 - 16:30</span> Evaluation & Wrap-Up Talk</li>
+</ul>
+</section>
+
+<section>
+<h6>Setup (I):</h6>
+<pre class="fragment">Debian / Ubuntu:<code class="plaintext hljs">sudo apt install g++ cmake git</code></pre>
+<pre class="fragment">Mac (XCode and Brew installed): <code class="plaintext hljs">brew install gcc</code></pre>
+<pre class="fragment">Windows: ... ( ͡° ͜ʖ ͡°)</pre>
+<pre class="fragment">Online Editor (50h/month for free, github or gitlab account):
+<code class="plaintext hljs" data-noescape><a href="https://gitpod.io/#https://github.com/seqan/learning-resources">https://gitpod.io/#https://github.com/seqan/learning-resources</a></code></pre>
+<pre class="fragment"><a href="https://www.virtualbox.org/">https://www.virtualbox.org/</a> image:
+<code class="plaintext hljs" data-noescape>on USB flash drive</code>or<code class="plaintext hljs" data-noescape><a href="http://ftp.seqan.de/workshop/2020/biocpp-vm.vdi">http://ftp.seqan.de/workshop/2020/biocpp-vm.vdi</a></code></pre>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Setup (II):
+
+download course-material:
+<!-- .element: class="fragment" -->
+
+```bash
+git clone https://github.com/seqan/learning-resources
+
+cd learning-resources
+git submodule update --init --recursive
+```
+<!-- .element: class="fragment" -->
+
+```bash
+mkdir build && cd build
+
+wget http://ftp.seqan.de/workshop/2020/biocpp-data.tar.gz
+tar -xvf biocpp-data.tar.gz
+```
+<!-- .element: class="fragment" -->
+
+configure & build:
+<!-- .element: class="fragment" -->
+
+```bash
+cmake ../src/biocpp
+make -j 4
+```
+<!-- .element: class="fragment" -->
+</textarea>
+</section>
+
+<section>
+<h3>Schedule<small>*</small>:</h3>
+<ul>
+    <li><span class='time-slot'>09:00 - 09:30</span> Setup</li>
+    <li class="fragment highlight-blue grow"><span class='time-slot'>09:30 - 10:00</span> Introduction Talk</li>
+    <li><span class='time-slot'>10:00 - 10:30</span> FASTQ -> FASTA conversion <span class='small'>(sequence files)</span></li>
+    <li><em class='time-slot'>10:30 - 10:45 Coffee-Break</em></li>
+    <li><span class='time-slot'>10:45 - 11:45</span> Simple quality filter <span class='small'>(range / lambda / tuple)</span></li>
+    <li><em class='time-slot'>11:45 - 14:30 "short break"</em></li>
+    <li><span class='time-slot'>14:30 - 16:10</span> Extended quality filter <span class='small'>(view / concept)</span></li>
+    <li><span class='time-slot'>16:10 - 16:30</span> Evaluation & Wrap-Up Talk</li>
+</ul>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### I come from C/Java/Python/C#...
+
+How is C++ different?
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### C++ is ...
+
+* <!-- .element: class="fragment" -->
+  object-oriented (Java, Python, C#)
+* <!-- .element: class="fragment" -->
+  structured (Java, Python, C#, C)
+* <!-- .element: class="fragment" -->
+  imperative (Java, Python, C#, C)
+* <!-- .element: class="fragment" -->
+  procedural (Python, C)
+* <!-- .element: class="fragment" -->
+  functional (Python, C, C#)
+* <!-- .element: class="fragment" -->
+  generic (Java, Python, C#, C)
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Object-oriented
+
+* <!-- .element: class="fragment" -->
+  model the world as objects
+* <!-- .element: class="fragment" -->
+  objects provide interfaces
+* <!-- .element: class="fragment" -->
+  objects can interact with each other
+* <!-- .element: class="fragment" -->
+  design patterns "Gang of Four" to reduce complexity
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Structured & Imperative
+
+* <!-- .element: class="fragment" -->
+  code executed in sequential order (assuming no concurrency)
+* <!-- .element: class="fragment" -->
+  control flow through ...
+  * <!-- .element: class="fragment" -->
+    repetition: for, while, do-while, etc.
+  * <!-- .element: class="fragment" -->
+    branching: if, else
+  * <!-- .element: class="fragment" -->
+    multi-branching: switch, if else
+* <!-- .element: class="fragment" -->
+  stateful algorithms
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Procedural & Functional
+
+* <!-- .element: class="fragment" -->
+  breaking up monolithic code into functions
+* <!-- .element: class="fragment" -->
+  opposed to object-oriented programming
+* <!-- .element: class="fragment" -->
+  recursive
+* <!-- .element: class="fragment" -->
+  no shared state
+* <!-- .element: class="fragment" -->
+  lambda functions
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Ok that's nice. But I learned that memory handling is difficult in C++.
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Is that so?
+
+```cpp
+#include <iostream>
+#include <vector>
+
+int main()
+{
+    std::vector char_vector{'H', 'e', 'l', 'l', 'o'};
+    for (char c : char_vector)
+        std::cout << c;
+
+    std::cout << "\n";
+    return EXIT_SUCCESS;
+}
+```
+<aside class='notes' data-markdown>
+    Here 5 characters will be allocated and auto-magically will be deallocated.
+    But where does it happen?
+    We don't need to worry. The vector handles this for us.
+</aside>
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Notes to Garbage Collection
+
+* <!-- .element: class="fragment" -->
+  C++ has no (language-builtin) garbage collection, but RAII
+* <!-- .element: class="fragment" -->
+  Java and C# support it. Allocate objects with `new`
+* <!-- .element: class="fragment" -->
+  Python uses reference counting but allows some sort of manual control
+* <!-- .element: class="fragment" -->
+  C ... yeah well, that is another story
+
+**Control over memory is a key for performance!**
+<!-- .element: class="fragment" -->
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### But there are so many cool libraries that I can use with the other programming languages?
+<aside class='notes' data-markdown>
+
+</aside>
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### C++ is a community driven language
+
+* <!-- .element: class="fragment" -->
+  C++ supports usage of third party libraries
+* <!-- .element: class="fragment" -->
+  Standard Template Library (STL) shipped with C++ compiler
+* <!-- .element: class="fragment" -->
+  anyone can propose language or STL features
+* <!-- .element: class="fragment" -->
+  ISO committee manages standardization
+
+<aside class='notes' data-markdown>
+    If something is not supported there is likely to be a library that does it already.
+    STL is rich on features.
+    We actually have submitted two small papers, that were accepted for C++20.
+    The language and the library will be standardized by an ISO committee.
+</aside>
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Mhmm, I see your point. But especially Python makes it so easy to work with dynamic types.
+
+<aside class='notes' data-markdown>
+    Good point.
+    What I will not do here is to start a fundamental discussion about what would be the better option.
+    At the end this is mainly a subjective matter and each approach has its pros and cons.
+    But for the sake of completion let us compare the differences.
+</aside>
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Dynamic- vs static-typed languages
+
+* <!-- .element: class="fragment" -->
+  dynamic-typed: The type is determined at run time by the interpreter.
+* <!-- .element: class="fragment" -->
+  static-typed: The type is determined at compile time by the compiler.
+* <!-- .element: class="fragment" -->
+  C++ allows compile time type-deduction.
+
+<aside class='notes' data-markdown>
+    Let me in the following show you on some very simple code example the evolution of C++ regarding type deduction.
+</aside>
+</textarea>
+</section>
+
+<section data-markdown data-transition="fade-out">
+<textarea data-template>
+```cpp
+#include <iostream>
+#include <vector>
+
+int main()
+{
+    std::vector char_vector{'H', 'e', 'l', 'l', 'o'};
+    for (char c : char_vector)
+        std::cout << c;
+
+    std::cout << "\n";
+    return 0;
+}
+```
+
+<aside class='notes' data-markdown>
+    Remember our snippet from before. Here we created a vector of char and wanted to print the content.
+    Now we want to extract the element-wise printing of the vector into a separate function.
+</aside>
+</textarea>
+</section>
+
+<section data-markdown data-transition="fade-in fade-out">
+<textarea data-template>
+```cpp
+#include <iostream>
+#include <vector>
+
+void print(std::vector<char> const & obj)
+{
+    for (char c : obj)
+        std::cout << c;
+
+    std::cout << "\n";
+}
+```
+
+<aside class='notes' data-markdown>
+    This print function can now be used in the main and from other scopes to print a std::vector<char>.
+    This is, however, cumbersome if we need to provide a print function for every type.
+</aside>
+</textarea>
+</section>
+
+<section data-markdown data-transition="fade-in fade-out">
+<textarea data-template>
+```cpp
+#include <iostream>
+
+template <typename object_t>
+void print(object_t && obj) // object_t can be
+{                           // std::vector<char>
+    for (auto && c : obj)
+        std::cout << c;
+
+    std::cout << "\n";
+}
+```
+
+<aside class='notes' data-markdown>
+    Oh great! Now this code does work for any type.
+    But, wait! What when we pass something that cannot be iterated?
+</aside>
+</textarea>
+</section>
+
+<section data-markdown data-transition="fade-in">
+<textarea data-template>
+###### C++20
+```cpp
+#include <iostream>
+#include <ranges>
+
+void print(std::ranges::input_range auto && obj)
+{
+    for (printable auto && c : obj)
+        std::cout << c;
+
+    std::cout << "\n";
+}
+```
+
+<aside class='notes' data-markdown>
+    Wow, so you don't need to know anything about your type.
+    The only thing I need to ensure is that the obj is an input_range (What ever that means).
+    And that the elements of this type can be printed.
+    The rest is auto-magically done by the compiler.
+    If the types do not match the constraints the compiler will inform me about the wrong types.
+    Note, that this is valid C++-20 code.
+</aside>
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### C++-Evolution
+
+<img src="img/c++_standardisation.jpg" height="420">
+<p class='small'>https://isocpp.org/std/status; accessed 23.02.2020</p>
+
+<aside class='notes' data-markdown>
+    In this course we will use modern C++ features available with C++20.
+    We will incrementally build up a use case and learn the corresponding principles and how to use them
+    to write efficient and expressive code.
+</aside>
+</textarea>
+</section>
+
+
+<section data-markdown>
+<textarea data-template>
+###### What will be covered in today's course
+
+* <!-- .element: class="fragment" -->
+  simple C++ command line application
+* <!-- .element: class="fragment" -->
+  Standard Template Library
+* <!-- .element: class="fragment" -->
+  SeqAn - an efficient and modern C++-library for sequence analysis
+* <!-- .element: class="fragment" -->
+  understanding and using `auto` in c++
+* <!-- .element: class="fragment" -->
+  understanding and using lambdas in C++
+* <!-- .element: class="fragment" -->
+  understanding and using ranges in C++
+* <!-- .element: class="fragment" -->
+  understanding and using concepts in C++
+
+<aside class='notes' data-markdown>
+
+</aside>
+</textarea>
+</section>
+
+<section>
+<h3>Schedule<small>*</small>:</h3>
+<ul>
+    <li><span class='time-slot'>09:00 - 09:30</span> Setup</li>
+    <li><span class='time-slot'>09:30 - 10:00</span> Introduction Talk</li>
+    <li class="fragment highlight-blue grow"><span class='time-slot'>10:00 - 10:30</span> FASTQ -> FASTA conversion <span class='small'>(sequence files)</span></li>
+    <li><em class='time-slot'>10:30 - 10:45 Coffee-Break</em></li>
+    <li><span class='time-slot'>10:45 - 11:45</span> Simple quality filter <span class='small'>(range / lambda / tuple)</span></li>
+    <li><em class='time-slot'>11:45 - 14:30 "short break"</em></li>
+    <li><span class='time-slot'>14:30 - 16:10</span> Extended quality filter <span class='small'>(view / concept)</span></li>
+    <li><span class='time-slot'>16:10 - 16:30</span> Evaluation & Wrap-Up Talk</li>
+</ul>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### FASTQ -> FASTA conversion <span class='small'>(sequence files)</span> (I)
+
+We write an application that will look like this:
+<!-- .element: class="fragment" -->
+
+```
+$ ./fastq2fasta data/input.fq data/output.fa
+```
+<!-- .element: class="fragment" -->
+</textarea>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+###### FASTQ -> FASTA conversion <span class='small'>(sequence files)</span> (II)
+
+How does a FASTQ and FASTA file look like?
+<!-- .element: class="fragment" -->
+
+* <!-- .element: class="fragment" -->
+  FASTQ (`data/input.fq`):
+
+  ```cpp
+  @SEQ_ID
+  GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTAAATCCATTTGTTCAACTCACAGTTT
+  +
+  !''*((((***+))%%%++)(%%%%).1***-+*''))**55CCF>>>>>>CCCCCCC65
+  ```
+  <!-- .element: class="fragment" -->
+
+* <!-- .element: class="fragment" -->
+  FASTA (`data/output.fa`):
+
+  ```cpp
+  >SEQ_ID
+  GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTAAATCCATTTGTTCAACTCACAGTTT
+  ```
+  <!-- .element: class="fragment" -->
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+###### FASTQ -> FASTA conversion <span class='small'>(sequence files)</span> (III)</h6>
+
+```
+$ ./fastq2fasta data/input.fq data/output.fa
+```
+<!-- .element: class="fragment" -->
+
+### How do we write this application?
+<!-- .element: class="fragment" -->
+
+* <!-- .element: class="fragment" -->
+  start with "hello world" programm. <!-- hello world -->
+* <!-- .element: class="fragment" -->
+  read and use command-line arguments
+* <!-- .element: class="fragment" -->
+  use a library to read in a **fastq** file <!-- fastq -> fasta -->
+* <!-- .element: class="fragment" -->
+  use a library to write out a **fasta** file
+</script>
+</section>
+
+<section>
+<p class=live-coding></p>
+
+<aside class="notes" data-markdown>
+    Start writing a simple program with hello world.
+    Learning goals:
+        * How to use Standard library functionality
+        * What does #include mean
+        * How to use standard library documentation: cppreference.com -> shared document.
+        * Entry point of any program -> the main
+        * String literal -> has to be the entry point of any program that captures command line arguments
+        * Convert to C++.
+        * Formatted files from SeqAn
+        * Writing a file to the standard output.
+</aside>
+</section>
+
+<section>
+<h3>Schedule<small>*</small>:</h3>
+<ul>
+    <li><span class='time-slot'>09:00 - 09:30</span> Setup</li>
+    <li><span class='time-slot'>09:30 - 10:00</span> Introduction Talk</li>
+    <li><span class='time-slot'>10:00 - 10:30</span> FASTQ -> FASTA conversion <span class='small'>(sequence files)</span></li>
+    <li><em class='time-slot'>10:30 - 10:45 Coffee-Break</em></li>
+    <li class="fragment highlight-blue grow"><span class='time-slot'>10:45 - 11:45</span> Simple quality filter <span class='small'>(range / lambda / tuple)</span></li>
+    <li><em class='time-slot'>11:45 - 14:30 "short break"</em></li>
+    <li><span class='time-slot'>14:30 - 16:10</span> Extended quality filter <span class='small'>(view / concept)</span></li>
+    <li><span class='time-slot'>16:10 - 16:30</span> Evaluation & Wrap-Up Talk</li>
+</ul>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Working with ranges
+
+Extend the fastq2fasta program to only output reads with base qualities over a user given threshold.
+<!-- .element: class="fragment" -->
+
+* <!-- .element: class="fragment" -->
+  read user input interactively
+* <!-- .element: class="fragment" -->
+  iterate over the fastq records
+* <!-- .element: class="fragment" -->
+  write out fasta records with minimum quality criteria
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Working with ranges
+
+Learning objectives
+
+<!-- .element: class="fragment" -->
+
+* <!-- .element: class="fragment" -->
+  what is a range
+* <!-- .element: class="fragment" -->
+  how to generically access elements of a range
+* <!-- .element: class="fragment" -->
+  use a range-based for-loop
+* <!-- .element: class="fragment" -->
+  use a range-based algorithm
+* <!-- .element: class="fragment" -->
+  using auto specifier to deduce type automatically
+* <!-- .element: class="fragment" -->
+  work with tuples
+* <!-- .element: class="fragment" -->
+  access fastq-file record-wise
+
+</textarea>
+</section>
+
+<section>
+<p class=live-coding></p>
+</section>
+
+<section>
+<h3>Schedule<small>*</small>:</h3>
+<ul>
+    <li><span class='time-slot'>09:00 - 09:30</span> Setup</li>
+    <li><span class='time-slot'>09:30 - 10:00</span> Introduction Talk</li>
+    <li><span class='time-slot'>10:00 - 10:30</span> FASTQ -> FASTA conversion <span class='small'>(sequence files)</span></li>
+    <li><em class='time-slot'>10:30 - 10:45 Coffee-Break</em></li>
+    <li><span class='time-slot'>10:45 - 11:45</span> Simple quality filter <span class='small'>(range / lambda / tuple)</span></li>
+    <li><em class='time-slot'>11:45 - 14:30 "short break"</em></li>
+    <li class="fragment highlight-blue grow"><span class='time-slot'>14:30 - 16:10</span> Extended quality filter <span class='small'>(view / concept)</span></li>
+    <li><span class='time-slot'>16:10 - 16:30</span> Evaluation & Wrap-Up Talk</li>
+</ul>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Working with views
+
+Extend the fastq2fasta program to only output reads with a minimum average base call quality.
+<!-- .element: class="fragment" -->
+
+* <!-- .element: class="fragment" -->
+  iterate over the fastq records
+* <!-- .element: class="fragment" -->
+  write generic algorithm to compute average quality
+* <!-- .element: class="fragment" -->
+  apply filter view
+* <!-- .element: class="fragment" -->
+  use concepts for safe generic algorithm
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Working with views
+
+Learning objectives
+<!-- .element: class="fragment" -->
+
+* <!-- .element: class="fragment" -->
+  what is a view
+* <!-- .element: class="fragment" -->
+  how to chain views
+* <!-- .element: class="fragment" -->
+  writing generic algorithms
+* <!-- .element: class="fragment" -->
+  understanding and using concepts in generic code
+
+</textarea>
+</section>
+
+<section>
+<p class=live-coding></p>
+
+<aside class="notes" data-markdown>
+    Use field enum to print the id.
+    Then access the quality.
+    Write code that checks if there is any
+</aside>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Understanding concepts
+
+* <!-- .element: class="fragment" -->
+  syntactical constraint on a type
+* <!-- .element: class="fragment" -->
+  semantical constraint on a type
+* <!-- .element: class="fragment" -->
+  model hierarchy between types
+
+</textarea>
+</section>
+
+<section>
+<p class=live-coding></p>
+
+<aside class="notes" data-markdown>
+    Use field enum to print the id.
+    Then access the quality.
+    Write code that checks if there is any
+</aside>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Working with views
+
+Extend the fastq2fasta program to handle paired-end reads.
+<!-- .element: class="fragment" -->
+
+* <!-- .element: class="fragment" -->
+  add second input argument
+* <!-- .element: class="fragment" -->
+  combine both files
+* <!-- .element: class="fragment" -->
+  transform back to flat range
+* <!-- .element: class="fragment" -->
+  directly output to the out file
+
+</textarea>
+</section>
+
+<section>
+<h3>Schedule<small>*</small>:</h3>
+<ul>
+    <li><span class='time-slot'>09:00 - 09:30</span> Setup</li>
+    <li><span class='time-slot'>09:30 - 10:00</span> Introduction Talk</li>
+    <li><span class='time-slot'>10:00 - 10:30</span> FASTQ -> FASTA conversion <span class='small'>(sequence files)</span></li>
+    <li><em class='time-slot'>10:30 - 10:45 Coffee-Break</em></li>
+    <li><span class='time-slot'>10:45 - 11:45</span> Simple quality filter <span class='small'>(range / lambda / tuple)</span></li>
+    <li><em class='time-slot'>11:45 - 14:30 "short break"</em></li>
+    <li><span class='time-slot'>14:30 - 16:10</span> Extended quality filter <span class='small'>(view / concept)</span></li>
+    <li class="fragment highlight-blue grow"><span class='time-slot'>16:10 - 16:30</span> Evaluation & Wrap-Up Talk</li>
+</ul>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+###### Evaluation:
+
+* <!-- .element: class="fragment" -->
+  please fill out the form and
+* <!-- .element: class="fragment" -->
+  rate what you liked and what you didn't.
+* <!-- .element: class="fragment" -->
+  you can also fill it out online
+  https://de.surveymonkey.com/r/denbi-course?sc=cibi&id=000255
+</script>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Wrap-Up
+
+Today we learned
+<!-- .element: class="fragment" -->
+
+* <!-- .element: class="fragment" -->
+    how to write a simple CLI application in C++
+* <!-- .element: class="fragment" -->
+    how to make use of lambdas
+* <!-- .element: class="fragment" -->
+    how to write safe generic code with concepts
+* <!-- .element: class="fragment" -->
+    how to write idiomatic C++ code with ranges and views
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Wrap-Up
+
+Today we learned
+<!-- .element: class="fragment" -->
+
+* <!-- .element: class="fragment" -->
+    how to write a simple CLI application in C++
+* <!-- .element: class="fragment" -->
+    how to make use of lambdas
+* <!-- .element: class="fragment" -->
+    how to write safe generic code with concepts
+* <!-- .element: class="fragment" -->
+    how to use idiomatic
+</textarea>
+</section>
+
+<section>
+<p><a href="https://twitter.com/seqanlib"><i class="fa fa-twitter" aria-hidden="true"></i> @SeqAnLib</a></p>
+<p><a href="https://github.com/seqan/"><i class="fa fa-github" aria-hidden="true"></i> github/seqan</a></p>
+<p><a href="https://www.seqan.de"><i class="fa fa-globe" aria-hidden="true"></i> seqan.de</a></p>
+</section>
+            </div>
+        </div>
+
+        <script src="reveal.js/js/reveal.js"></script>
+
+        <script>
+            // More info about config & dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+            Reveal.initialize({
+                hash: true,
+                dependencies: [
+                    { src: 'reveal.js/plugin/markdown/marked.js' },
+                    { src: 'reveal.js/plugin/markdown/markdown.js' },
+                    // { src: 'reveal.js/plugin/highlight/highlight.js' },
+                    { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'reveal.js/plugin/notes/notes.js', async: true }
+                ]
+            });
+        </script>
+    </body>
+</html>
