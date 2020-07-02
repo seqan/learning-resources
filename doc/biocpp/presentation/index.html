@@ -154,7 +154,7 @@ You have three options to install C++:
 <textarea data-template>
 ###### Setup C++: Use your web-browser (I)
 
-<img src="img/gitpod.io.png" height="420">
+<img src="img/gitpod.io.png" height="420" class="fragment">
 </textarea>
 </section>
 
@@ -195,7 +195,7 @@ You have three options to install C++:
 
 <pre class="fragment"> <i class="fa fa-linux" aria-hidden="true"></i> Debian ≥ 10.0 (Buster) / Ubuntu ≥ 18.04 (bionic):<code class="plaintext hljs">sudo apt install g++ cmake git</code></pre>
 
-<pre class="fragment"> <i class="fa fa-linux" aria-hidden="true"></i> Debian < 10.0 (Buster) / Ubuntu < 18.04 (bionic):<code class="plaintext hljs">sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+<pre class="fragment"> <i class="fa fa-linux" aria-hidden="true"></i> Ubuntu < 18.04 (bionic):<code class="plaintext hljs">sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 sudo apt update
 sudo apt install g++-7 cmake git (or g++-8 or g++-9)
 </code></pre>
@@ -279,8 +279,7 @@ make -j 4
 ```
 <!-- .element: class="fragment" -->
 
-```bash
--- The CXX compiler identification is GNU 9.2.1
+<pre class="fragment"><code class="language-bash hljs" style="max-height: 300px">-- The CXX compiler identification is GNU 9.2.1
 -- Check for working CXX compiler: /usr/bin/c++
 -- Check for working CXX compiler: /usr/bin/c++ - works
 -- Detecting CXX compiler ABI info
@@ -295,7 +294,7 @@ make -j 4
 --     …adding submodule include:  /home/biocpp/learning-resources/submodules/seqan3/submodules/sdsl-lite/include
 --   C++ Standard-17 support:    via -std=c++17
 --   C++ Concepts support:       via -fconcepts
---   C++ Filesystem header:      <filesystem>
+--   C++ Filesystem header:      &amp;lt;filesystem>
 --   C++ Filesystem library:     builtin
 -- Check if compiler accepts -pthread
 -- Check if compiler accepts -pthread - yes
@@ -312,8 +311,7 @@ make -j 4
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/biocpp/learning-resources/build
-```
-<!-- .element: class="fragment" style="overflow: auto; max-height: 300px" -->
+</code></pre>
 </textarea>
 </section>
 
