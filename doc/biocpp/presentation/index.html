@@ -128,23 +128,124 @@
 </ul>
 </section>
 
-<section>
-<h6>Setup (I):</h6>
-<pre class="fragment">Debian / Ubuntu:<code class="plaintext hljs">sudo apt install g++ cmake git</code></pre>
-<pre class="fragment">Mac (XCode and Brew installed): <code class="plaintext hljs">brew install gcc</code></pre>
-<pre class="fragment">Windows: ... ( ͡° ͜ʖ ͡°)</pre>
-<pre class="fragment">Online Editor (50h/month for free, github or gitlab account):
-<code class="plaintext hljs" data-noescape><a href="https://gitpod.io/#https://github.com/seqan/learning-resources">https://gitpod.io/#https://github.com/seqan/learning-resources</a></code></pre>
-<pre class="fragment"><a href="https://www.virtualbox.org/">https://www.virtualbox.org/</a> image:
-<!--<code class="plaintext hljs" data-noescape>on USB flash drive</code>or--><code class="plaintext hljs" data-noescape><a href="http://ftp.seqan.de/workshop/2020/biocpp-vm.vdi">http://ftp.seqan.de/workshop/2020/biocpp-vm.vdi</a></code></pre>
+<section data-markdown>
+<textarea data-template>
+###### Setup C++:
+
+You have three options to install C++:
+
+* <!-- .element: class="fragment" -->
+  Use your web-browser.
+  * Recommended for <i class="fa fa-windows" aria-hidden="true"></i> Windows or
+  * people who want to keep a clean system.
+* <!-- .element: class="fragment" -->
+  Install C++ on your system.
+  * Recommended for <i class="fa fa-apple" aria-hidden="true"></i> MacOS or
+    <i class="fa fa-linux" aria-hidden="true"></i> Linux
+* <!-- .element: class="fragment" -->
+  Use a VM.
+  * Recommended for <i class="fa fa-windows" aria-hidden="true"></i> Windows or
+  * people who want to keep a clean system.
+</textarea>
+</section>
+
+
+<section data-markdown>
+<textarea data-template>
+###### Setup C++: Use your web-browser (I)
+
+<img src="img/gitpod.io.png" height="420">
+</textarea>
 </section>
 
 <section data-markdown>
 <textarea data-template>
-###### Setup (II):
+###### Setup C++: Use your web-browser (I)
 
-download course-material:
-<!-- .element: class="fragment" -->
+* <!-- .element: class="fragment" -->
+  Go to https://gitpod.io/#https://github.com/seqan/learning-resources
+* <!-- .element: class="fragment" -->
+  It is 50h/month for free, plenty of time for this tutorial.
+* <!-- .element: class="fragment" -->
+  You need a github account. Create one if you don't have one.
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Setup C++: Install C++ on your system (II)
+
+* <!-- .element: class="fragment" -->
+  You'll need, git
+  * https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+* <!-- .element: class="fragment" -->
+  GNU Compiler GCC with `g++` (--version) ≥ 7.1 and
+  * https://docs.seqan.de/seqan/3-master-user/setup.html#autotoc_md98
+* <!-- .element: class="fragment" -->
+  CMake with `cmake` (--version) ≥ 3.4.
+  * https://cmake.org/download/
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Setup C++: Install C++ on your system (II)
+
+<pre class="fragment"> <i class="fa fa-linux" aria-hidden="true"></i> Debian ≥ 10.0 (Buster) / Ubuntu ≥ 18.04 (bionic):<code class="plaintext hljs">sudo apt install g++ cmake git</code></pre>
+
+<pre class="fragment"> <i class="fa fa-linux" aria-hidden="true"></i> Debian < 10.0 (Buster) / Ubuntu < 18.04 (bionic):<code class="plaintext hljs">sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt update
+sudo apt install g++-7 cmake git (or g++-8 or g++-9)
+</code></pre>
+
+<pre class="fragment"> <i class="fa fa-apple" aria-hidden="true"></i> MacOS (XCode and <a href="https://brew.sh">https://brew.sh</a> installed):<code class="plaintext hljs">brew install gcc
+brew cask install cmake</code></pre>
+
+<pre class="fragment"> <i class="fa fa-windows" aria-hidden="true"></i> Windows:<code>use the browser ( ͡° ͜ʖ ͡°)</code></pre>
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Setup C++: Use a VM (III)
+
+* <!-- .element: class="fragment" -->
+  Install VirtualBox:
+  * https://www.virtualbox.org/
+* <!-- .element: class="fragment" -->
+  Download image:
+  * http://ftp.seqan.de/workshop/2020/biocpp-vm.vdi (~5GB)
+* <!-- .element: class="fragment" -->
+  Everything is pre-installed
+  * an Editor (https://atom.io/), too
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Setup C++: Use a VM (III)
+
+* <!-- .element: class="fragment" -->
+  Create a new VM (Machine / New)
+  * Name: biocpp
+  * Type: Linux
+  * Version: Ubuntu (64-bit)
+  * Memory size: ≥ 4Gb
+  * Use existing virtual hard disk drive file:
+    * Add `biocpp-vm.vdi`
+  * biocpp / Settings / Processor: ≥ 2
+    * enable PAE/NX, Nested VT-x/AMD-v if you can
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Setup Source-Code and Data:
 
 ```bash
 git clone https://github.com/seqan/learning-resources
@@ -162,14 +263,57 @@ tar -xvf biocpp-data.tar.gz
 ```
 <!-- .element: class="fragment" -->
 
-configure & build:
-<!-- .element: class="fragment" -->
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Setup build folder:
 
 ```bash
+# configure & build:
 cmake ../src/biocpp
+# or alternatively
+# cmake -DCMAKE_CXX_COMPILER=/path/to/g++ ../src/biocpp
 make -j 4
 ```
 <!-- .element: class="fragment" -->
+
+```bash
+-- The CXX compiler identification is GNU 9.2.1
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ - works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Finding SeqAn3 and checking requirements:
+--   SeqAn3 include dir found:   /home/biocpp/learning-resources/submodules/seqan3/include
+--   Detected as running from a repository checkout…
+--     …adding submodule include:  /home/biocpp/learning-resources/submodules/seqan3/submodules/cereal/include
+--     …adding submodule include:  /home/biocpp/learning-resources/submodules/seqan3/submodules/range-v3/include
+--     …adding submodule include:  /home/biocpp/learning-resources/submodules/seqan3/submodules/sdsl-lite/include
+--   C++ Standard-17 support:    via -std=c++17
+--   C++ Concepts support:       via -fconcepts
+--   C++ Filesystem header:      <filesystem>
+--   C++ Filesystem library:     builtin
+-- Check if compiler accepts -pthread
+-- Check if compiler accepts -pthread - yes
+--   Thread support:             via -pthread
+--   Required dependency:        Range-V3 found.
+--   Required dependency:        SDSL found.
+--   Optional dependency:        Cereal found.
+--   Optional dependency:        Lemon not found.
+--   Optional dependency:        ZLIB-1.2.11 found.
+--   Optional dependency:        BZip2-1.0.8 found.
+--   Optional dependency:        libexecinfo found.
+--   SeqAn3 platform.hpp build:  passed.
+-- Found SeqAn3: /home/biocpp/learning-resources/submodules/seqan3/include (Required is at least version "3.0.1")
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/biocpp/learning-resources/build
+```
+<!-- .element: class="fragment" style="overflow: auto; max-height: 300px" -->
 </textarea>
 </section>
 
