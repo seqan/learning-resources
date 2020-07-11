@@ -4,12 +4,19 @@
 
 #include <seqan3/std/ranges>
 
-
+#ifdef __cpp_lib_concepts // C++20 compiler
+template <typename value_t, typename init_t>
+concept accumulable_with = requires (value_t && value, init_t && init)
+{
+    { std::move(init) + std::forward<value_t>(value)} -> std::same_as<init_t>;
+};
+#else // pre C++20 compiler
 template <typename value_t, typename init_t>
 concept bool accumulable_with = requires (value_t && value, init_t && init)
 {
     { std::move(init) + std::forward<value_t>(value)} -> init_t;
 };
+#endif
 
 template <std::ranges::input_range range_t>
 // to strong constraint: std::is_arithmetic_v<std::ranges::range_value_t<range_t>>
