@@ -70,7 +70,17 @@ int main(int const argc, character_string argv[])
     seqan3::sequence_file_output seq_file_out{fasta_output_path};
 
     // Only print sequences with average quality filter.
+#if SEQAN3_WORKAROUND_GCC_93983
+    std::vector<std::ranges::range_value_t<decltype(seq_file_in1)>> seq_file_in1_{};
+    std::vector<std::ranges::range_value_t<decltype(seq_file_in2)>> seq_file_in2_{};
+
+    // TODO: this has a different issue with input_iterator
+    std::ranges::copy(seq_file_in1, std::cpp20::back_inserter(seq_file_in1_));
+    std::ranges::copy(seq_file_in2, std::cpp20::back_inserter(seq_file_in2_));
+    seq_file_out = seqan3::views::zip(seq_file_in1_, seq_file_in2_)
+#else
     seq_file_out = seqan3::views::zip(seq_file_in1, seq_file_in2)
+#endif
                  | std::views::filter([&] (auto && fastq_record_pair)
                    {
                        auto && [left_read, right_read] = fastq_record_pair;

@@ -54,7 +54,12 @@ int main(int const argc, character_string argv[])
 
 
     // Only print sequences with average quality filter.
+#if SEQAN3_WORKAROUND_GCC_93983
+    auto seq_file_in_ = std::ranges::subrange{seq_file_in.begin(), seq_file_in.end()};
+    seq_file_out = seq_file_in_
+#else
     seq_file_out = seq_file_in
+#endif
                  | std::views::filter([&] (auto && fastq_record)
                    {
                        auto quality_rank_view = seqan3::get<seqan3::field::qual>(fastq_record) | seqan3::views::to_rank;
