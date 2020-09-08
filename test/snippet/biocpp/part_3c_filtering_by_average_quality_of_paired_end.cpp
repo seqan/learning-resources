@@ -70,7 +70,7 @@ int main(int const argc, character_string argv[])
     seqan3::sequence_file_output seq_file_out{fasta_output_path};
 
     // Only print sequences with average quality filter.
-#if SEQAN3_WORKAROUND_GCC_93983
+#if SEQAN3_WORKAROUND_GCC_93983 || SEQAN3_WORKAROUND_GCC_96070
     std::vector<std::ranges::range_value_t<decltype(seq_file_in1)>> seq_file_in1_{};
     std::vector<std::ranges::range_value_t<decltype(seq_file_in2)>> seq_file_in2_{};
 
