@@ -77,21 +77,21 @@ int main(int const argc, character_string argv[])
     // TODO: this has a different issue with input_iterator
     std::ranges::copy(seq_file_in1, std::cpp20::back_inserter(seq_file_in1_));
     std::ranges::copy(seq_file_in2, std::cpp20::back_inserter(seq_file_in2_));
-    seq_file_out = seqan3::views::zip(seq_file_in1_, seq_file_in2_)
+    auto filtered_paired_ends = seqan3::views::zip(seq_file_in1_, seq_file_in2_)
 #else
-    seq_file_out = seqan3::views::zip(seq_file_in1, seq_file_in2)
+    auto filtered_paired_ends = seqan3::views::zip(seq_file_in1, seq_file_in2)
 #endif
-                 | std::views::filter([&] (auto && fastq_record_pair)
-                   {
-                       auto && [left_read, right_read] = fastq_record_pair;
-                       return by_average_quality(left_read) && by_average_quality(right_read);
-                   })
-                 | std::views::transform([] (auto && pair)
-                   {
-                       auto && [left_read, right_read] = pair;
-                       return ranges::views::concat(std::views::single(std::move(left_read)), std::views::single(std::move(right_read)));
-                   })
-                 | std::views::join;
+                              | std::views::filter([&] (auto && fastq_record_pair)
+                                 {
+                                     auto && [left_read, right_read] = fastq_record_pair;
+                                     return by_average_quality(left_read) && by_average_quality(right_read);
+                                 });
+
+    for (auto && [left_read, right_read]: filtered_paired_ends)
+    {
+        seq_file_out.push_back(left_read);
+        seq_file_out.push_back(right_read);
+    }
 
     return EXIT_SUCCESS;
 }
