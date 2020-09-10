@@ -1,0 +1,1188 @@
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h: In instantiation of ‘constexpr void std::__sort(_RandomAccessIterator, _RandomAccessIterator, _Compare) [with _RandomAccessIterator = std::_List_iterator<int>; _Compare = __gnu_cxx::__ops::_Iter_less_iter]’:
+/usr/include/c++/10.2.0/bits/stl_algo.h:4859:18:   required from ‘constexpr void std::sort(_RAIter, _RAIter) [with _RAIter = std::_List_iterator<int>]’
+/learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:10:39:   required from here
+/usr/include/c++/10.2.0/bits/stl_algo.h:1975:22: error: no match for ‘operator-’ (operand types are ‘std::_List_iterator<int>’ and ‘std::_List_iterator<int>’)
+ 1975 |     std::__lg(__last - __first) * 2,
+      |               ~~~~~~~^~~~~~~~~
+In file included from /usr/include/c++/10.2.0/bits/stl_algobase.h:67,
+                 from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_iterator.h:500:5: note: candidate: ‘template<class _IteratorL, class _IteratorR> constexpr decltype ((__y.base() - __x.base())) std::operator-(const std::reverse_iterator<_IteratorL>&, const std::reverse_iterator<_IteratorR>&)’
+  500 |     operator-(const reverse_iterator<_IteratorL>& __x,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/stl_iterator.h:500:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1975:22: note:   ‘std::_List_iterator<int>’ is not derived from ‘const std::reverse_iterator<_IteratorL>’
+ 1975 |     std::__lg(__last - __first) * 2,
+      |               ~~~~~~~^~~~~~~~~
+In file included from /usr/include/c++/10.2.0/bits/stl_algobase.h:67,
+                 from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_iterator.h:1533:5: note: candidate: ‘template<class _IteratorL, class _IteratorR> constexpr decltype ((__x.base() - __y.base())) std::operator-(const std::move_iterator<_IteratorL>&, const std::move_iterator<_IteratorR>&)’
+ 1533 |     operator-(const move_iterator<_IteratorL>& __x,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/stl_iterator.h:1533:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1975:22: note:   ‘std::_List_iterator<int>’ is not derived from ‘const std::move_iterator<_IteratorL>’
+ 1975 |     std::__lg(__last - __first) * 2,
+      |               ~~~~~~~^~~~~~~~~
+/usr/include/c++/10.2.0/bits/stl_algo.h: In instantiation of ‘constexpr void std::__final_insertion_sort(_RandomAccessIterator, _RandomAccessIterator, _Compare) [with _RandomAccessIterator = std::_List_iterator<int>; _Compare = __gnu_cxx::__ops::_Iter_less_iter]’:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1977:31:   required from ‘constexpr void std::__sort(_RandomAccessIterator, _RandomAccessIterator, _Compare) [with _RandomAccessIterator = std::_List_iterator<int>; _Compare = __gnu_cxx::__ops::_Iter_less_iter]’
+/usr/include/c++/10.2.0/bits/stl_algo.h:4859:18:   required from ‘constexpr void std::sort(_RAIter, _RAIter) [with _RAIter = std::_List_iterator<int>]’
+/learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:10:39:   required from here
+/usr/include/c++/10.2.0/bits/stl_algo.h:1884:18: error: no match for ‘operator-’ (operand types are ‘std::_List_iterator<int>’ and ‘std::_List_iterator<int>’)
+ 1884 |       if (__last - __first > int(_S_threshold))
+      |           ~~~~~~~^~~~~~~~~
+In file included from /usr/include/c++/10.2.0/bits/stl_algobase.h:67,
+                 from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_iterator.h:500:5: note: candidate: ‘template<class _IteratorL, class _IteratorR> constexpr decltype ((__y.base() - __x.base())) std::operator-(const std::reverse_iterator<_IteratorL>&, const std::reverse_iterator<_IteratorR>&)’
+  500 |     operator-(const reverse_iterator<_IteratorL>& __x,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/stl_iterator.h:500:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1884:18: note:   ‘std::_List_iterator<int>’ is not derived from ‘const std::reverse_iterator<_IteratorL>’
+ 1884 |       if (__last - __first > int(_S_threshold))
+      |           ~~~~~~~^~~~~~~~~
+In file included from /usr/include/c++/10.2.0/bits/stl_algobase.h:67,
+                 from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_iterator.h:1533:5: note: candidate: ‘template<class _IteratorL, class _IteratorR> constexpr decltype ((__x.base() - __y.base())) std::operator-(const std::move_iterator<_IteratorL>&, const std::move_iterator<_IteratorR>&)’
+ 1533 |     operator-(const move_iterator<_IteratorL>& __x,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/stl_iterator.h:1533:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1884:18: note:   ‘std::_List_iterator<int>’ is not derived from ‘const std::move_iterator<_IteratorL>’
+ 1884 |       if (__last - __first > int(_S_threshold))
+      |           ~~~~~~~^~~~~~~~~
+/usr/include/c++/10.2.0/bits/stl_algo.h:1886:43: error: no match for ‘operator+’ (operand types are ‘std::_List_iterator<int>’ and ‘int’)
+ 1886 |    std::__insertion_sort(__first, __first + int(_S_threshold), __comp);
+      |                                   ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/bits/stl_algobase.h:67,
+                 from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_iterator.h:508:5: note: candidate: ‘template<class _Iterator> constexpr std::reverse_iterator<_IteratorL> std::operator+(typename std::reverse_iterator<_IteratorL>::difference_type, const std::reverse_iterator<_IteratorL>&)’
+  508 |     operator+(typename reverse_iterator<_Iterator>::difference_type __n,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/stl_iterator.h:508:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1886:43: note:   mismatched types ‘const std::reverse_iterator<_IteratorL>’ and ‘int’
+ 1886 |    std::__insertion_sort(__first, __first + int(_S_threshold), __comp);
+      |                                   ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/bits/stl_algobase.h:67,
+                 from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_iterator.h:1540:5: note: candidate: ‘template<class _Iterator> constexpr std::move_iterator<_IteratorL> std::operator+(typename std::move_iterator<_IteratorL>::difference_type, const std::move_iterator<_IteratorL>&)’
+ 1540 |     operator+(typename move_iterator<_Iterator>::difference_type __n,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/stl_iterator.h:1540:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1886:43: note:   mismatched types ‘const std::move_iterator<_IteratorL>’ and ‘int’
+ 1886 |    std::__insertion_sort(__first, __first + int(_S_threshold), __comp);
+      |                                   ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6022:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)’
+ 6022 |     operator+(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6022:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1886:43: note:   ‘std::_List_iterator<int>’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1886 |    std::__insertion_sort(__first, __first + int(_S_threshold), __comp);
+      |                                   ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:56,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.tcc:1160:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const _CharT*, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)’
+ 1160 |     operator+(const _CharT* __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.tcc:1160:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1886:43: note:   mismatched types ‘const _CharT*’ and ‘std::_List_iterator<int>’
+ 1886 |    std::__insertion_sort(__first, __first + int(_S_threshold), __comp);
+      |                                   ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:56,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.tcc:1180:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(_CharT, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)’
+ 1180 |     operator+(_CharT __lhs, const basic_string<_CharT, _Traits, _Alloc>& __rhs)
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.tcc:1180:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1886:43: note:   mismatched types ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’ and ‘int’
+ 1886 |    std::__insertion_sort(__first, __first + int(_S_threshold), __comp);
+      |                                   ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6059:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, const _CharT*)’
+ 6059 |     operator+(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6059:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1886:43: note:   ‘std::_List_iterator<int>’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1886 |    std::__insertion_sort(__first, __first + int(_S_threshold), __comp);
+      |                                   ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6075:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, _CharT)’
+ 6075 |     operator+(const basic_string<_CharT, _Traits, _Alloc>& __lhs, _CharT __rhs)
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6075:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1886:43: note:   ‘std::_List_iterator<int>’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1886 |    std::__insertion_sort(__first, __first + int(_S_threshold), __comp);
+      |                                   ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6087:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)’
+ 6087 |     operator+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6087:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1886:43: note:   ‘std::_List_iterator<int>’ is not derived from ‘std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1886 |    std::__insertion_sort(__first, __first + int(_S_threshold), __comp);
+      |                                   ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6093:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&)’
+ 6093 |     operator+(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6093:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1886:43: note:   ‘std::_List_iterator<int>’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1886 |    std::__insertion_sort(__first, __first + int(_S_threshold), __comp);
+      |                                   ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6099:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&, std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&)’
+ 6099 |     operator+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6099:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1886:43: note:   ‘std::_List_iterator<int>’ is not derived from ‘std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1886 |    std::__insertion_sort(__first, __first + int(_S_threshold), __comp);
+      |                                   ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6121:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const _CharT*, std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&)’
+ 6121 |     operator+(const _CharT* __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6121:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1886:43: note:   mismatched types ‘const _CharT*’ and ‘std::_List_iterator<int>’
+ 1886 |    std::__insertion_sort(__first, __first + int(_S_threshold), __comp);
+      |                                   ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6127:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(_CharT, std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&)’
+ 6127 |     operator+(_CharT __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6127:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1886:43: note:   mismatched types ‘std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’ and ‘int’
+ 1886 |    std::__insertion_sort(__first, __first + int(_S_threshold), __comp);
+      |                                   ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6133:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&, const _CharT*)’
+ 6133 |     operator+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6133:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1886:43: note:   ‘std::_List_iterator<int>’ is not derived from ‘std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1886 |    std::__insertion_sort(__first, __first + int(_S_threshold), __comp);
+      |                                   ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6139:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&, _CharT)’
+ 6139 |     operator+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6139:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1886:43: note:   ‘std::_List_iterator<int>’ is not derived from ‘std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1886 |    std::__insertion_sort(__first, __first + int(_S_threshold), __comp);
+      |                                   ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+/usr/include/c++/10.2.0/bits/stl_algo.h:1887:44: error: no match for ‘operator+’ (operand types are ‘std::_List_iterator<int>’ and ‘int’)
+ 1887 |    std::__unguarded_insertion_sort(__first + int(_S_threshold), __last,
+      |                                    ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/bits/stl_algobase.h:67,
+                 from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_iterator.h:508:5: note: candidate: ‘template<class _Iterator> constexpr std::reverse_iterator<_IteratorL> std::operator+(typename std::reverse_iterator<_IteratorL>::difference_type, const std::reverse_iterator<_IteratorL>&)’
+  508 |     operator+(typename reverse_iterator<_Iterator>::difference_type __n,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/stl_iterator.h:508:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1887:44: note:   mismatched types ‘const std::reverse_iterator<_IteratorL>’ and ‘int’
+ 1887 |    std::__unguarded_insertion_sort(__first + int(_S_threshold), __last,
+      |                                    ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/bits/stl_algobase.h:67,
+                 from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_iterator.h:1540:5: note: candidate: ‘template<class _Iterator> constexpr std::move_iterator<_IteratorL> std::operator+(typename std::move_iterator<_IteratorL>::difference_type, const std::move_iterator<_IteratorL>&)’
+ 1540 |     operator+(typename move_iterator<_Iterator>::difference_type __n,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/stl_iterator.h:1540:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1887:44: note:   mismatched types ‘const std::move_iterator<_IteratorL>’ and ‘int’
+ 1887 |    std::__unguarded_insertion_sort(__first + int(_S_threshold), __last,
+      |                                    ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6022:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)’
+ 6022 |     operator+(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6022:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1887:44: note:   ‘std::_List_iterator<int>’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1887 |    std::__unguarded_insertion_sort(__first + int(_S_threshold), __last,
+      |                                    ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:56,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.tcc:1160:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const _CharT*, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)’
+ 1160 |     operator+(const _CharT* __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.tcc:1160:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1887:44: note:   mismatched types ‘const _CharT*’ and ‘std::_List_iterator<int>’
+ 1887 |    std::__unguarded_insertion_sort(__first + int(_S_threshold), __last,
+      |                                    ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:56,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.tcc:1180:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(_CharT, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)’
+ 1180 |     operator+(_CharT __lhs, const basic_string<_CharT, _Traits, _Alloc>& __rhs)
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.tcc:1180:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1887:44: note:   mismatched types ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’ and ‘int’
+ 1887 |    std::__unguarded_insertion_sort(__first + int(_S_threshold), __last,
+      |                                    ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6059:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, const _CharT*)’
+ 6059 |     operator+(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6059:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1887:44: note:   ‘std::_List_iterator<int>’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1887 |    std::__unguarded_insertion_sort(__first + int(_S_threshold), __last,
+      |                                    ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6075:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, _CharT)’
+ 6075 |     operator+(const basic_string<_CharT, _Traits, _Alloc>& __lhs, _CharT __rhs)
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6075:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1887:44: note:   ‘std::_List_iterator<int>’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1887 |    std::__unguarded_insertion_sort(__first + int(_S_threshold), __last,
+      |                                    ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6087:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)’
+ 6087 |     operator+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6087:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1887:44: note:   ‘std::_List_iterator<int>’ is not derived from ‘std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1887 |    std::__unguarded_insertion_sort(__first + int(_S_threshold), __last,
+      |                                    ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6093:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&)’
+ 6093 |     operator+(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6093:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1887:44: note:   ‘std::_List_iterator<int>’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1887 |    std::__unguarded_insertion_sort(__first + int(_S_threshold), __last,
+      |                                    ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6099:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&, std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&)’
+ 6099 |     operator+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6099:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1887:44: note:   ‘std::_List_iterator<int>’ is not derived from ‘std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1887 |    std::__unguarded_insertion_sort(__first + int(_S_threshold), __last,
+      |                                    ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6121:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const _CharT*, std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&)’
+ 6121 |     operator+(const _CharT* __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6121:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1887:44: note:   mismatched types ‘const _CharT*’ and ‘std::_List_iterator<int>’
+ 1887 |    std::__unguarded_insertion_sort(__first + int(_S_threshold), __last,
+      |                                    ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6127:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(_CharT, std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&)’
+ 6127 |     operator+(_CharT __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6127:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1887:44: note:   mismatched types ‘std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’ and ‘int’
+ 1887 |    std::__unguarded_insertion_sort(__first + int(_S_threshold), __last,
+      |                                    ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6133:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&, const _CharT*)’
+ 6133 |     operator+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6133:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1887:44: note:   ‘std::_List_iterator<int>’ is not derived from ‘std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1887 |    std::__unguarded_insertion_sort(__first + int(_S_threshold), __last,
+      |                                    ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6139:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&, _CharT)’
+ 6139 |     operator+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6139:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1887:44: note:   ‘std::_List_iterator<int>’ is not derived from ‘std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1887 |    std::__unguarded_insertion_sort(__first + int(_S_threshold), __last,
+      |                                    ~~~~~~~~^~~~~~~~~~~~~~~~~~~
+/usr/include/c++/10.2.0/bits/stl_algo.h: In instantiation of ‘constexpr void std::__insertion_sort(_RandomAccessIterator, _RandomAccessIterator, _Compare) [with _RandomAccessIterator = std::_List_iterator<int>; _Compare = __gnu_cxx::__ops::_Iter_less_iter]’:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1891:23:   required from ‘constexpr void std::__final_insertion_sort(_RandomAccessIterator, _RandomAccessIterator, _Compare) [with _RandomAccessIterator = std::_List_iterator<int>; _Compare = __gnu_cxx::__ops::_Iter_less_iter]’
+/usr/include/c++/10.2.0/bits/stl_algo.h:1977:31:   required from ‘constexpr void std::__sort(_RandomAccessIterator, _RandomAccessIterator, _Compare) [with _RandomAccessIterator = std::_List_iterator<int>; _Compare = __gnu_cxx::__ops::_Iter_less_iter]’
+/usr/include/c++/10.2.0/bits/stl_algo.h:4859:18:   required from ‘constexpr void std::sort(_RAIter, _RAIter) [with _RAIter = std::_List_iterator<int>]’
+/learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:10:39:   required from here
+/usr/include/c++/10.2.0/bits/stl_algo.h:1844:48: error: no match for ‘operator+’ (operand types are ‘std::_List_iterator<int>’ and ‘int’)
+ 1844 |       for (_RandomAccessIterator __i = __first + 1; __i != __last; ++__i)
+      |                                        ~~~~~~~~^~~
+In file included from /usr/include/c++/10.2.0/bits/stl_algobase.h:67,
+                 from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_iterator.h:508:5: note: candidate: ‘template<class _Iterator> constexpr std::reverse_iterator<_IteratorL> std::operator+(typename std::reverse_iterator<_IteratorL>::difference_type, const std::reverse_iterator<_IteratorL>&)’
+  508 |     operator+(typename reverse_iterator<_Iterator>::difference_type __n,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/stl_iterator.h:508:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1844:48: note:   mismatched types ‘const std::reverse_iterator<_IteratorL>’ and ‘int’
+ 1844 |       for (_RandomAccessIterator __i = __first + 1; __i != __last; ++__i)
+      |                                        ~~~~~~~~^~~
+In file included from /usr/include/c++/10.2.0/bits/stl_algobase.h:67,
+                 from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_iterator.h:1540:5: note: candidate: ‘template<class _Iterator> constexpr std::move_iterator<_IteratorL> std::operator+(typename std::move_iterator<_IteratorL>::difference_type, const std::move_iterator<_IteratorL>&)’
+ 1540 |     operator+(typename move_iterator<_Iterator>::difference_type __n,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/stl_iterator.h:1540:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1844:48: note:   mismatched types ‘const std::move_iterator<_IteratorL>’ and ‘int’
+ 1844 |       for (_RandomAccessIterator __i = __first + 1; __i != __last; ++__i)
+      |                                        ~~~~~~~~^~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6022:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)’
+ 6022 |     operator+(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6022:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1844:48: note:   ‘std::_List_iterator<int>’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1844 |       for (_RandomAccessIterator __i = __first + 1; __i != __last; ++__i)
+      |                                        ~~~~~~~~^~~
+In file included from /usr/include/c++/10.2.0/string:56,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.tcc:1160:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const _CharT*, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)’
+ 1160 |     operator+(const _CharT* __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.tcc:1160:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1844:48: note:   mismatched types ‘const _CharT*’ and ‘std::_List_iterator<int>’
+ 1844 |       for (_RandomAccessIterator __i = __first + 1; __i != __last; ++__i)
+      |                                        ~~~~~~~~^~~
+In file included from /usr/include/c++/10.2.0/string:56,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.tcc:1180:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(_CharT, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)’
+ 1180 |     operator+(_CharT __lhs, const basic_string<_CharT, _Traits, _Alloc>& __rhs)
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.tcc:1180:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1844:48: note:   mismatched types ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’ and ‘int’
+ 1844 |       for (_RandomAccessIterator __i = __first + 1; __i != __last; ++__i)
+      |                                        ~~~~~~~~^~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6059:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, const _CharT*)’
+ 6059 |     operator+(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6059:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1844:48: note:   ‘std::_List_iterator<int>’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1844 |       for (_RandomAccessIterator __i = __first + 1; __i != __last; ++__i)
+      |                                        ~~~~~~~~^~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6075:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, _CharT)’
+ 6075 |     operator+(const basic_string<_CharT, _Traits, _Alloc>& __lhs, _CharT __rhs)
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6075:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1844:48: note:   ‘std::_List_iterator<int>’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1844 |       for (_RandomAccessIterator __i = __first + 1; __i != __last; ++__i)
+      |                                        ~~~~~~~~^~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6087:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)’
+ 6087 |     operator+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6087:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1844:48: note:   ‘std::_List_iterator<int>’ is not derived from ‘std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1844 |       for (_RandomAccessIterator __i = __first + 1; __i != __last; ++__i)
+      |                                        ~~~~~~~~^~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6093:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&)’
+ 6093 |     operator+(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6093:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1844:48: note:   ‘std::_List_iterator<int>’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1844 |       for (_RandomAccessIterator __i = __first + 1; __i != __last; ++__i)
+      |                                        ~~~~~~~~^~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6099:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&, std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&)’
+ 6099 |     operator+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6099:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1844:48: note:   ‘std::_List_iterator<int>’ is not derived from ‘std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1844 |       for (_RandomAccessIterator __i = __first + 1; __i != __last; ++__i)
+      |                                        ~~~~~~~~^~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6121:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const _CharT*, std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&)’
+ 6121 |     operator+(const _CharT* __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6121:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1844:48: note:   mismatched types ‘const _CharT*’ and ‘std::_List_iterator<int>’
+ 1844 |       for (_RandomAccessIterator __i = __first + 1; __i != __last; ++__i)
+      |                                        ~~~~~~~~^~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6127:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(_CharT, std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&)’
+ 6127 |     operator+(_CharT __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6127:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1844:48: note:   mismatched types ‘std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’ and ‘int’
+ 1844 |       for (_RandomAccessIterator __i = __first + 1; __i != __last; ++__i)
+      |                                        ~~~~~~~~^~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6133:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&, const _CharT*)’
+ 6133 |     operator+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6133:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1844:48: note:   ‘std::_List_iterator<int>’ is not derived from ‘std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1844 |       for (_RandomAccessIterator __i = __first + 1; __i != __last; ++__i)
+      |                                        ~~~~~~~~^~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6139:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&, _CharT)’
+ 6139 |     operator+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6139:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/algorithm:62,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1844:48: note:   ‘std::_List_iterator<int>’ is not derived from ‘std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1844 |       for (_RandomAccessIterator __i = __first + 1; __i != __last; ++__i)
+      |                                        ~~~~~~~~^~~
+In file included from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1850:8: error: no match for ‘operator+’ (operand types are ‘std::_List_iterator<int>’ and ‘int’)
+ 1850 |        _GLIBCXX_MOVE_BACKWARD3(__first, __i, __i + 1);
+      |        ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/bits/stl_algobase.h:67,
+                 from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_iterator.h:508:5: note: candidate: ‘template<class _Iterator> constexpr std::reverse_iterator<_IteratorL> std::operator+(typename std::reverse_iterator<_IteratorL>::difference_type, const std::reverse_iterator<_IteratorL>&)’
+  508 |     operator+(typename reverse_iterator<_Iterator>::difference_type __n,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/stl_iterator.h:508:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1850:8: note:   mismatched types ‘const std::reverse_iterator<_IteratorL>’ and ‘int’
+ 1850 |        _GLIBCXX_MOVE_BACKWARD3(__first, __i, __i + 1);
+      |        ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/bits/stl_algobase.h:67,
+                 from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_iterator.h:1540:5: note: candidate: ‘template<class _Iterator> constexpr std::move_iterator<_IteratorL> std::operator+(typename std::move_iterator<_IteratorL>::difference_type, const std::move_iterator<_IteratorL>&)’
+ 1540 |     operator+(typename move_iterator<_Iterator>::difference_type __n,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/stl_iterator.h:1540:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1850:8: note:   mismatched types ‘const std::move_iterator<_IteratorL>’ and ‘int’
+ 1850 |        _GLIBCXX_MOVE_BACKWARD3(__first, __i, __i + 1);
+      |        ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6022:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)’
+ 6022 |     operator+(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6022:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1850:8: note:   ‘std::_List_iterator<int>’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1850 |        _GLIBCXX_MOVE_BACKWARD3(__first, __i, __i + 1);
+      |        ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:56,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.tcc:1160:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const _CharT*, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)’
+ 1160 |     operator+(const _CharT* __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.tcc:1160:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1850:8: note:   mismatched types ‘const _CharT*’ and ‘std::_List_iterator<int>’
+ 1850 |        _GLIBCXX_MOVE_BACKWARD3(__first, __i, __i + 1);
+      |        ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:56,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.tcc:1180:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(_CharT, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)’
+ 1180 |     operator+(_CharT __lhs, const basic_string<_CharT, _Traits, _Alloc>& __rhs)
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.tcc:1180:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1850:8: note:   mismatched types ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’ and ‘int’
+ 1850 |        _GLIBCXX_MOVE_BACKWARD3(__first, __i, __i + 1);
+      |        ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6059:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, const _CharT*)’
+ 6059 |     operator+(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6059:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1850:8: note:   ‘std::_List_iterator<int>’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1850 |        _GLIBCXX_MOVE_BACKWARD3(__first, __i, __i + 1);
+      |        ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6075:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, _CharT)’
+ 6075 |     operator+(const basic_string<_CharT, _Traits, _Alloc>& __lhs, _CharT __rhs)
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6075:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1850:8: note:   ‘std::_List_iterator<int>’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1850 |        _GLIBCXX_MOVE_BACKWARD3(__first, __i, __i + 1);
+      |        ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6087:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)’
+ 6087 |     operator+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6087:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1850:8: note:   ‘std::_List_iterator<int>’ is not derived from ‘std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1850 |        _GLIBCXX_MOVE_BACKWARD3(__first, __i, __i + 1);
+      |        ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6093:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&)’
+ 6093 |     operator+(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6093:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1850:8: note:   ‘std::_List_iterator<int>’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1850 |        _GLIBCXX_MOVE_BACKWARD3(__first, __i, __i + 1);
+      |        ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6099:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&, std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&)’
+ 6099 |     operator+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6099:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1850:8: note:   ‘std::_List_iterator<int>’ is not derived from ‘std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1850 |        _GLIBCXX_MOVE_BACKWARD3(__first, __i, __i + 1);
+      |        ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6121:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const _CharT*, std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&)’
+ 6121 |     operator+(const _CharT* __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6121:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1850:8: note:   mismatched types ‘const _CharT*’ and ‘std::_List_iterator<int>’
+ 1850 |        _GLIBCXX_MOVE_BACKWARD3(__first, __i, __i + 1);
+      |        ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6127:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(_CharT, std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&)’
+ 6127 |     operator+(_CharT __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6127:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1850:8: note:   mismatched types ‘std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’ and ‘int’
+ 1850 |        _GLIBCXX_MOVE_BACKWARD3(__first, __i, __i + 1);
+      |        ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6133:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&, const _CharT*)’
+ 6133 |     operator+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6133:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1850:8: note:   ‘std::_List_iterator<int>’ is not derived from ‘std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1850 |        _GLIBCXX_MOVE_BACKWARD3(__first, __i, __i + 1);
+      |        ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/10.2.0/string:55,
+                 from /usr/include/c++/10.2.0/bits/locale_classes.h:40,
+                 from /usr/include/c++/10.2.0/bits/ios_base.h:41,
+                 from /usr/include/c++/10.2.0/streambuf:41,
+                 from /usr/include/c++/10.2.0/bits/streambuf_iterator.h:35,
+                 from /usr/include/c++/10.2.0/iterator:66,
+                 from /usr/include/c++/10.2.0/bits/ranges_algobase.h:36,
+                 from /usr/include/c++/10.2.0/bits/ranges_algo.h:35,
+                 from /usr/include/c++/10.2.0/algorithm:64,
+                 from /learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/basic_string.h:6139:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&, _CharT)’
+ 6139 |     operator+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/10.2.0/bits/basic_string.h:6139:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/10.2.0/list:60,
+                 from /learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/bits/stl_algo.h:1850:8: note:   ‘std::_List_iterator<int>’ is not derived from ‘std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+ 1850 |        _GLIBCXX_MOVE_BACKWARD3(__first, __i, __i + 1);
+      |        ^~~~~~~~~~~~~~~~~~~~~~~
+make[2]: *** [CMakeFiles/part_4b_complicated_stack_snippet.dir/build.make:82: CMakeFiles/part_4b_complicated_stack_snippet.dir/biocpp/part_4b_complicated_stack.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:278: CMakeFiles/part_4b_complicated_stack_snippet.dir/all] Error 2
+make: *** [Makefile:114: all] Error 2

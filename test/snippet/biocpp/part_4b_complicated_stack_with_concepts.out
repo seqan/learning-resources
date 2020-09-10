@@ -1,0 +1,37 @@
+/home/marehr/develope/learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp: In function ‘int main()’:
+/home/marehr/develope/learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:11:27: error: no match for call to ‘(const std::ranges::__sort_fn) (std::__cxx11::list<int>&)’
+   11 |     std::ranges::sort(list);
+      |                           ^
+In file included from /usr/include/c++/10.2.0/algorithm:64,
+                 from /home/marehr/develope/learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /home/marehr/develope/learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/ranges_algo.h:2017:7: note: candidate: ‘template<class _Iter, class _Sent, class _Comp, class _Proj>  requires (random_access_iterator<_Iter>) && (sentinel_for<_Sent, _Iter>) && (sortable<_Iter, _Comp, _Proj>) constexpr _Iter std::ranges::__sort_fn::operator()(_Iter, _Sent, _Comp, _Proj) const’
+ 2017 |       operator()(_Iter __first, _Sent __last,
+      |       ^~~~~~~~
+/usr/include/c++/10.2.0/bits/ranges_algo.h:2017:7: note:   template argument deduction/substitution failed:
+/home/marehr/develope/learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:11:27: note:   candidate expects 4 arguments, 1 provided
+   11 |     std::ranges::sort(list);
+      |                           ^
+In file included from /usr/include/c++/10.2.0/algorithm:64,
+                 from /home/marehr/develope/learning-resources/submodules/seqan3/include/seqan3/std/algorithm:21,
+                 from /home/marehr/develope/learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:2:
+/usr/include/c++/10.2.0/bits/ranges_algo.h:2030:7: note: candidate: ‘constexpr std::ranges::borrowed_iterator_t<_Range> std::ranges::__sort_fn::operator()(_Range&&, _Comp, _Proj) const [with _Range = std::__cxx11::list<int>&; _Comp = std::ranges::less; _Proj = std::identity; std::ranges::borrowed_iterator_t<_Range> = std::conditional<true, std::_List_iterator<int>, std::ranges::dangling>::type]’
+ 2030 |       operator()(_Range&& __r, _Comp __comp = {}, _Proj __proj = {}) const
+      |       ^~~~~~~~
+/usr/include/c++/10.2.0/bits/ranges_algo.h:2030:7: note: constraints not satisfied
+In file included from /usr/include/c++/10.2.0/compare:39,
+                 from /usr/include/c++/10.2.0/bits/stl_pair.h:65,
+                 from /usr/include/c++/10.2.0/bits/stl_algobase.h:64,
+                 from /usr/include/c++/10.2.0/list:60,
+                 from /home/marehr/develope/learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:1:
+/usr/include/c++/10.2.0/concepts: In instantiation of ‘constexpr std::ranges::borrowed_iterator_t<_Range> std::ranges::__sort_fn::operator()(_Range&&, _Comp, _Proj) const [with _Range = std::__cxx11::list<int>&; _Comp = std::ranges::less; _Proj = std::identity; std::ranges::borrowed_iterator_t<_Range> = std::conditional<true, std::_List_iterator<int>, std::ranges::dangling>::type]’:
+/home/marehr/develope/learning-resources/test/snippet/biocpp/part_4b_complicated_stack.cpp:11:27:   required from here
+/usr/include/c++/10.2.0/concepts:67:13:   required for the satisfaction of ‘derived_from<typename std::__detail::__iter_concept_impl<_Iter>::type, std::random_access_iterator_tag>’ [with _Iter = std::_List_iterator<int>]
+/usr/include/c++/10.2.0/bits/iterator_concepts.h:590:13:   required for the satisfaction of ‘random_access_iterator<decltype (std::__detail::__ranges_begin(declval<_Container&>()))>’ [with _Container = std::__cxx11::list<int, std::allocator<int> >&]
+/usr/include/c++/10.2.0/bits/range_access.h:923:13:   required for the satisfaction of ‘random_access_range<_Range>’ [with _Range = std::__cxx11::list<int, std::allocator<int> >&]
+/usr/include/c++/10.2.0/concepts:67:28: note:   ‘std::random_access_iterator_tag’ is not a base of ‘std::bidirectional_iterator_tag’
+   67 |     concept derived_from = __is_base_of(_Base, _Derived)
+      |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+make[2]: *** [CMakeFiles/part_4b_complicated_stack_snippet.dir/build.make:82: CMakeFiles/part_4b_complicated_stack_snippet.dir/biocpp/part_4b_complicated_stack.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:278: CMakeFiles/part_4b_complicated_stack_snippet.dir/all] Error 2
+make: *** [Makefile:114: all] Error 2
