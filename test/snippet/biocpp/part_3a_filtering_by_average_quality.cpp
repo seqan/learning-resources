@@ -1,9 +1,9 @@
+#include <seqan3/std/ranges>
 #include <string_view>
 
 #include <seqan3/alphabet/quality/all.hpp>
+#include <seqan3/alphabet/views/to_rank.hpp>
 #include <seqan3/io/sequence_file/all.hpp>
-#include <seqan3/range/views/to_rank.hpp>
-#include <seqan3/std/ranges>
 
 template <typename range_t>
 int32_t sum(range_t && range)
@@ -54,16 +54,12 @@ int main(int const argc, character_string argv[])
 
 
     // Only print sequences with average quality filter.
-#if SEQAN3_WORKAROUND_GCC_93983
-    auto seq_file_in_ = std::ranges::subrange{seq_file_in.begin(), seq_file_in.end()};
-    seq_file_out = seq_file_in_
-#else
     seq_file_out = seq_file_in
-#endif
                  | std::views::filter([&] (auto && fastq_record)
                    {
-                       auto quality_rank_view = seqan3::get<seqan3::field::qual>(fastq_record) | seqan3::views::to_rank;
-                       seqan3::phred42 average_phred_quality = sum(quality_rank_view) / std::ranges::distance(quality_rank_view);
+                       auto quality_rank_view = fastq_record.base_qualities() | seqan3::views::to_rank;
+                       seqan3::phred42 average_phred_quality{};
+                       average_phred_quality.assign_rank(sum(quality_rank_view) / std::ranges::distance(quality_rank_view));
                        return average_phred_quality > minimum_phred_quality;
                    });
 

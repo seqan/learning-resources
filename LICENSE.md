@@ -1,20 +1,20 @@
 # Copyright {#about_copyright}
 
-| Summary                   |                                                                                        |
-|---------------------------|----------------------------------------------------------------------------------------|
-| Copyright holders         | Knut Reinert, [FU-Berlin](https://fu-berlin.de), [MPI MolGen](https://molgen.mpg.de/)  |
-| Source code               | ![](doc/about/copyright/bsdl_badge.svg)                                                |
-| Documentation             | ![](doc/about/copyright/ccby_badge.svg)                                                |
-| Snippets and examples     | ![](doc/about/copyright/cc0_badge.svg)                                                 |
-| Dependencies              | ![](doc/about/copyright/copyfree_badge.svg)                                            |
+| Summary                   |                                                                                           |
+|---------------------------|-------------------------------------------------------------------------------------------|
+| Copyright holders         | Knut Reinert, [FU-Berlin](https://fu-berlin.de), [MPI MolGen](https://www.molgen.mpg.de/) |
+| Source code               | ![](doc/about/copyright/bsdl_badge.svg)                                                   |
+| Documentation             | ![](doc/about/copyright/ccby_badge.svg)                                                   |
+| Snippets and examples     | ![](doc/about/copyright/cc0_badge.svg)                                                    |
+| Dependencies              | ![](doc/about/copyright/copyfree_badge.svg)                                               |
 
 # Source code license
 
 The contents of this repository/directory are licensed under the following terms:
 
 ```
-Copyright (c) 2006-2019, Knut Reinert & Freie Universität Berlin
-Copyright (c) 2016-2019, Knut Reinert & MPI für molekulare Genetik
+Copyright (c) 2006-2021, Knut Reinert & Freie Universität Berlin
+Copyright (c) 2016-2021, Knut Reinert & MPI für molekulare Genetik
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@ DAMAGE.
 # Documentation
 
 The API documentation and manual are additionally provided under the
-terms of the [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
+terms of the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
 This includes
   * Markdown files and images in the `doc`-subfolder;
   * HTML or other representation produced from the above.
