@@ -227,8 +227,7 @@ In order to support rank and select queries we need two helper data structures (
    We then store the rank values at the beginnings of the corresponding block,
    **but relatively to their corresponding superblock**, in an array \f$R\f$.
 
-\htmlonly <style>div.image img[src="bitvector.png"]{width:1000px;}</style> \endhtmlonly
-\image html doc/nanocourse/bitvector.png
+\image html doc/nanocourse/bitvector.png width=800px
 
 \assignment{Data types}
 

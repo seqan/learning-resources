@@ -8,7 +8,7 @@ INCLUDE_PATH           = ${LR_DOXYGEN_SOURCE_DIR}/doc
 INPUT                  = ${LR_DOXYGEN_SOURCE_DIR}/doc                   \
                          ${LR_DOXYGEN_SOURCE_DIR}/LICENSE.md
 EXAMPLE_PATH           = ${LR_DOXYGEN_SOURCE_DIR}
-IMAGE_PATH             = ${LR_DOXYGEN_SOURCE_DIR}
+IMAGE_PATH             = ${LR_DOXYGEN_SOURCE_DIR}/doc
 
 EXCLUDE_PATTERNS       = */biocpp/presentation/*
 
