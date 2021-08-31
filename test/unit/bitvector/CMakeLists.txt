@@ -1,1 +1,1 @@
-lr_test(bitvector_test.cpp)
+learning_resources_test(bitvector_test.cpp)
