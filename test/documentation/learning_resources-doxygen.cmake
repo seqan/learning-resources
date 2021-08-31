@@ -17,26 +17,26 @@ endif ()
 
 if (NOT ${DOXYGEN_DOT_FOUND})
     message (STATUS "Could not find dot tool. Disabling dot support.")
-    set (LR_DOXYGEN_HAVE_DOT "NO")
+    set (LEARNING_RESOURCES_DOXYGEN_HAVE_DOT "NO")
 else ()
     message (STATUS "Found dot tool. Enabling dot support.")
-    set (LR_DOXYGEN_HAVE_DOT "YES")
+    set (LEARNING_RESOURCES_DOXYGEN_HAVE_DOT "YES")
 endif ()
 
 ### Configure doc/developer targets.
-set(LR_DOXYFILE_IN ${LR_DOXYGEN_INPUT_DIR}/lr_doxygen_cfg.in)
+set(LEARNING_RESOURCES_DOXYFILE_IN ${LEARNING_RESOURCES_DOXYGEN_INPUT_DIR}/learning_resources_doxygen_cfg.in)
 
 message (STATUS "Configuring user doc.")
 
-set (LR_DOXYGEN_OUTPUT_DIR "${PROJECT_BINARY_DIR}/doc")
-set (LR_DOXYGEN_SOURCE_DIR "${LR_DOXYGEN_INPUT_DIR}/../..")
-set (LR_DOXYGEN_ENABLED_SECTIONS "")
-set (LR_DOXYGEN_EXTRACT_PRIVATE "NO")
+set (LEARNING_RESOURCES_DOXYGEN_OUTPUT_DIR "${PROJECT_BINARY_DIR}/doc")
+set (LEARNING_RESOURCES_DOXYGEN_SOURCE_DIR "${LEARNING_RESOURCES_DOXYGEN_INPUT_DIR}/../..")
+set (LEARNING_RESOURCES_DOXYGEN_ENABLED_SECTIONS "")
+set (LEARNING_RESOURCES_DOXYGEN_EXTRACT_PRIVATE "NO")
 
-configure_file (${LR_DOXYFILE_IN} ${LR_DOXYGEN_OUTPUT_DIR}/Doxyfile)
+configure_file (${LEARNING_RESOURCES_DOXYFILE_IN} ${LEARNING_RESOURCES_DOXYGEN_OUTPUT_DIR}/Doxyfile)
 
 add_custom_target(doc ALL
                   COMMAND ${DOXYGEN_EXECUTABLE}
-                  WORKING_DIRECTORY ${LR_DOXYGEN_OUTPUT_DIR}
+                  WORKING_DIRECTORY ${LEARNING_RESOURCES_DOXYGEN_OUTPUT_DIR}
                   COMMENT "Generating user API documentation with Doxygen"
                   VERBATIM)
