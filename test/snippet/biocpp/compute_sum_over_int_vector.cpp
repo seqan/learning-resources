@@ -5,7 +5,7 @@
 int32_t sum(std::vector<int32_t> const & data)
 {
     int32_t intermediate_sum{};
-    for (int32_t element : data) // Calls in the background data.begin() and data.end().
+    for (int32_t element : data) // Calls data.begin() and data.end() in the background
         intermediate_sum += element;
 
     return intermediate_sum;
