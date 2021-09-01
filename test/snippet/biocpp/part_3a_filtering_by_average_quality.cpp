@@ -53,7 +53,7 @@ int main(int const argc, character_string argv[])
     seqan3::sequence_file_output seq_file_out{fasta_output_path};
 
 
-    // Only print sequences with average quality filter.
+    // Only write sequences passing the average quality filter.
     seq_file_out = seq_file_in
                  | std::views::filter([&] (auto && fastq_record)
                    {

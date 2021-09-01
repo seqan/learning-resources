@@ -4,8 +4,8 @@
 #include <string_view>
 
 #include <seqan3/alphabet/quality/all.hpp>
-#include <seqan3/io/sequence_file/all.hpp>
 #include <seqan3/alphabet/views/to_rank.hpp>
+#include <seqan3/io/sequence_file/all.hpp>
 #include <seqan3/utility/views/join_with.hpp>
 #include <seqan3/utility/views/zip.hpp>
 
@@ -70,7 +70,7 @@ int main(int const argc, character_string argv[])
     seqan3::sequence_file_input seq_file_in2{fastq_input_path2};
     seqan3::sequence_file_output seq_file_out{fasta_output_path};
 
-    // Only print sequences with average quality filter.
+    // Only write sequences passing the average quality filter.
 #if SEQAN3_WORKAROUND_GCC_96070 // fixed since gcc10.4
     std::vector<std::ranges::range_value_t<decltype(seq_file_in1)>> seq_file_in1_{};
     std::vector<std::ranges::range_value_t<decltype(seq_file_in2)>> seq_file_in2_{};
@@ -78,21 +78,21 @@ int main(int const argc, character_string argv[])
     // TODO: this has a different issue with input_iterator
     std::ranges::copy(seq_file_in1, std::cpp20::back_inserter(seq_file_in1_));
     std::ranges::copy(seq_file_in2, std::cpp20::back_inserter(seq_file_in2_));
-    seq_file_out = seqan3::views::zip(seq_file_in1_, seq_file_in2_)
+    auto filtered_paired_ends = seqan3::views::zip(seq_file_in1_, seq_file_in2_)
 #else
-    seq_file_out = seqan3::views::zip(seq_file_in1, seq_file_in2)
+    auto filtered_paired_ends = seqan3::views::zip(seq_file_in1, seq_file_in2)
 #endif
-                 | std::views::filter([&] (auto && fastq_record_pair)
-                   {
-                       auto && [left_read, right_read] = fastq_record_pair;
-                       return by_average_quality(left_read) && by_average_quality(right_read);
-                   })
-                 | std::views::transform([] (auto && pair)
-                   {
-                       auto && [left_read, right_read] = pair;
-                       return ranges::views::concat(std::views::single(std::move(left_read)), std::views::single(std::move(right_read)));
-                   })
-                 | seqan3::views::join_with;
+                              | std::views::filter([&] (auto && fastq_record_pair)
+                                 {
+                                     auto && [left_read, right_read] = fastq_record_pair;
+                                     return by_average_quality(left_read) && by_average_quality(right_read);
+                                 });
+
+    for (auto && [left_read, right_read]: filtered_paired_ends)
+    {
+        seq_file_out.push_back(left_read);
+        seq_file_out.push_back(right_read);
+    }
 
     return EXIT_SUCCESS;
 }
