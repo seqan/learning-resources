@@ -1,14 +1,14 @@
 #include <array>
+#include <seqan3/std/concepts>
+#include <seqan3/std/ranges>
 #include <string_view>
 
 #include <seqan3/alphabet/quality/all.hpp>
 #include <seqan3/io/sequence_file/all.hpp>
-#include <seqan3/range/views/to_rank.hpp>
-#include <seqan3/range/views/zip.hpp>
-#include <seqan3/std/concepts>
-#include <seqan3/std/ranges>
+#include <seqan3/alphabet/views/to_rank.hpp>
+#include <seqan3/utility/views/join_with.hpp>
+#include <seqan3/utility/views/zip.hpp>
 
-#include <range/v3/algorithm/count_if.hpp>
 #include <range/v3/view/concat.hpp>
 
 template <std::ranges::input_range range_t>
@@ -60,8 +60,9 @@ int main(int const argc, character_string argv[])
     // Find average quality.
     auto by_average_quality = [&] (auto && fastq_record)
     {
-        auto quality_rank_view = seqan3::get<seqan3::field::qual>(fastq_record) | seqan3::views::to_rank;
-        seqan3::phred42 average_phred_quality = sum(quality_rank_view) / std::ranges::distance(quality_rank_view);
+        auto quality_rank_view = fastq_record.base_qualities() | seqan3::views::to_rank;
+        seqan3::phred42 average_phred_quality{};
+        average_phred_quality.assign_rank(sum(quality_rank_view) / std::ranges::distance(quality_rank_view));
         return average_phred_quality > minimum_phred_quality;
     };
 
@@ -70,7 +71,7 @@ int main(int const argc, character_string argv[])
     seqan3::sequence_file_output seq_file_out{fasta_output_path};
 
     // Only print sequences with average quality filter.
-#if SEQAN3_WORKAROUND_GCC_93983 || SEQAN3_WORKAROUND_GCC_96070
+#if SEQAN3_WORKAROUND_GCC_96070 // fixed since gcc10.4
     std::vector<std::ranges::range_value_t<decltype(seq_file_in1)>> seq_file_in1_{};
     std::vector<std::ranges::range_value_t<decltype(seq_file_in2)>> seq_file_in2_{};
 

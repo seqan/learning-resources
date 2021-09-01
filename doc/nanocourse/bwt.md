@@ -25,8 +25,7 @@ the following steps:
 2. Lexicographically sort the rows of \f$M\f$.
 3. Construct the transformed text \f$T^{bwt}\f$ by taking the last column \f$L\f$ of \f$M\f$.
 
-\htmlonly <style>div.image img[src="bwt.png"]{width:1000px;}</style> \endhtmlonly
-\image html doc/nanocourse/bwt.png
+\image html doc/nanocourse/bwt.png width=800px
 
 Instead of actually constructing the huge matrix, we can also construct the suffix array in \f$O(n)\f$ time and
 space, and then construct the BWT from that:
@@ -377,8 +376,8 @@ We will search for 1'000'000 reads within chr4 of the Drosophila genome and coun
 times, indicating a repeat region!
 
 Download the following data for this example:
- - [reference file](http://ftp.imp.fu-berlin.de/pub/SeqAn/learning_resources/nanocourse/reference.fasta.gz)
- - [query file](http://ftp.imp.fu-berlin.de/pub/SeqAn/learning_resources/nanocourse/reads.fasta.gz)
+ - [reference file](https://ftp.imp.fu-berlin.de/pub/SeqAn/learning_resources/nanocourse/reference.fasta.gz)
+ - [query file](https://ftp.imp.fu-berlin.de/pub/SeqAn/learning_resources/nanocourse/reads.fasta.gz)
 into the `tutorial` directory.
 
 As a first step, set up SeqAn3 by following the [Setup tutorial](https://docs.seqan.de/seqan/3-master-user/setup.html)
@@ -394,7 +393,7 @@ such that you do not need to implement your own data structures and algorithms.
 We use the [`sequence_file_input`](https://docs.seqan.de/seqan/3-master-user/classseqan3_1_1sequence__file__input.html)
 to handle reference and read input - the format and content of the files is taken care of automatically.
 The [`fm_index`](https://docs.seqan.de/seqan/3-master-user/classseqan3_1_1fm__index.html) encapsulates a suffix array, occurrence table and count table just like we implemented it ourselves before.
-By calling [`search`](https://docs.seqan.de/seqan/3-master-user/group__submodule__search__algorithm.html) we can
+By calling [`search`](https://docs.seqan.de/seqan/3-master-user/group__search.html) we can
 compute every position that a query matches the index; unless configured in another way, this will report *every exact*
 hit within our reference.
 
