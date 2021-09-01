@@ -1,9 +1,14 @@
-#include <tuple>
-#include <string>
 #include <iostream>
+#include <string>
+#include <tuple>
 
+#ifdef __cpp_lib_concepts // C++20 compiler
 template <typename T>
 concept arithmetic = std::is_arithmetic_v<T>;
+#else // pre C++20 compiler
+template <typename T>
+concept bool arithmetic = std::is_arithmetic_v<T>;
+#endif
 
 static_assert(arithmetic<int>);
 static_assert(arithmetic<float>);
@@ -28,7 +33,7 @@ float add(float a, float b)
 template <typename T>
 T add_unconstrained(T a, T b) // duck typing
 {
-    // every type that supports the operator+ is valid and compiles
+    // Every type that implements `operator+` is valid and compiles
     return a + b;
 }
 

@@ -1,5 +1,5 @@
-#include <list>
 #include <seqan3/std/algorithm>
+#include <list>
 #include <seqan3/std/ranges>
 #include <vector>
 

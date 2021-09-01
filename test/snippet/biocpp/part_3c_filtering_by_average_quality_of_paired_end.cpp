@@ -4,8 +4,8 @@
 #include <string_view>
 
 #include <seqan3/alphabet/quality/all.hpp>
-#include <seqan3/io/sequence_file/all.hpp>
 #include <seqan3/alphabet/views/to_rank.hpp>
+#include <seqan3/io/sequence_file/all.hpp>
 #include <seqan3/utility/views/join_with.hpp>
 #include <seqan3/utility/views/zip.hpp>
 
@@ -70,7 +70,7 @@ int main(int const argc, character_string argv[])
     seqan3::sequence_file_input seq_file_in2{fastq_input_path2};
     seqan3::sequence_file_output seq_file_out{fasta_output_path};
 
-    // Only print sequences with average quality filter.
+    // Only write sequences passing the average quality filter.
 #if SEQAN3_WORKAROUND_GCC_96070 // fixed since gcc10.4
     std::vector<std::ranges::range_value_t<decltype(seq_file_in1)>> seq_file_in1_{};
     std::vector<std::ranges::range_value_t<decltype(seq_file_in2)>> seq_file_in2_{};

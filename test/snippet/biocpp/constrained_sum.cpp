@@ -1,8 +1,7 @@
 #include <iostream>
 #include <numeric>
-#include <vector>
-
 #include <seqan3/std/ranges>
+#include <vector>
 
 #ifdef __cpp_lib_concepts // C++20 compiler
 template <typename value_t, typename init_t>
@@ -19,7 +18,7 @@ concept bool accumulable_with = requires (value_t && value, init_t && init)
 #endif
 
 template <std::ranges::input_range range_t>
-// to strong constraint: std::is_arithmetic_v<std::ranges::range_value_t<range_t>>
+// Too strong constraint: std::is_arithmetic_v<std::ranges::range_value_t<range_t>>
     requires accumulable_with<std::ranges::range_value_t<range_t>, int32_t>
 auto sum(range_t && data)
 {

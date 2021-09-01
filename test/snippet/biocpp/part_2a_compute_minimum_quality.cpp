@@ -1,8 +1,8 @@
+#include <seqan3/std/algorithm>
 #include <string_view>
 
 #include <seqan3/alphabet/quality/all.hpp>
 #include <seqan3/io/sequence_file/all.hpp>
-#include <seqan3/std/algorithm>
 
 // Request user interaction to provide the minimum base quality.
 seqan3::phred42 read_user_base_quality()
@@ -41,7 +41,7 @@ int main(int const argc, character_string argv[])
     seqan3::sequence_file_input seq_file_in{fastq_input_path};
     seqan3::sequence_file_output seq_file_out{fasta_output_path};
 
-    // Only write out records that have no base call below the given minimum base quality.
+    // Only write records that have no base quality below the given minimum base quality.
     for (auto && [seq, id, qual] : seq_file_in) // untie elements of a tuple
     {
         if (std::ranges::all_of(qual, [&] (auto && current_quality) { return current_quality >= minimum_phred_quality; }))

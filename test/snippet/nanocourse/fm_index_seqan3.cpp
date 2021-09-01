@@ -1,7 +1,7 @@
+#include <seqan3/std/filesystem>
 #include <fstream>
 
 #include <seqan3/core/debug_stream.hpp>
-#include <seqan3/std/filesystem>
 
 // write temporary file s.t. the snippet compiles
 std::filesystem::path const file_path_to_reference = std::filesystem::temp_directory_path()/"my.fastq";
