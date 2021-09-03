@@ -1,0 +1,59 @@
+name: Deploy documentation (https://docs.seqan.de/)
+
+on:
+  push:
+    branches:
+      - master
+  # Enables a manual trigger.
+  workflow_dispatch:
+
+env:
+  CMAKE_VERSION: 3.8.2
+  DOXYGEN_VERSION: 1.9.2
+  TZ: Europe/Berlin
+
+defaults:
+  run:
+    shell: bash -ex {0}
+
+jobs:
+  deploy_documentation:
+    name: Deploy Documentation
+    runs-on: ubuntu-20.04
+    if: github.repository_owner == 'seqan'
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: learning_resources
+          fetch-depth: 2
+          submodules: recursive
+
+      - name: Install Doxygen
+        run: bash ./learning_resources/submodules/seqan3/.github/workflows/scripts/install_doxygen.sh
+
+      - name: Load cached documentation
+        uses: actions/cache@v2
+        with:
+          path: doc-build
+          key: ${{ runner.os }}-documentation-${{ env.DOXYGEN_VERSION }}
+
+      - name: Build documentation
+        run: |
+          mkdir -p doc-build
+          cd doc-build
+          cmake ../learning_resources/test/documentation
+          ctest . -j 2 --output-on-failure
+
+      - name: Deploy User Documentation
+        uses: Pendect/action-rsyncer@v1.1.0
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_HOST_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.DEPLOY_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
+        with:
+          flags: '-azr --delete --timeout=60 --omit-dir-times'
+          src: 'doc-build/doc/html/'
+          dest: '$REMOTE_USER@$REMOTE_HOST:$TARGET/learning-resources'
