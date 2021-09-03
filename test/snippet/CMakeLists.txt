@@ -41,7 +41,7 @@ endmacro ()
 include(ExternalProject)
 ExternalProject_Add(
     "biocpp-data"
-    URL "http://ftp.seqan.de/workshop/2020/biocpp-data.tar.gz"
+    URL "http://ftp.seqan.de/workshop/2021/biocpp-data.tar.gz"
     URL_HASH "SHA256=f86b421bcc4586ce6ed95513c22aba1e6d41a4777046dc7d4e32b4fbd103ea11"
     DOWNLOAD_NAME "${ARG_FILE}"
     CONFIGURE_COMMAND ""
