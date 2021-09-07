@@ -1,0 +1,282 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>UM2021 - SeqAn - From an Idea to a single tool</title>
+
+        <link rel="stylesheet" href="../../biocpp/presentation/reveal.js/css/reset.css">
+        <link rel="stylesheet" href="../../biocpp/presentation/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../../biocpp/presentation/reveal.js/css/theme/white.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="../../biocpp/presentation/reveal.js/lib/css/zenburn.css">
+
+<style>
+.rrahn {
+    background: url('img/rrahn.jpg') no-repeat left top;
+    background-size: 2.5em 2.5em;
+    height: 2.5em;
+    padding-left: 3em;
+}
+.marehr {
+    background: url('img/marehr.jpg') no-repeat left top;
+    background-size: 2.5em 2.5em;
+    height: 2.5em;
+    padding-left: 3em;
+}
+.avenja {
+    background: url('img/avenja.jpg') no-repeat left top;
+    background-size: 2.5em 2.5em;
+    height: 2.5em;
+    padding-left: 3em;
+}
+.eseiler {
+    background: url('img/eseiler.jpg') no-repeat left top;
+    background-size: 2.5em 2.5em;
+    height: 2.5em;
+    padding-left: 3em;
+}
+.slide-background::before {
+    content: "";
+    opacity: 1;
+    top: 0.3em;
+    left: 0;
+    height: 1.4em;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+
+    background-repeat: no-repeat;
+    /* background-image: url(img/denbi.svg), url(img/elixir.svg), url(img/mpi.svg), url(img/fu.svg); */
+    /* background-position: 30% 0em, 10%, 60% 0em, 90% 0em; */
+    /* background-size: auto 100%, auto 100%, auto 100%, auto 100%; */
+    background-image: url(img/denbi.svg), url(img/cibi-one-liner.svg), url(img/seqan-one-liner.svg);
+    background-position: 25% 0em, 50% 50%, 75% 50%;
+    background-size: auto 100%, auto 100%, auto 100%;
+}
+.backgrounds .slide-background:not(:first-child)::after {
+    content: "Marcel Ehrhardt, Enrico Seiler"; /*René Rahn, Svenja Mehringer*/
+    font-size: 0.75em;
+    opacity: 1;
+    bottom: 0.3em;
+    left: 0.5em;
+    height: 1.4em;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+
+    /* background-image: url(img/denbi.svg), url(img/mpi.svg), url(img/fu.svg);
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: 10% 0em, 50% 0em, 90% 0em;
+    background-size: auto 100%, auto 100%, auto 100%; */
+}
+.live-coding
+{
+    background: url(img/source_code.svg) no-repeat center;
+    background-size: 8em;
+    height: 6em;
+}
+.time-slot, .small
+{
+    font-size: 0.75em;
+}
+.reveal img.no-box, .reveal img.seqan-inline, .reveal img.cibi-inline
+{
+    border: none;
+    box-shadow: none;
+    margin: 0px;
+}
+.reveal img.inline-img
+{
+    vertical-align: -8px;
+    height: 1em;
+}
+.reveal img.seqan-inline
+{
+    height: 2em;
+    vertical-align: -0.55em;
+}
+.reveal img.cibi-inline
+{
+    height: 1em;
+    vertical-align: sub;
+}
+</style>
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? '../../biocpp/presentation/reveal.js/css/print/pdf.css' : '../../biocpp/presentation/reveal.js/css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+
+<section>
+<h1><img alt="CiBi" src="img/cibi.svg" class="cibi-inline"> UM 2021</h1>
+<h3>Introduction to <img alt="SeqAn" src="img/seqan.svg" class="seqan-inline"></img></h3>
+
+<!-- <p class='rrahn' style='text-align: left'> René Rahn <br><small>Max Planck Institute for Molecular Genetics</small></p> -->
+<p class='marehr' style='text-align: left'> Marcel Ehrhardt <br><small>Free University Berlin, de.NBI</small></p>
+<!-- <p class='avenja' style='text-align: left'> Svenja Mehringer <br><small>Free University Berlin, ELIXIR</small></p> -->
+<p class='eseiler' style='text-align: left'> Enrico Seiler <br><small>Max Planck Institute for Molecular Genetics</small></p>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+##### Code of Conduct
+
+  * <!-- .element: class="fragment" -->
+    [Berlin code of conduct](https://berlincodeofconduct.org/)
+  * <!-- .element: class="fragment" -->
+    [Academic Honour Code](https://www.fu-berlin.de/forschung/service/Ehrenkodex-ab292002.pdf)
+</textarea>
+</section>
+
+<section> <!-- app-template - BEGIN -->
+<section>
+<p>
+<img src="img/seqan_app_template.svg" src="SeqAn3 App Template" class="no-box" style="height: 5em"></img><br/>
+<a href="https://github.com/seqan/app-template"><i class="fa fa-github" aria-hidden="true"></i> seqan/app-template</a>
+</p>
+</section>
+
+<section>
+<p style="text-align: right">
+<img src="img/seqan_app_template.svg" src="SeqAn3 App Template" class="no-box" style="height: 2em"></img>
+</p>
+
+<ul>
+    <li>Standardized C++ Project Layout
+<pre><code data-trim data-noescape>
+doc/        APP documentation
+include/    APP header files
+lib/        external libraries (default: SeqAn3)
+src/        APP source files
+test/       APP tests
+</code></pre>
+    </li>
+    <li>Open Software Stack:
+    <ul>
+        <li><img src="img/cmake.svg" class="no-box inline-img" style="height: 1em"></img> <a href="https://cmake.org/">CMake</a></li>
+        <li><img src="img/actions-icon-actions.svg" class="no-box inline-img"></img> <a href="https://github.com/features/actions">GitHub Actions</a></li>
+        <li><i class="fa fa-legal" aria-hidden="true"></i> BSD 3-Clause License</li>
+    </ul>
+    </li>
+</ul>
+</section>
+
+<section>
+<p style="text-align: right">
+<img src="img/seqan_app_template.svg" src="SeqAn3 App Template" class="no-box" style="height: 2em"></img>
+</p>
+
+<ul>
+    <li>Standardized <code>test/</code>
+    <pre><code data-trim data-noescape>
+    api/        API tests
+    benchmark/  Benchmarks
+    cli/        CLI tests
+    coverage/   Code Coverage
+    data/       Test Data
+    </code></pre>
+    </li>
+    <li>Reproducible Benchmarks</li>
+</ul>
+</section>
+
+<section>
+<p style="text-align: right">
+<img src="img/seqan_app_template.svg" src="SeqAn3 App Template" class="no-box" style="height: 2em"></img>
+</p>
+
+<ul>
+    <li> Continuous integration (CI)
+        <ul>
+            <li><img src="img/actions-icon-actions.svg" class="no-box inline-img"></img> <a href="https://github.com/features/actions">GitHub Actions</a></li>
+            <ul>
+                <li><i class="fa fa-apple" aria-hidden="true"></i> MacOS</li>
+                <li><i class="fa fa-linux" aria-hidden="true"></i> Linux</li>
+                <li><i class="fa fa-book" aria-hidden="true"></i> Documentation</li>
+            </ul>
+        </ul>
+    </li>
+</ul>
+</section>
+
+<section>
+<p style="text-align: right">
+<img src="img/seqan_app_template.svg" src="SeqAn3 App Template" class="no-box" style="height: 2em"></img>
+</p>
+
+<ul>
+    <li>Successful use cases:
+        <ul>
+            <li><i class="fa fa-desktop" aria-hidden="true"></i> SeqAn3 Apps</li>
+            <li><i class="fa fa-desktop" aria-hidden="true"></i> SeqAn2 Apps</li>
+            <li><img src="img/book-24.svg" class="no-box inline-img"></img> C++ Library</li>
+        </ul>
+    </li>
+</ul>
+</section>
+
+<section>
+<p style="text-align: right">
+<img src="img/seqan_app_template.svg" src="SeqAn3 App Template" class="no-box" style="height: 2em"></img>
+</p>
+
+<ul>
+    <li>Future Features (planned):
+        <ul>
+            <li>App Template-Updater (PR on new Release)</li>
+            <li>Continuous Deployment (CD)</a>
+            <li>Easier deployment to <a href="https://bioconda.github.io/"><img src="img/bioconda.png" class="no-box inline-img"></img></a>
+            <pre><code data-trim data-noescape>
+            git clone https://github.com/seqan/raptor
+            mkdir raptor/build && cd raptor/build
+            cmake ..
+            make
+            make install
+            </code></pre>
+            </li>
+        </ul>
+    </li>
+</ul>
+</section>
+</section> <!-- app-template - END -->
+
+<section>
+<p><a href="https://twitter.com/seqanlib"><i class="fa fa-twitter" aria-hidden="true"></i> @SeqAnLib</a></p>
+<p><a href="https://github.com/seqan/"><i class="fa fa-github" aria-hidden="true"></i> github/seqan</a></p>
+<p><a href="https://www.seqan.de"><i class="fa fa-globe" aria-hidden="true"></i> seqan.de</a></p>
+</section>
+            </div>
+        </div>
+
+        <script src="../../biocpp/presentation/reveal.js/js/reveal.js"></script>
+
+        <script>
+            // More info about config & dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+            Reveal.initialize({
+                hash: true,
+                slideNumber: 'h.v',
+                dependencies: [
+                    { src: '../../biocpp/presentation/reveal.js/plugin/markdown/marked.js' },
+                    { src: '../../biocpp/presentation/reveal.js/plugin/markdown/markdown.js' },
+                    // { src: '../../biocpp/presentation/reveal.js/plugin/highlight/highlight.js' },
+                    { src: '../../biocpp/presentation/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: '../../biocpp/presentation/reveal.js/plugin/notes/notes.js', async: true }
+                ]
+            });
+        </script>
+    </body>
+</html>
