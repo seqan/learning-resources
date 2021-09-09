@@ -33,6 +33,12 @@
     height: 2.5em;
     padding-left: 3em;
 }
+.eseiler {
+    background: url('img/eseiler.jpg') no-repeat left top;
+    background-size: 2.5em 2.5em;
+    height: 2.5em;
+    padding-left: 3em;
+}
 .slide-background::before {
     content: "";
     opacity: 1;
@@ -49,7 +55,7 @@
     background-size: auto 100%, auto 100%, auto 100%, auto 100%;
 }
 .backgrounds .slide-background:not(:first-child)::after {
-    content: "René Rahn, Marcel Ehrhardt, Svenja Mehringer";
+    content: "René Rahn, Marcel Ehrhardt, Enrico Seiler"; /*Svenja Mehringer";*/
     font-size: 0.75em;
     opacity: 1;
     bottom: 0.3em;
@@ -95,7 +101,8 @@
 
 <p class='rrahn' style='text-align: left'> René Rahn <br><small>Max Planck Institute for Molecular Genetics</small></p>
 <p class='marehr' style='text-align: left'> Marcel Ehrhardt <br><small>Free University Berlin, de.NBI</small></p>
-<p class='avenja' style='text-align: left'> Svenja Mehringer <br><small>Free University Berlin, ELIXIR</small></p>
+<!-- <p class='avenja' style='text-align: left'> Svenja Mehringer <br><small>Free University Berlin, ELIXIR</small></p> -->
+<p class='eseiler' style='text-align: left'> Enrico Seiler <br><small>Max Planck Institute for Molecular Genetics</small></p>
 </section>
 
 <section data-markdown>
@@ -103,25 +110,25 @@
 ##### Code of Conduct
 
   * <!-- .element: class="fragment" -->
-    [Berlin code of conduct](https://berlincodeofconduct.org/)
+    [Berlin Code of Conduct](https://berlincodeofconduct.org/)
   * <!-- .element: class="fragment" -->
-    [Academic Honour Code](https://www.fu-berlin.de/forschung/service/Ehrenkodex-ab292002.pdf)
+    [Academic Honour Code](https://www.fu-berlin.de/service/zuvdocs/amtsblatt/2002/ab292002.pdf)
 </textarea>
 </section>
 
 <section data-transition="none-out">
 <h3>Schedule<small>*</small>:</h3>
 <ul>
-    <li class="fragment"><span class='time-slot'>09:00 - 09:30</span> Setup</li>
-    <li class="fragment"><span class='time-slot'>09:30 - 10:00</span> Introduction Talk</li>
-    <li class="fragment"><span class='time-slot'>10:00 - 10:30</span> FASTQ -> FASTA Conversion <span class='small'>(sequence files)</span></li>
-    <li class="fragment"><em class='time-slot'>10:30 - 10:45 Coffee Break</em></li>
-    <li class="fragment"><span class='time-slot'>10:45 - 12:30</span> Simple Quality Filter <span class='small'>(range / lambda / tuple)</span></li>
-    <li class="fragment"><em class='time-slot'>12:30 - 13:00 "Short Break"</em></li>
-    <li class="fragment"><span class='time-slot'>13:30 - 14:30</span> Extended Quality Filter <span class='small'>(view)</span></li>
-    <li class="fragment"><em class='time-slot'>14:30 - 14:45 Coffee Break</em></li>
-    <li class="fragment"><span class='time-slot'>14:45 - 15:45</span> Concepts <span class='small'>(concept)</span></li>
-    <li class="fragment"><span class='time-slot'>15:45 - 16:15</span> Evaluation & Wrap-Up</li>
+    <li class="fragment"><span class='time-slot'>14:00 - 14:30</span> Setup</li>
+    <li class="fragment"><span class='time-slot'>14:30 - 15:00</span> Introduction Talk</li>
+    <li class="fragment"><span class='time-slot'>15:00 - 15:30</span> FASTQ -> FASTA Conversion <span class='small'>(sequence files)</span></li>
+    <li class="fragment"><em class='time-slot'>15:30 - 15:45 Coffee Break</em></li>
+    <li class="fragment"><span class='time-slot'>15:45 - 16:45</span> Simple Quality Filter <span class='small'>(range / lambda / tuple)</span></li>
+    <!-- <li class="fragment"><em class='time-slot'>17:30 - 18:30 "Short Break"</em></li> -->
+    <!-- <li class="fragment"><span class='time-slot'>18:30 - 19:30</span> Extended Quality Filter <span class='small'>(view)</span></li> -->
+    <!-- <li class="fragment"><em class='time-slot'>19:30 - 19:45 Coffee Break</em></li> -->
+    <!-- <li class="fragment"><span class='time-slot'>19:45 - 20:45</span> Concepts <span class='small'>(concept)</span></li> -->
+    <li class="fragment"><span class='time-slot'>16:45 - 17:00</span> Evaluation & Wrap-Up</li>
 </ul>
 </section>
 
@@ -130,16 +137,16 @@
 <section data-transition="none-in">
 <h3>Schedule<small>*</small>:</h3>
 <ul>
-    <li class="fragment highlight-blue grow"><span class='time-slot'>09:00 - 09:30</span> Setup</li>
-    <li><span class='time-slot'>09:30 - 10:00</span> Introduction Talk</li>
-    <li><span class='time-slot'>10:00 - 10:30</span> FASTQ -> FASTA Conversion <span class='small'>(sequence files)</span></li>
-    <li><em class='time-slot'>10:30 - 10:45 Coffee Break</em></li>
-    <li><span class='time-slot'>10:45 - 12:30</span> Simple Quality Filter <span class='small'>(range / lambda / tuple)</span></li>
-    <li><em class='time-slot'>12:30 - 13:00 "Short Break"</em></li>
-    <li><span class='time-slot'>13:30 - 14:30</span> Extended Quality Filter <span class='small'>(view)</span></li>
-    <li><em class='time-slot'>14:30 - 14:45 Coffee Break</em></li>
-    <li><span class='time-slot'>14:45 - 15:45</span> Concepts <span class='small'>(concept)</span></li>
-    <li><span class='time-slot'>15:45 - 16:15</span> Evaluation & Wrap-Up</li>
+    <li class="fragment highlight-blue grow"><span class='time-slot'>14:00 - 14:30</span> Setup</li>
+    <li><span class='time-slot'>14:30 - 15:00</span> Introduction Talk</li>
+    <li><span class='time-slot'>15:00 - 15:30</span> FASTQ -> FASTA Conversion <span class='small'>(sequence files)</span></li>
+    <li><em class='time-slot'>15:30 - 15:45 Coffee Break</em></li>
+    <li><span class='time-slot'>15:45 - 16:45</span> Simple Quality Filter <span class='small'>(range / lambda / tuple)</span></li>
+    <!-- <li><em class='time-slot'>17:30 - 18:30 "Short Break"</em></li> -->
+    <!-- <li><span class='time-slot'>18:30 - 19:30</span> Extended Quality Filter <span class='small'>(view)</span></li> -->
+    <!-- <li><em class='time-slot'>19:30 - 19:45 Coffee Break</em></li> -->
+    <!-- <li><span class='time-slot'>19:45 - 20:45</span> Concepts <span class='small'>(concept)</span></li> -->
+    <li><span class='time-slot'>16:45 - 17:00</span> Evaluation & Wrap-Up</li>
 </ul>
 </section>
 
@@ -150,15 +157,15 @@
 * <!-- .element: class="fragment" -->
   Slides can be found [here](https://seqan.github.io/learning-resources/doc/biocpp/presentation/).
 * <!-- .element: class="fragment" -->
-  We'll be using Zoom, join us with the desktop app:
+  We will be using Zoom, join us with the desktop app:
   * <!-- .element: class="fragment" -->
-    [Click to join meeting](https://us02web.zoom.us/j/86854229683)
+    [Click to join meeting](https://us02web.zoom.us/j/87238834421?pwd=a2kwdGs2a0kwQzNiZW9zSUF3U0FOQT09)
   * <!-- .element: class="fragment" -->
     Everyone of you has a breakout room.
   * <!-- .element: class="fragment" -->
     You can switch to that room and ask the host for help.
   * <!-- .element: class="fragment" -->
-    You can talk with a co-host without interfering others.
+    You can talk to a co-host without interfering with others.
 </textarea>
 </section>
 
@@ -167,9 +174,9 @@
 ###### Course Setup:
 
 * <!-- .element: class="fragment" -->
-  We have setup a Google Doc for troubleshooting:
+  We have created a Google Doc for troubleshooting:
   * <!-- .element: class="fragment" -->
-    [Click to open Google Doc](https://docs.google.com/document/d/189lOzqCuNECm9POD2qFd-2uOAL3RuDGNax9VQfpkC5U/edit)
+    [Click to open Google Doc](https://docs.google.com/document/d/1tNNfjS_niExaq6A0JboZLBwtzDcz8XQcpb-W0neVw_8/edit)
   * <!-- .element: class="fragment" -->
     We can collect common problems here.
   * <!-- .element: class="fragment" -->
@@ -189,9 +196,9 @@
 * <!-- .element: class="fragment" -->
   We also have a Slack channel:
   * <!-- .element: class="fragment" -->
-    [Click to join Slack](https://join.slack.com/t/international-pll7528/shared_invite/zt-fjw1i0g5-ogelj7jCcV8fYEy7afwfgg)
+    [Click to join Slack](https://international-pll7528.slack.com/join/shared_invite/zt-fjw1i0g5-ogelj7jCcV8fYEy7afwfgg)
   * <!-- .element: class="fragment" -->
-    [Click to join Channel](https://international-pll7528.slack.com/archives/C016GF9AM3M)
+    [Click to join Channel](https://international-pll7528.slack.com/?redir=%2Farchives%2FC016GF9AM3M)
 </textarea>
 </div> <!-- this part is commented out from the slides - end -->
 
@@ -199,7 +206,7 @@
 <textarea data-template>
 ###### Setup C++:
 
-You have three options to install C++:
+You have two options to install C++:
 
 * <!-- .element: class="fragment" -->
   Use your web browser.
@@ -207,9 +214,9 @@ You have three options to install C++:
   * people who want to keep a clean system.
 * <!-- .element: class="fragment" -->
   Install C++ on your system.
-  * Recommended for <i class="fa fa-apple" aria-hidden="true"></i> MacOS and
+  * Recommended for <i class="fa fa-apple" aria-hidden="true"></i> macOS and
     <i class="fa fa-linux" aria-hidden="true"></i> Linux
-* <!-- .element: class="fragment" -->
+* <!-- .element: style="display: none" class="fragment-disabled" -->
   Use a VM.
   * Recommended for <i class="fa fa-windows" aria-hidden="true"></i> Windows and
   * people who want to keep a clean system.
@@ -263,7 +270,7 @@ sudo apt update
 sudo apt install g++-7 cmake git (or g++-8 or g++-9)
 </code></pre>
 
-<pre class="fragment"> <i class="fa fa-apple" aria-hidden="true"></i> MacOS (XCode and <a href="https://brew.sh">https://brew.sh</a> installed):<code class="plaintext hljs">brew install gcc
+<pre class="fragment"> <i class="fa fa-apple" aria-hidden="true"></i> macOS (XCode and <a href="https://brew.sh">https://brew.sh</a> installed):<code class="plaintext hljs">brew install gcc
 brew cask install cmake</code></pre>
 
 <pre class="fragment"> <i class="fa fa-windows" aria-hidden="true"></i> Windows:<code>use the browser ( ͡° ͜ʖ ͡°)</code></pre>
@@ -271,7 +278,8 @@ brew cask install cmake</code></pre>
 </textarea>
 </section>
 
-<section data-markdown>
+
+<div data-markdown style="display: none"> <!-- this part is commented out from the slides (remove div back to section) - begin -->
 <textarea data-template>
 ###### Setup C++: Use a VM (III)
 
@@ -280,17 +288,17 @@ brew cask install cmake</code></pre>
   [Ubuntu on Windows](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6)
   * Setup everything as described in the previous section.
 * <!-- .element: class="fragment" -->
-  <i class="fa fa-apple" aria-hidden="true"></i> MacOS, <i class="fa fa-linux" aria-hidden="true"></i> Linux:
+  <i class="fa fa-apple" aria-hidden="true"></i> macOS, <i class="fa fa-linux" aria-hidden="true"></i> Linux:
   https://www.virtualbox.org/
   * <!-- .element: class="fragment" -->
-    Download [image](http://ftp.seqan.de/workshop/2020/biocpp-vm.vdi) (~5GB).
+    Download [image](http://ftp.seqan.de/workshop/2021/biocpp-vm.vdi) (~5GB).
   * <!-- .element: class="fragment" -->
     Everything is pre-installed, including an editor (https://atom.io/).
 
 </textarea>
-</section>
+</div> <!-- this part is commented out from the slides (remove div back to section) - end -->
 
-<section data-markdown>
+<div data-markdown style="display: none"> <!-- this part is commented out from the slides (remove div back to section) - begin -->
 <textarea data-template>
 ###### Setup C++: Use a VM, Virtual Box (III)
 
@@ -306,7 +314,7 @@ brew cask install cmake</code></pre>
     * enable PAE/NX, Nested VT-x/AMD-v if you can
 
 </textarea>
-</section>
+</div> <!-- this part is commented out from the slides (remove div back to section) - end -->
 
 <section data-markdown>
 <textarea data-template>
@@ -323,7 +331,7 @@ git submodule update --init --recursive
 ```bash
 mkdir build && cd build
 
-wget http://ftp.seqan.de/workshop/2020/biocpp-data.tar.gz
+wget http://ftp.seqan.de/workshop/2021/biocpp-data.tar.gz
 tar -xvf biocpp-data.tar.gz
 ```
 <!-- .element: class="fragment" -->
@@ -344,9 +352,9 @@ make -j 4
 ```
 <!-- .element: class="fragment" -->
 
-<pre class="fragment"><code class="language-bash hljs" style="max-height: 300px">-- The CXX compiler identification is GNU 9.2.1
--- Check for working CXX compiler: /usr/bin/c++
--- Check for working CXX compiler: /usr/bin/c++ - works
+<pre class="fragment"><code class="language-bash hljs" style="max-height: 300px">-- The CXX compiler identification is GNU 11.1.0
+-- Check for working CXX compiler: /usr/bin/g++-11
+-- Check for working CXX compiler: /usr/bin/g++-11 -- works
 -- Detecting CXX compiler ABI info
 -- Detecting CXX compiler ABI info - done
 -- Detecting CXX compile features
@@ -357,8 +365,8 @@ make -j 4
 --     …adding submodule include:  /home/biocpp/learning-resources/submodules/seqan3/submodules/cereal/include
 --     …adding submodule include:  /home/biocpp/learning-resources/submodules/seqan3/submodules/range-v3/include
 --     …adding submodule include:  /home/biocpp/learning-resources/submodules/seqan3/submodules/sdsl-lite/include
---   C++ Standard-17 support:    via -std=c++17
---   C++ Concepts support:       via -fconcepts
+--   C++ Standard-17 support:    builtin
+--   C++ Concepts support:       via -std=c++20
 --   C++ Filesystem header:      &amp;lt;filesystem>
 --   C++ Filesystem library:     builtin
 -- Check if compiler accepts -pthread
@@ -372,7 +380,7 @@ make -j 4
 --   Optional dependency:        BZip2-1.0.8 found.
 --   Optional dependency:        libexecinfo found.
 --   SeqAn3 platform.hpp build:  passed.
--- Found SeqAn3: /home/biocpp/learning-resources/submodules/seqan3/include (Required is at least version "3.0.1")
+-- Found SeqAn3: /home/biocpp/learning-resources/submodules/seqan3/include (Required is at least version "3.0.3")
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/biocpp/learning-resources/build
@@ -387,16 +395,16 @@ make -j 4
 <section>
 <h3>Schedule<small>*</small>:</h3>
 <ul>
-    <li><span class='time-slot'>09:00 - 09:30</span> Setup</li>
-    <li class="fragment highlight-blue grow"><span class='time-slot'>09:30 - 10:00</span> Introduction Talk</li>
-    <li><span class='time-slot'>10:00 - 10:30</span> FASTQ -> FASTA Conversion <span class='small'>(sequence files)</span></li>
-    <li><em class='time-slot'>10:30 - 10:45 Coffee Break</em></li>
-    <li><span class='time-slot'>10:45 - 12:30</span> Simple Quality Filter <span class='small'>(range / lambda / tuple)</span></li>
-    <li><em class='time-slot'>12:30 - 13:00 "Short Break"</em></li>
-    <li><span class='time-slot'>13:30 - 14:30</span> Extended Quality Filter <span class='small'>(view)</span></li>
-    <li><em class='time-slot'>14:30 - 14:45 Coffee Break</em></li>
-    <li><span class='time-slot'>14:45 - 15:45</span> Concepts <span class='small'>(concept)</span></li>
-    <li><span class='time-slot'>15:45 - 16:15</span> Evaluation & Wrap-Up</li>
+    <li><span class='time-slot'>14:00 - 14:30</span> Setup</li>
+    <li class="fragment highlight-blue grow"><span class='time-slot'>14:30 - 15:00</span> Introduction Talk</li>
+    <li><span class='time-slot'>15:00 - 15:30</span> FASTQ -> FASTA Conversion <span class='small'>(sequence files)</span></li>
+    <li><em class='time-slot'>15:30 - 15:45 Coffee Break</em></li>
+    <li><span class='time-slot'>15:45 - 16:45</span> Simple Quality Filter <span class='small'>(range / lambda / tuple)</span></li>
+    <!-- <li><em class='time-slot'>17:30 - 18:30 "Short Break"</em></li> -->
+    <!-- <li><span class='time-slot'>18:30 - 19:30</span> Extended Quality Filter <span class='small'>(view)</span></li> -->
+    <!-- <li><em class='time-slot'>19:30 - 19:45 Coffee Break</em></li> -->
+    <!-- <li><span class='time-slot'>19:45 - 20:45</span> Concepts <span class='small'>(concept)</span></li> -->
+    <li><span class='time-slot'>16:45 - 17:00</span> Evaluation & Wrap-Up</li>
 </ul>
 </section>
 
@@ -689,7 +697,7 @@ void print(std::ranges::input_range auto && obj)
 ###### C++-Evolution
 
 <img src="img/c++_standardisation.jpg" height="420">
-<p class='small'>https://isocpp.org/std/status; accessed 23.02.2020</p>
+<p class='small'>https://isocpp.org/std/status; accessed 07.09.2021</p>
 
 <aside class='notes' data-markdown>
     In this course we will use modern C++ features available in C++20.
@@ -732,16 +740,16 @@ void print(std::ranges::input_range auto && obj)
 <section>
 <h3>Schedule<small>*</small>:</h3>
 <ul>
-    <li><span class='time-slot'>09:00 - 09:30</span> Setup</li>
-    <li><span class='time-slot'>09:30 - 10:00</span> Introduction Talk</li>
-    <li class="fragment highlight-blue grow"><span class='time-slot'>10:00 - 10:30</span> FASTQ -> FASTA Conversion <span class='small'>(sequence files)</span></li>
-    <li><em class='time-slot'>10:30 - 10:45 Coffee Break</em></li>
-    <li><span class='time-slot'>10:45 - 12:30</span> Simple Quality Filter <span class='small'>(range / lambda / tuple)</span></li>
-    <li><em class='time-slot'>12:30 - 13:00 "Short Break"</em></li>
-    <li><span class='time-slot'>13:30 - 14:30</span> Extended Quality Filter <span class='small'>(view)</span></li>
-    <li><em class='time-slot'>14:30 - 14:45 Coffee Break</em></li>
-    <li><span class='time-slot'>14:45 - 15:45</span> Concepts <span class='small'>(concept)</span></li>
-    <li><span class='time-slot'>15:45 - 16:15</span> Evaluation & Wrap-Up</li>
+    <li><span class='time-slot'>14:00 - 14:30</span> Setup</li>
+    <li><span class='time-slot'>14:30 - 15:00</span> Introduction Talk</li>
+    <li class="fragment highlight-blue grow"><span class='time-slot'>15:00 - 15:30</span> FASTQ -> FASTA Conversion <span class='small'>(sequence files)</span></li>
+    <li><em class='time-slot'>15:30 - 15:45 Coffee Break</em></li>
+    <li><span class='time-slot'>15:45 - 16:45</span> Simple Quality Filter <span class='small'>(range / lambda / tuple)</span></li>
+    <!-- <li><em class='time-slot'>17:30 - 18:30 "Short Break"</em></li> -->
+    <!-- <li><span class='time-slot'>18:30 - 19:30</span> Extended Quality Filter <span class='small'>(view)</span></li> -->
+    <!-- <li><em class='time-slot'>19:30 - 19:45 Coffee Break</em></li> -->
+    <!-- <li><span class='time-slot'>19:45 - 20:45</span> Concepts <span class='small'>(concept)</span></li> -->
+    <li><span class='time-slot'>16:45 - 17:00</span> Evaluation & Wrap-Up</li>
 </ul>
 </section>
 
@@ -835,16 +843,16 @@ $ ./fastq2fasta data/input.fq data/output.fa
 <section>
 <h3>Schedule<small>*</small>:</h3>
 <ul>
-    <li><span class='time-slot'>09:00 - 09:30</span> Setup</li>
-    <li><span class='time-slot'>09:30 - 10:00</span> Introduction Talk</li>
-    <li><span class='time-slot'>10:00 - 10:30</span> FASTQ -> FASTA Conversion <span class='small'>(sequence files)</span></li>
-    <li><em class='time-slot'>10:30 - 10:45 Coffee Break</em></li>
-    <li class="fragment highlight-blue grow"><span class='time-slot'>10:45 - 12:30</span> Simple Quality Filter <span class='small'>(range / lambda / tuple)</span></li>
-    <li><em class='time-slot'>12:30 - 13:00 "Short Break"</em></li>
-    <li><span class='time-slot'>13:30 - 14:30</span> Extended Quality Filter <span class='small'>(view)</span></li>
-    <li><em class='time-slot'>14:30 - 14:45 Coffee Break</em></li>
-    <li><span class='time-slot'>14:45 - 15:45</span> Concepts <span class='small'>(concept)</span></li>
-    <li><span class='time-slot'>15:45 - 16:15</span> Evaluation & Wrap-Up</li>
+    <li><span class='time-slot'>14:00 - 14:30</span> Setup</li>
+    <li><span class='time-slot'>14:30 - 15:00</span> Introduction Talk</li>
+    <li><span class='time-slot'>15:00 - 15:30</span> FASTQ -> FASTA Conversion <span class='small'>(sequence files)</span></li>
+    <li><em class='time-slot'>15:30 - 15:45 Coffee Break</em></li>
+    <li class="fragment highlight-blue grow"><span class='time-slot'>15:45 - 16:45</span> Simple Quality Filter <span class='small'>(range / lambda / tuple)</span></li>
+    <!-- <li><em class='time-slot'>17:30 - 18:30 "Short Break"</em></li> -->
+    <!-- <li><span class='time-slot'>18:30 - 19:30</span> Extended Quality Filter <span class='small'>(view)</span></li> -->
+    <!-- <li><em class='time-slot'>19:30 - 19:45 Coffee Break</em></li> -->
+    <!-- <li><span class='time-slot'>19:45 - 20:45</span> Concepts <span class='small'>(concept)</span></li> -->
+    <li><span class='time-slot'>16:45 - 17:00</span> Evaluation & Wrap-Up</li>
 </ul>
 </section>
 
@@ -896,21 +904,21 @@ Learning objectives:
 
 </section> <!-- simple filter - end -->
 
-<section> <!-- extended filter - start -->
+<div style="display: none"> <!-- extended filter - start --> <!-- this part is commented out from the slides (change div back to section) - begin -->
 
 <section>
 <h3>Schedule<small>*</small>:</h3>
 <ul>
-    <li><span class='time-slot'>09:00 - 09:30</span> Setup</li>
-    <li><span class='time-slot'>09:30 - 10:00</span> Introduction Talk</li>
-    <li><span class='time-slot'>10:00 - 10:30</span> FASTQ -> FASTA Conversion <span class='small'>(sequence files)</span></li>
-    <li><em class='time-slot'>10:30 - 10:45 Coffee Break</em></li>
-    <li><span class='time-slot'>10:45 - 12:30</span> Simple Quality Filter <span class='small'>(range / lambda / tuple)</span></li>
-    <li><em class='time-slot'>12:30 - 13:00 "Short Break"</em></li>
-    <li class="fragment highlight-blue grow"><span class='time-slot'>13:30 - 14:30</span> Extended Quality Filter <span class='small'>(view)</span></li>
-    <li><em class='time-slot'>14:30 - 14:45 Coffee Break</em></li>
-    <li><span class='time-slot'>14:45 - 15:45</span> Concepts <span class='small'>(concept)</span></li>
-    <li><span class='time-slot'>15:45 - 16:15</span> Evaluation & Wrap-Up</li>
+    <li><span class='time-slot'>14:00 - 14:30</span> Setup</li>
+    <li><span class='time-slot'>14:30 - 15:00</span> Introduction Talk</li>
+    <li><span class='time-slot'>15:00 - 15:30</span> FASTQ -> FASTA Conversion <span class='small'>(sequence files)</span></li>
+    <li><em class='time-slot'>15:30 - 15:45 Coffee Break</em></li>
+    <li><span class='time-slot'>15:45 - 16:45</span> Simple Quality Filter <span class='small'>(range / lambda / tuple)</span></li>
+    <!-- <li><em class='time-slot'>17:30 - 18:30 "Short Break"</em></li> -->
+    <!-- <li class="fragment highlight-blue grow"><span class='time-slot'>18:30 - 19:30</span> Extended Quality Filter <span class='small'>(view)</span></li> -->
+    <!-- <li><em class='time-slot'>19:30 - 19:45 Coffee Break</em></li> -->
+    <!-- <li><span class='time-slot'>19:45 - 20:45</span> Concepts <span class='small'>(concept)</span></li> -->
+    <li><span class='time-slot'>16:45 - 17:00</span> Evaluation & Wrap-Up</li>
 </ul>
 </section>
 
@@ -985,23 +993,23 @@ Extend the fastq2fasta program to handle paired-end reads.
 <p class=live-coding></p>
 </section>
 
-</section> <!-- extended filter - end -->
+</div> <!-- extended filter - end --> <!-- this part is commented out from the slides (change div back to section) - end -->
 
-<section> <!-- concepts - start -->
+<div style="display: none;"> <!-- concepts - start --> <!-- this part is commented out from the slides (change div back to section) - start -->
 
 <section>
 <h3>Schedule<small>*</small>:</h3>
 <ul>
-    <li><span class='time-slot'>09:00 - 09:30</span> Setup</li>
-    <li><span class='time-slot'>09:30 - 10:00</span> Introduction Talk</li>
-    <li><span class='time-slot'>10:00 - 10:30</span> FASTQ -> FASTA Conversion <span class='small'>(sequence files)</span></li>
-    <li><em class='time-slot'>10:30 - 10:45 Coffee Break</em></li>
-    <li><span class='time-slot'>10:45 - 12:30</span> Simple Quality Filter <span class='small'>(range / lambda / tuple)</span></li>
-    <li><em class='time-slot'>12:30 - 13:00 "Short Break"</em></li>
-    <li><span class='time-slot'>13:30 - 14:30</span> Extended Quality Filter <span class='small'>(view)</span></li>
-    <li><em class='time-slot'>14:30 - 14:45 Coffee Break</em></li>
-    <li class="fragment highlight-blue grow"><span class='time-slot'>14:45 - 15:45</span> Concepts <span class='small'>(concept)</span></li>
-    <li><span class='time-slot'>15:45 - 16:15</span> Evaluation & Wrap-Up</li>
+    <li><span class='time-slot'>14:00 - 14:30</span> Setup</li>
+    <li><span class='time-slot'>14:30 - 15:00</span> Introduction Talk</li>
+    <li><span class='time-slot'>15:00 - 15:30</span> FASTQ -> FASTA Conversion <span class='small'>(sequence files)</span></li>
+    <li><em class='time-slot'>15:30 - 15:45 Coffee Break</em></li>
+    <li><span class='time-slot'>15:45 - 16:45</span> Simple Quality Filter <span class='small'>(range / lambda / tuple)</span></li>
+    <!-- <li><em class='time-slot'>17:30 - 18:30 "Short Break"</em></li> -->
+    <!-- <li><span class='time-slot'>18:30 - 19:30</span> Extended Quality Filter <span class='small'>(view)</span></li> -->
+    <!-- <li><em class='time-slot'>19:30 - 19:45 Coffee Break</em></li> -->
+    <!-- <li class="fragment highlight-blue grow"><span class='time-slot'>19:45 - 20:45</span> Concepts <span class='small'>(concept)</span></li> -->
+    <li><span class='time-slot'>16:45 - 17:00</span> Evaluation & Wrap-Up</li>
 </ul>
 </section>
 
@@ -1034,23 +1042,23 @@ Show
 </aside>
 </section>
 
-</section> <!-- concepts - end -->
+</div> <!-- concepts - end --> <!-- this part is commented out from the slides (change div back to section) - end -->
 
 <section> <!-- evaluation - start -->
 
 <section>
 <h3>Schedule<small>*</small>:</h3>
 <ul>
-    <li><span class='time-slot'>09:00 - 09:30</span> Setup</li>
-    <li><span class='time-slot'>09:30 - 10:00</span> Introduction Talk</li>
-    <li><span class='time-slot'>10:00 - 10:30</span> FASTQ -> FASTA Conversion <span class='small'>(sequence files)</span></li>
-    <li><em class='time-slot'>10:30 - 10:45 Coffee Break</em></li>
-    <li><span class='time-slot'>10:45 - 12:30</span> Simple Quality Filter <span class='small'>(range / lambda / tuple)</span></li>
-    <li><em class='time-slot'>12:30 - 13:00 "Short Break"</em></li>
-    <li><span class='time-slot'>13:30 - 14:30</span> Extended Quality Filter <span class='small'>(view)</span></li>
-    <li><em class='time-slot'>14:30 - 14:45 Coffee Break</em></li>
-    <li><span class='time-slot'>14:45 - 15:45</span> Concepts <span class='small'>(concept)</span></li>
-    <li class="fragment highlight-blue grow"><span class='time-slot'>15:45 - 16:15</span> Evaluation & Wrap-Up</li>
+    <li><span class='time-slot'>14:00 - 14:30</span> Setup</li>
+    <li><span class='time-slot'>14:30 - 15:00</span> Introduction Talk</li>
+    <li><span class='time-slot'>15:00 - 15:30</span> FASTQ -> FASTA Conversion <span class='small'>(sequence files)</span></li>
+    <li><em class='time-slot'>15:30 - 15:45 Coffee Break</em></li>
+    <li><span class='time-slot'>15:45 - 16:45</span> Simple Quality Filter <span class='small'>(range / lambda / tuple)</span></li>
+    <!-- <li><em class='time-slot'>17:30 - 18:30 "Short Break"</em></li> -->
+    <!-- <li><span class='time-slot'>18:30 - 19:30</span> Extended Quality Filter <span class='small'>(view)</span></li> -->
+    <!-- <li><em class='time-slot'>19:30 - 19:45 Coffee Break</em></li> -->
+    <!-- <li><span class='time-slot'>19:45 - 20:45</span> Concepts <span class='small'>(concept)</span></li> -->
+    <li class="fragment highlight-blue grow"><span class='time-slot'>16:45 - 17:00</span> Evaluation & Wrap-Up</li>
 </ul>
 </section>
 
@@ -1059,15 +1067,10 @@ Show
 ###### Evaluation:
 
 * <!-- .element: class="fragment" -->
-  Please fill out the form and
+  Please fill out the form and rate what you liked and what you didn't.
 * <!-- .element: class="fragment" -->
-  rate what you liked and what you didn't.
-* <!-- .element: class="fragment" -->
-  Our de.NBI survey:
-  https://de.surveymonkey.com/r/denbi-course?sc=cibi&id=000271
-* <!-- .element: class="fragment" style="display:none" -->
-  and the ISMB 2020 survey: TODO
-  https://forms.gle/PUdqAhiVnFDngV7NA
+  [Click to open de.NBI survey](https://de.surveymonkey.com/r/denbi-course?sc=cibi&id=000316)
+
 </script>
 </section>
 
@@ -1082,8 +1085,8 @@ Today we learned:
     How to write a simple CLI application in C++.
 * <!-- .element: class="fragment" -->
     How to make use of lambdas.
-* <!-- .element: class="fragment" -->
-    How to write safe generic code with concepts.
+* <!-- .element: class="fragment" style="display:none" -->
+    How to write safe generic code with concepts. TODO
 * <!-- .element: class="fragment" -->
     How to write idiomatic C++ code with ranges and views.
 </textarea>
@@ -1092,6 +1095,12 @@ Today we learned:
 </section> <!-- evaluation - end -->
 
 <section>
+
+<h3>Next Event: SeqAn User Meeting</h3>
+<h4>14<sup>th</sup> September 2021, 16:00 - 19:00 CEST</h4>
+<small><a href="https://ogy.de/ts51"><i class="fa fa-calendar" aria-hidden="true"></i> https://ogy.de/ts51</a></small>
+<br>
+
 <p><a href="https://twitter.com/seqanlib"><i class="fa fa-twitter" aria-hidden="true"></i> @SeqAnLib</a></p>
 <p><a href="https://github.com/seqan/"><i class="fa fa-github" aria-hidden="true"></i> github/seqan</a></p>
 <p><a href="https://www.seqan.de"><i class="fa fa-globe" aria-hidden="true"></i> seqan.de</a></p>
