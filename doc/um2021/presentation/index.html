@@ -104,6 +104,12 @@
     height: 1em;
     vertical-align: sub;
 }
+.right-batch
+{
+    position: absolute;
+    right: 0;
+    top: 0px;
+}
 </style>
 
         <!-- Printing and PDF exports -->
@@ -160,9 +166,127 @@
         <li><img src="img/octicons/code-24.svg" class="no-box inline-img"></img> C++17/20 Code with concepts</li>
         <li><img src="img/octicons/law-24.svg" class="no-box inline-img"></img> BSD 3-Clause License</li>
         <li><img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.0.3</li>
+        <li><img src="img/octicons/rocket-24.svg" class="no-box inline-img"></img> Mature Test Infrastructure</li>
+        <li><img src="img/octicons/shield-check-24.svg" class="no-box inline-img"></img> ~98% Code Coverage</li>
     </ul>
     </li>
 </ul>
+</section>
+
+<section>
+<p>
+<img src="img/seqan-library-structure.svg" src="SeqAn3" class="no-box" style="height: 10em"></img>
+</p>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul>
+    <li>Alphabet Module
+    <ul>
+        <li>Biological Sequence Representation</li>
+        <li>Sequence Transformation</li>
+    </ul>
+    </li>
+</ul>
+
+<pre><code data-trim data-noescape>
+// 5′‑ATGCCACGAGTTGAC‑3′
+seqan3::dna4_vector sequence{"ATGCCACGAGTTGAC"_dna4};
+
+// 5′‑TACGGTGCTCAACTG‑3′
+auto complement = sequence | seqan3::views::complement;
+
+// 3′‑TACGGTGCTCAACTG‑5′ = "GTCAACTCGTGGCAT"_dna4
+auto reverse_complement = sequence | std::views::reverse;
+
+// Met-Pro-Arg-Val-Asp = "MPRVD"_aa27
+auto amino_acid_sequence = sequence
+                         | seqan3::views::translate_single;
+</code></pre>
+</section>
+
+<section>
+<p>
+<img src="img/seqan-library-structure.svg" src="SeqAn3" class="no-box" style="height: 10em"></img>
+</p>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul>
+    <li>Alignment Module
+    <ul>
+        <li>Pairwise Sequence Alignment</li>
+        <li>Different Algorithms depending on Configuration</li>
+        <li>Gapped Sequence Representation</li>
+    </ul>
+    </li>
+</ul>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul style="display: block;">
+    <li>Alignment Configuration</li>
+</ul>
+
+<pre><code data-trim data-noescape class="language-cpp">
+auto scoring_scheme = seqan3::nucleotide_scoring_scheme{
+    seqan3::match_score{4},
+    seqan3::mismatch_score{-5}};
+
+auto config =
+    seqan3::align_cfg::method_global{} |
+    seqan3::align_cfg::scoring_scheme{scoring_scheme} |
+    seqan3::align_cfg::gap_cost_affine{
+        seqan3::align_cfg::open_score{0},
+        seqan3::align_cfg::extension_score{-1}
+    } |
+    seqan3::align_cfg::parallel{5} |
+    seqan3::align_cfg::output_score |
+    seqan3::align_cfg::output_alignment;
+</code></pre>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul style="display: block;">
+    <li>Pairwise Sequence Alignment</li>
+</ul>
+
+<pre><code data-trim data-noescape class="language-cpp" style="max-height: inherit">
+auto sequence1 = "ATGCCACGAGTTGAC"_dna4;
+auto sequence2 = "ACGCCACGAGTGAC"_dna4;
+auto sequence_pair = std::tie(sequence1, sequence2);
+
+auto alignments =
+    seqan3::align_pairwise(sequence_pair, config);
+
+for (seqan3::alignment_result result: alignments)
+{
+    // ATGCCACGAGTTGAC
+    // | ||||||||| |||
+    // ACGCCACGAGT-GAC
+    auto alignment = result.alignment();
+
+    // matches: 13, mismatches: 1, indel: 1
+    // score: 13 * 4 + 1 * - 5 + 1 * -1 = 46
+    auto score = result.score();
+}
+</code></pre>
 </section>
 </section> <!-- seqan3 - END -->
 
