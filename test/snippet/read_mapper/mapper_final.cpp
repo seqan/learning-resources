@@ -74,7 +74,7 @@ void map_reads(cmd_arguments const & arguments,
 
     for (auto && record : query_file_in)
     {
-        auto const & query = record.sequence();
+        auto & query = record.sequence();
         for (auto && result : search(query, index, search_config))
         {
             size_t const start = result.reference_begin_position() ? result.reference_begin_position() - 1 : 0;
