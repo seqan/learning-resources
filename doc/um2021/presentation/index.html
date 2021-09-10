@@ -537,6 +537,75 @@ fout = fin;
 
 </section> <!-- seqan3 test infrastructure - END -->
 
+<section> <!-- seqan3 - Version 3.0.3 - BEGIN -->
+<section>
+<p>
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 4em"></img><br/>
+<a href="https://github.com/seqan/seqan3"><i class="fa fa-github" aria-hidden="true"></i> seqan/seqan3</a>
+</p>
+
+<h6>What's new?</h6>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul>
+    <li><img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.0.3 <a href="https://github.com/seqan/seqan3/compare/3.0.2...3.0.3">statistics</a></li>
+    <ul>
+        <li>7 months</li>
+        <li>11 contributors</li>
+        <li>923 commits</li>
+        <li>1750 file changes</li>
+        <li>75,000 insertions / 50,000 deletions</li>
+    </ul>
+</ul>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul>
+    <li><img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.0.3 milestones</li>
+    <ul>
+        <li>First release that should <em>just compile</em><sup>TM</sup> after upgrade</li>
+        <li>We made a great push for the first stable <img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.1.0 release!</li>
+        <li>Declared many entities as API-stable / experimental</li>
+    </ul>
+</ul>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul>
+    <li><img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.0.3 new features</li>
+    <ul>
+        <li>New Phred Quality Score alphabet <code>seqan3::phred94</code></li>
+        <li>New <code>seqan3::literals</code> namespace
+        <pre><code data-trim data-noescape class="language-cpp" style="max-height: inherit">
+            using namespace seqan3::literals;
+            seqan3::dna4 adenine = 'A'_dna4;
+        </code></pre></li>
+        <li>Records of I/O files have member functions
+        <pre><code data-trim data-noescape class="language-cpp" style="max-height: inherit">
+            seqan3::sequence_file_input fin{"my.fastq"};
+
+            for (seqan3::sequence_record & record: fin)
+                std::cout << "id: " << record.id() << '\n';
+        </code></pre></li>
+    </ul>
+</ul>
+</section>
+
+</section> <!-- seqan3 - Version 3.0.3 - END -->
+
 <section> <!-- app-template - BEGIN -->
 <section>
 <p>
