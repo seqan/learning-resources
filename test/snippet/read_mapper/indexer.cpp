@@ -8,21 +8,42 @@ struct cmd_arguments
     std::filesystem::path index_path{"out.index"};
 };
 
+struct reference_store_t
+{
+    std::vector<std::string> ids;
+    std::vector<std::vector<seqan3::dna4>> sequences;
+
+    template <typename archive_t>
+    void serialize(archive_t & archive)
+    {
+        archive(ids);
+        archive(sequences);
+    }
+};
+
 struct dna4_traits : seqan3::sequence_file_input_default_traits_dna
 {
     using sequence_alphabet = seqan3::dna4;
 };
 
+void read_reference(std::filesystem::path const & reference_path, reference_store_t & storage)
+{
+    for (auto && record : seqan3::sequence_file_input<dna4_traits>{reference_path})
+    {
+        storage.ids.push_back(std::move(record.id()));
+        storage.sequences.push_back(std::move(record.sequence()));
+    }
+}
+
 void run_program(cmd_arguments const & arguments)
 {
-    std::vector<std::vector<seqan3::dna4>> sequences;
-    for (auto && record : seqan3::sequence_file_input<dna4_traits>{arguments.reference_path})
-        sequences.emplace_back(std::move(record.sequence()));
-
-    seqan3::bi_fm_index index{sequences};
+    reference_store_t storage{};
+    read_reference(arguments.reference_path, storage);
+    seqan3::bi_fm_index index{storage.sequences};
 
     std::ofstream os{arguments.index_path, std::ios::binary};
     cereal::BinaryOutputArchive oarchive{os};
+    oarchive(storage);
     oarchive(index);
 }
 

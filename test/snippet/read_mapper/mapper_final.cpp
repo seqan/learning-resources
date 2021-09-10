@@ -8,7 +8,6 @@
 
 struct cmd_arguments
 {
-    std::filesystem::path reference_path{};
     std::filesystem::path query_path{};
     std::filesystem::path index_path{};
     std::filesystem::path sam_path{"out.sam"};
@@ -19,6 +18,13 @@ struct reference_store_t
 {
     std::vector<std::string> ids;
     std::vector<std::vector<seqan3::dna4>> sequences;
+
+    template <typename archive_t>
+    void serialize(archive_t & archive)
+    {
+        archive(ids);
+        archive(sequences);
+    }
 };
 
 struct dna4_traits : seqan3::sequence_file_input_default_traits_dna
@@ -26,23 +32,16 @@ struct dna4_traits : seqan3::sequence_file_input_default_traits_dna
     using sequence_alphabet = seqan3::dna4;
 };
 
-void read_reference(std::filesystem::path const & reference_path, reference_store_t & storage)
+void run_program(cmd_arguments const & arguments)
 {
-    for (auto && record : seqan3::sequence_file_input<dna4_traits>{reference_path})
-    {
-        storage.ids.push_back(std::move(record.id()));
-        storage.sequences.push_back(std::move(record.sequence()));
-    }
-}
-
-void map_reads(cmd_arguments const & arguments,
-               reference_store_t const & storage)
-{
+    reference_store_t storage{};
     // we need the alphabet and text layout before loading
     seqan3::bi_fm_index<seqan3::dna4, seqan3::text_layout::collection> index;
+
     {
         std::ifstream is{arguments.index_path, std::ios::binary};
         cereal::BinaryInputArchive iarchive{is};
+        iarchive(storage);
         iarchive(index);
     }
 
@@ -102,21 +101,11 @@ void map_reads(cmd_arguments const & arguments,
     }
 }
 
-void run_program(cmd_arguments const & arguments)
-{
-    reference_store_t storage{};
-    read_reference(arguments.reference_path, storage);
-    map_reads(arguments, storage);
-}
-
 void initialise_argument_parser(seqan3::argument_parser & parser, cmd_arguments & arguments)
 {
     parser.info.author = "E. coli";
     parser.info.short_description = "Map reads against a reference.";
     parser.info.version = "1.0.0";
-    parser.add_option(arguments.reference_path, 'r', "reference", "The path to the reference.",
-                      seqan3::option_spec::required,
-                      seqan3::input_file_validator{{"fa","fasta"}});
     parser.add_option(arguments.query_path, 'q', "query", "The path to the query.",
                       seqan3::option_spec::required,
                       seqan3::input_file_validator{{"fq","fastq"}});
