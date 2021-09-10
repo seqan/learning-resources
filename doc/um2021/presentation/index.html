@@ -388,6 +388,96 @@ for (seqan3::search_result & result : results)
 </code></pre>
 </section>
 
+<section>
+<p>
+<img src="img/seqan-library-structure.svg" src="SeqAn3" class="no-box" style="height: 10em"></img>
+</p>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul>
+    <li><a href="https://docs.seqan.de/seqan/3-master-user/group__io.html">Input/Output Module</a>
+    <ul>
+        <li>Read/Write Files</li>
+        <li>Convert Files</li>
+        <li> File Formats
+            <ul>
+                <li>Sequence Files (<code>.fa,.fq,.embl,.gbk</code>)</li>
+                <li>SAM Files (<code>.sam,.bam</code>)</li>
+            </ul>
+        </li>
+    </ul>
+    </li>
+</ul>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul style="display: block;">
+    <li><a href="https://docs.seqan.de/seqan/3-master-user/classseqan3_1_1sequence__file__input.html">Read Files</a></li>
+</ul>
+
+<pre><code data-trim data-noescape class="language-cpp" style="max-height: inherit">
+seqan3::sequence_file_input fin{"my.fastq"};
+
+for (seqan3::sequence_record & record : fin)
+{
+    // e.g. "sequence1"
+    std::string id = record.id();
+
+    // e.g. "ATCTGACGAAGGCTAGCTAGCTAAGGGA"_dna5
+    seqan3::dna5_vector sequence = record.sequence();
+
+    // e.g. "##!!####!!####!!####!!####!!"_phred42
+    std::vector&lt;seqan3::phred42> qualities
+        = record.base_qualities();
+}
+</code></pre>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul style="display: block;">
+    <li><a href="https://docs.seqan.de/seqan/3-master-user/classseqan3_1_1sequence__file__output.html">Write Files</a></li>
+</ul>
+
+<pre><code data-trim data-noescape class="language-cpp" style="max-height: inherit">
+seqan3::sequence_file_input fin{"my.fastq"};
+seqan3::sequence_file_output fout{"my.fasta"};
+
+for (seqan3::sequence_record & record : fin)
+{
+    fout.push_back(record);
+}
+</code></pre>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul style="display: block;">
+    <li><a href="https://docs.seqan.de/seqan/3-master-user/classseqan3_1_1sequence__file__output.html">Convert Files</a></li>
+</ul>
+
+<pre><code data-trim data-noescape class="language-cpp" style="max-height: inherit">
+seqan3::sequence_file_input fin{"my.fastq"};
+seqan3::sequence_file_output fout{"my.fasta"};
+fout = fin;
+</code></pre>
+</section>
+
 </section> <!-- seqan3 - END -->
 
 <section> <!-- app-template - BEGIN -->
