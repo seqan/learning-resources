@@ -11,6 +11,14 @@
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
      id="defs2">
+    <style
+       id="style2">
+    svg #alphabet:target,
+    svg #alignment:target,
+    svg #search:target,
+    svg #io:target
+    { fill: #2da44e }
+    </style>
     <linearGradient
        id="linearGradient13006">
       <stop
@@ -30,7 +38,7 @@
        fx="227.60564"
        fy="151.38567"
        r="20.844725"
-       gradientTransform="matrix(2.3313762,0,0,1.2427677,-407.43175,-52.839141)"
+       gradientTransform="matrix(2.2982329,0,0,1.2019969,-399.39058,-46.671547)"
        gradientUnits="userSpaceOnUse" />
     <radialGradient
        xlink:href="#linearGradient13006"
@@ -40,7 +48,7 @@
        fx="227.60564"
        fy="151.38567"
        r="20.844725"
-       gradientTransform="matrix(2.3313762,0,0,1.2427677,-270.625,-52.839138)"
+       gradientTransform="matrix(2.2980218,0,0,1.2013922,-263.03321,-46.573139)"
        gradientUnits="userSpaceOnUse" />
   </defs>
   <rect
@@ -77,7 +85,7 @@
        fill="#ffffff"
        stroke="#000000"
        pointer-events="all"
-       id="rect22" />
+       id="alphabet" />
     <text
        x="145"
        y="89"
@@ -100,7 +108,7 @@
        fill="#ffffff"
        stroke="#000000"
        pointer-events="all"
-       id="rect38" />
+       id="search" />
     <text
        x="145"
        y="134"
@@ -123,7 +131,7 @@
        fill="#ffffff"
        stroke="#000000"
        pointer-events="all"
-       id="rect46" />
+       id="alignment" />
     <text
        x="245"
        y="134"
@@ -420,7 +428,7 @@
      fill="#ffffff"
      stroke="#000000"
      pointer-events="all"
-     id="rect30" />
+     id="io" />
   <path
      style="fill:none;stroke:#2b954a;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:3, 1;stroke-dashoffset:0;stroke-opacity:1"
      d="m -0.077496,135.29808 c 380.528056,0 381.105596,0 381.105596,0"
@@ -428,19 +436,19 @@
   <rect
      style="mix-blend-mode:normal;fill:url(#radialGradient13168-1);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:3.00001, 1;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000"
      id="rect11845-3"
-     width="70.000015"
-     height="30.000008"
-     x="225.00937"
-     y="120.29807"
-     ry="13.088875" />
+     width="68.998543"
+     height="29.001217"
+     x="225.51024"
+     y="120.79981"
+     ry="0" />
   <rect
-     style="mix-blend-mode:normal;fill:url(#radialGradient13168);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:3.00001, 1;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000"
+     style="mix-blend-mode:normal;fill:url(#radialGradient13168);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.999999;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:3.00001, 0.999999;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000"
      id="rect11845"
-     width="70.000015"
-     height="30.000008"
-     x="88.202621"
-     y="120.29807"
-     ry="13.088875" />
+     width="69.004883"
+     height="29.015814"
+     x="89.197754"
+     y="120.78565"
+     ry="0" />
   <g
      transform="translate(-121.91737,49.79807)"
      id="g36">
