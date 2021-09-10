@@ -77,13 +77,17 @@ void map_reads(cmd_arguments const & arguments,
         auto & query = record.sequence();
         for (auto && result : search(query, index, search_config))
         {
-            size_t const start = result.reference_begin_position() ? result.reference_begin_position() - 1 : 0;
-            std::span text_view{std::data(storage.sequences[result.reference_id()]) + start, query.size() + 1};
+            size_t const start = result.reference_begin_position();
+            auto reference_begin = storage.sequences[result.reference_id()].begin() + start;
+            auto reference_end = std::ranges::next(reference_begin,
+                                                   query.size() + arguments.errors,
+                                                   storage.sequences[result.reference_id()].end());
+            std::span reference_view{reference_begin, reference_end};
 
-            for (auto && alignment : seqan3::align_pairwise(std::tie(text_view, query), align_config))
+            for (auto && alignment : seqan3::align_pairwise(std::tie(reference_view, query), align_config))
             {
                 auto const aligned_seq = alignment.alignment();
-                size_t const ref_offset = alignment.sequence1_begin_position() + 2 + start;
+                size_t const ref_offset = alignment.sequence1_begin_position() + start;
                 size_t const map_qual = 60u + alignment.score();
 
                 sam_out.emplace_back(query,
@@ -129,7 +133,7 @@ void initialise_argument_parser(seqan3::argument_parser & parser, cmd_arguments 
 
 int main(int argc, char const ** argv)
 {
-    seqan3::argument_parser parser("Mapper", argc, argv);
+    seqan3::argument_parser parser("Mapper", argc, argv, seqan3::update_notifications::off);
     cmd_arguments arguments{};
 
     initialise_argument_parser(parser, arguments);
