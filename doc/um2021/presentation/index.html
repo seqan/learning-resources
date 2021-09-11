@@ -164,24 +164,24 @@
 <ul>
     <li>Quick Facts:
     <ul>
-        <li><img src="img/octicons/repo-24.svg" class="no-box inline-img"></img> <b><u>Seq</u></b>uence <b><u>An</u></b>alysis Library</li>
-        <li><img src="img/octicons/code-24.svg" class="no-box inline-img"></img> C++17/20 Code with concepts</li>
-        <li><img src="img/octicons/law-24.svg" class="no-box inline-img"></img> BSD 3-Clause License</li>
-        <li><img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.0.3</li>
-        <li><img src="img/octicons/rocket-24.svg" class="no-box inline-img"></img> Mature Test Infrastructure</li>
-        <li><img src="img/octicons/shield-check-24.svg" class="no-box inline-img"></img> ~98% Code Coverage</li>
+        <li class="fragment"><img src="img/octicons/repo-24.svg" class="no-box inline-img"></img> <b><u>Seq</u></b>uence <b><u>An</u></b>alysis Library</li>
+        <li class="fragment"><img src="img/octicons/code-24.svg" class="no-box inline-img"></img> C++17/20 Code with concepts</li>
+        <li class="fragment"><img src="img/octicons/law-24.svg" class="no-box inline-img"></img> BSD 3-Clause License</li>
+        <li class="fragment"><img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.0.3</li>
+        <li class="fragment"><img src="img/octicons/rocket-24.svg" class="no-box inline-img"></img> Mature Test Infrastructure</li>
+        <li class="fragment"><img src="img/octicons/shield-check-24.svg" class="no-box inline-img"></img> ~98% Code Coverage</li>
     </ul>
     </li>
 </ul>
 </section>
 
-<section>
+<section data-transition="none-out">
 <p>
 <img src="img/seqan-library-structure.svg" src="SeqAn3" class="no-box" style="height: 10em"></img>
 </p>
 </section>
 
-<section>
+<section data-transition="none-in">
 <p>
 <object data="img/seqan-library-structure.svg#alphabet" alt="SeqAn3" class="no-box" style="height: 10em"></object>
 </p>
@@ -195,13 +195,13 @@
 <ul>
     <li><a href="https://docs.seqan.de/seqan/3-master-user/group__alphabet.html">Alphabet Module</a>
     <ul>
-        <li>Biological Sequence Representation</li>
-        <li>Sequence Transformation</li>
+        <li class="fragment">Biological Sequence Representation</li>
+        <li class="fragment">Sequence Transformation</li>
     </ul>
     </li>
 </ul>
 
-<pre><code data-trim data-noescape>
+<pre class="fragment"><code data-trim data-noescape>
 // 5′‑ATGCCACGAGTTGAC‑3′
 seqan3::dna4_vector sequence{"ATGCCACGAGTTGAC"_dna4};
 
@@ -231,9 +231,9 @@ auto amino_acid_sequence = sequence
 <ul>
     <li><a href="https://docs.seqan.de/seqan/3-master-user/group__alignment.html">Alignment Module</a>
     <ul>
-        <li>Pairwise Sequence Alignment</li>
-        <li>Different Algorithms depending on Configuration</li>
-        <li>Gapped Sequence Representation</li>
+        <li class="fragment">Pairwise Sequence Alignment</li>
+        <li class="fragment">Different Algorithms depending on Configuration</li>
+        <li class="fragment">Gapped Sequence Representation</li>
     </ul>
     </li>
 </ul>
@@ -312,9 +312,9 @@ for (seqan3::alignment_result & result: alignments)
 <ul>
     <li><a href="https://docs.seqan.de/seqan/3-master-user/group__search.html">Search Module</a>
     <ul>
-        <li>Indexed Based Full-Text Search</li>
-        <li>Storing/Loading Indices</li>
-        <li>Different Algorithms depending on Configuration</li>
+        <li class="fragment">Indexed Based Full-Text Search</li>
+        <li class="fragment">Storing/Loading Indices</li>
+        <li class="fragment">Different Algorithms depending on Configuration</li>
     </ul>
     </li>
 </ul>
@@ -410,9 +410,9 @@ for (seqan3::search_result & result : results)
 <ul>
     <li><a href="https://docs.seqan.de/seqan/3-master-user/group__io.html">Input/Output Module</a>
     <ul>
-        <li>Read/Write Files</li>
-        <li>Convert Files</li>
-        <li> File Formats
+        <li class="fragment">Read/Write Files</li>
+        <li class="fragment">Convert Files</li>
+        <li class="fragment"> File Formats
             <ul>
                 <li>Sequence Files (<code>.fa,.fq,.embl,.gbk</code>)</li>
                 <li>SAM Files (<code>.sam,.bam</code>)</li>
@@ -530,12 +530,13 @@ fout = fin;
 <ul>
     <li><a href="https://github.com/seqan/seqan3/tree/master/test/api_stability">API Stability</a>
     <ul>
-        <li>How to ensure that we do not break our API?</li>
-        <li>Idea:</li>
+        <li class="fragment">How to ensure that we do not break our API?</li>
+        <li class="fragment">Idea:
         <ul>
             <li>Use the <code>test</code>s of the last release</li>
             <li>and build them with the current library version.</li>
         </ul>
+        </li>
     </ul>
     </li>
 </ul>
@@ -561,11 +562,11 @@ fout = fin;
 <ul>
     <li><img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.0.3 <a href="https://github.com/seqan/seqan3/compare/3.0.2...3.0.3">statistics</a></li>
     <ul>
-        <li>7 months</li>
-        <li>11 contributors</li>
-        <li>923 commits</li>
-        <li>1,750 file changes</li>
-        <li>75,000 insertions / 50,000 deletions</li>
+        <li class="fragment">7 months</li>
+        <li class="fragment">11 contributors</li>
+        <li class="fragment">923 commits</li>
+        <li class="fragment">1,750 file changes</li>
+        <li class="fragment">75,000 insertions / 50,000 deletions</li>
     </ul>
 </ul>
 </section>
@@ -578,9 +579,9 @@ fout = fin;
 <ul>
     <li><img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.0.3 milestones</li>
     <ul>
-        <li>First release that should <em>just compile</em><sup>TM</sup> after upgrading</li>
-        <li>We made a great push for the first stable <img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.1.0 release!</li>
-        <li>Declared many entities as API-stable / experimental</li>
+        <li class="fragment">First release that should <em>just compile</em><sup>TM</sup> after upgrading</li>
+        <li class="fragment">We made a great push for the first stable <img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.1.0 release!</li>
+        <li class="fragment">Declared many entities as API-stable / experimental</li>
     </ul>
 </ul>
 </section>
@@ -593,13 +594,13 @@ fout = fin;
 <ul>
     <li><img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.0.3 new features</li>
     <ul>
-        <li>New Phred Quality Score alphabet <code>seqan3::phred94</code></li>
-        <li>New <code>seqan3::literals</code> namespace
+        <li class="fragment">New Phred Quality Score alphabet <code>seqan3::phred94</code></li>
+        <li class="fragment">New <code>seqan3::literals</code> namespace
         <pre><code data-trim data-noescape class="language-cpp" style="max-height: inherit">
             using namespace seqan3::literals;
             seqan3::dna4 adenine = 'A'_dna4;
         </code></pre></li>
-        <li>Records of I/O files have member functions
+        <li class="fragment">Records of I/O files have member functions
         <pre><code data-trim data-noescape class="language-cpp" style="max-height: inherit">
             seqan3::sequence_file_input fin{"my.fastq"};
 
@@ -631,10 +632,10 @@ fout = fin;
 <ul>
     <li><img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.1.0</li>
     <ul>
-        <li>Release Candidate <img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> <a href="https://github.com/seqan/seqan3/releases/tag/3.1.0-rc.1">v3.1.0-rc.1</a> already published.</li>
-        <li>Basically <img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.0.3, but without all the "deprecated" files.</li>
-        <li>Will be the first "stable" Release.</li>
-        <li>Last Release with g++-7/8 support.</li>
+        <li class="fragment">Release Candidate <img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> <a href="https://github.com/seqan/seqan3/releases/tag/3.1.0-rc.1">v3.1.0-rc.1</a> already published.</li>
+        <li class="fragment">Basically <img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.0.3, but without all the "deprecated" files.</li>
+        <li class="fragment">Will be the first "stable" Release.</li>
+        <li class="fragment">Last Release with g++-7/8 support.</li>
     </ul>
 </ul>
 </section>
@@ -647,11 +648,11 @@ fout = fin;
 <ul>
     <li><img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.2.x</li>
     <ul>
-        <li>Requires ≥ g++-9.</li>
-        <li>Will iron-out non-standard C++20 code.</li>
-        <li>A re-write of our internal iterator/ranges/views implementation.</li>
-        <li>Will support <a href="https://clang.llvm.org/">clang</a> for the first time.</li>
-        <li>And with that the complete llvm eco-system (hopefully).</li>
+        <li class="fragment">Requires ≥ g++-9.</li>
+        <li class="fragment">Will iron-out non-standard C++20 code.</li>
+        <li class="fragment">A re-write of our internal iterator/ranges/views implementation.</li>
+        <li class="fragment">Will support <a href="https://clang.llvm.org/">clang</a> for the first time.</li>
+        <li class="fragment">And with that the complete llvm eco-system (hopefully).</li>
     </ul>
 </ul>
 </section>
@@ -681,7 +682,7 @@ src/        APP source files
 test/       APP tests
 </code></pre>
     </li>
-    <li>Open Software Stack:
+    <li class="fragment">Open Software Stack:
     <ul>
         <li><img src="img/cmake.svg" class="no-box inline-img" style="height: 1em"></img> <a href="https://cmake.org/">CMake</a></li>
         <li><img src="img/actions-icon-actions.svg" class="no-box inline-img"></img> <a href="https://github.com/features/actions">GitHub Actions</a></li>
@@ -706,7 +707,7 @@ test/       APP tests
     data/       Test Data
     </code></pre>
     </li>
-    <li>Reproducible Benchmarks</li>
+    <li class="fragment">Reproducible Benchmarks</li>
 </ul>
 </section>
 
@@ -718,12 +719,13 @@ test/       APP tests
 <ul>
     <li> Continuous integration (CI)
         <ul>
-            <li><img src="img/actions-icon-actions.svg" class="no-box inline-img"></img> <a href="https://github.com/features/actions">GitHub Actions</a></li>
+            <li class="fragment"><img src="img/actions-icon-actions.svg" class="no-box inline-img"></img> <a href="https://github.com/features/actions">GitHub Actions</a>
             <ul>
                 <li><i class="fa fa-apple" aria-hidden="true"></i> MacOS</li>
                 <li><i class="fa fa-linux" aria-hidden="true"></i> Linux</li>
                 <li><i class="fa fa-book" aria-hidden="true"></i> Documentation</li>
             </ul>
+            </li>
         </ul>
     </li>
 </ul>
@@ -737,9 +739,9 @@ test/       APP tests
 <ul>
     <li>Successful use cases:
         <ul>
-            <li><i class="fa fa-desktop" aria-hidden="true"></i> SeqAn3 Apps</li>
-            <li><i class="fa fa-desktop" aria-hidden="true"></i> SeqAn2 Apps</li>
-            <li><img src="img/octicons/book-24.svg" class="no-box inline-img"></img> C++ Library</li>
+            <li class="fragment"><i class="fa fa-desktop" aria-hidden="true"></i> SeqAn3 Apps</li>
+            <li class="fragment"><i class="fa fa-desktop" aria-hidden="true"></i> SeqAn2 Apps</li>
+            <li class="fragment"><img src="img/octicons/book-24.svg" class="no-box inline-img"></img> C++ Library</li>
         </ul>
     </li>
 </ul>
@@ -753,9 +755,9 @@ test/       APP tests
 <ul>
     <li>Future Features (planned):
         <ul>
-            <li>App Template-Updater (PR on new Release)</li>
-            <li>Continuous Deployment (CD)</a>
-            <li>Easier deployment to <a href="https://bioconda.github.io/"><img src="img/bioconda.png" class="no-box inline-img"></img></a>
+            <li class="fragment">App Template-Updater (PR on new Release)</li>
+            <li class="fragment">Continuous Deployment (CD)</a>
+            <li class="fragment">Easier deployment to <a href="https://bioconda.github.io/"><img src="img/bioconda.png" class="no-box inline-img"></img></a>
             <pre><code data-trim data-noescape>
             git clone https://github.com/seqan/raptor
             mkdir raptor/build && cd raptor/build
