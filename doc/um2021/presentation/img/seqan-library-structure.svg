@@ -17,7 +17,7 @@
     svg #alignment:target,
     svg #search:target,
     svg #io:target
-    { fill: #2da44e }
+    { fill: #fbf084 }
     </style>
     <linearGradient
        id="linearGradient13006">
