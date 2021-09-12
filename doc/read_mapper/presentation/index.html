@@ -1,0 +1,902 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>SeqAn - From an Idea to a single tool</title>
+
+        <link rel="stylesheet" href="../../biocpp/presentation/reveal.js/css/reset.css">
+        <link rel="stylesheet" href="../../biocpp/presentation/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../../biocpp/presentation/reveal.js/css/theme/white.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="../../biocpp/presentation/reveal.js/lib/css/zenburn.css">
+
+<style>
+.rrahn {
+    background: url('img/rrahn.jpg') no-repeat left top;
+    background-size: 2.5em 2.5em;
+    height: 2.5em;
+    padding-left: 3em;
+}
+.marehr {
+    background: url('img/marehr.jpg') no-repeat left top;
+    background-size: 2.5em 2.5em;
+    height: 2.5em;
+    padding-left: 3em;
+}
+.avenja {
+    background: url('img/avenja.jpg') no-repeat left top;
+    background-size: 2.5em 2.5em;
+    height: 2.5em;
+    padding-left: 3em;
+}
+.eseiler {
+    background: url('img/eseiler.jpg') no-repeat left top;
+    background-size: 2.5em 2.5em;
+    height: 2.5em;
+    padding-left: 3em;
+}
+.slide-background::before {
+    content: "";
+    opacity: 1;
+    top: 0.3em;
+    left: 0;
+    height: 1.4em;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-image: url(img/denbi.svg), url(img/cibi-one-liner.svg), url(img/seqan-one-liner.svg);
+    background-position: 25% 0em, 50% 50%, 75% 50%;
+    background-size: auto 100%, auto 100%, auto 100%;
+}
+.backgrounds .slide-background:not(:first-child)::after {
+    content: "Marcel Ehrhardt, Enrico Seiler"; /*Svenja Mehringer";*/
+    font-size: 0.75em;
+    opacity: 1;
+    bottom: 0.3em;
+    left: 0.5em;
+    height: 1.4em;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+
+    /* background-image: url(img/denbi.svg), url(img/mpi.svg), url(img/fu.svg);
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: 10% 0em, 50% 0em, 90% 0em;
+    background-size: auto 100%, auto 100%, auto 100%; */
+}
+.live-coding
+{
+    background: url(img/source_code.svg) no-repeat center;
+    background-size: 8em;
+    height: 6em;
+}
+.time-slot, .small
+{
+    font-size: 0.75em;
+}
+.reveal img.no-box, .reveal img.seqan-inline, .reveal img.cibi-inline
+{
+    border: none;
+    box-shadow: none;
+    margin: 0px;
+}
+.reveal img.inline-img
+{
+    vertical-align: -8px;
+    height: 1em;
+}
+.reveal img.seqan-inline
+{
+    height: 2em;
+    vertical-align: -0.55em;
+}
+.reveal img.cibi-inline
+{
+    height: 1em;
+    vertical-align: sub;
+}
+.right-batch
+{
+    position: absolute;
+    right: 0;
+    top: 0px;
+}
+</style>
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? '../../biocpp/presentation/reveal.js/css/print/pdf.css' : '../../biocpp/presentation/reveal.js/css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+
+<section>
+<h1><img alt="SeqAn" src="img/seqan.svg" class="seqan-inline"></img></h1>
+<h3>From an Idea to a single tool<br>(Read Mapper)</h3>
+
+<!-- <p class='rrahn' style='text-align: left'> René Rahn <br><small>Max Planck Institute for Molecular Genetics</small></p> -->
+<p class='marehr' style='text-align: left'> Marcel Ehrhardt <br><small>Free University Berlin, de.NBI</small></p>
+<!-- <p class='avenja' style='text-align: left'> Svenja Mehringer <br><small>Free University Berlin, ELIXIR</small></p> -->
+<p class='eseiler' style='text-align: left'> Enrico Seiler <br><small>Max Planck Institute for Molecular Genetics</small></p>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+##### Code of Conduct
+
+  * <!-- .element: class="fragment" -->
+    [Berlin Code of Conduct](https://berlincodeofconduct.org/)
+  * <!-- .element: class="fragment" -->
+    [Academic Honour Code](https://www.fu-berlin.de/service/zuvdocs/amtsblatt/2002/ab292002.pdf)
+</textarea>
+</section>
+
+<section data-transition="none-out">
+<h3>Schedule<small>*</small>:</h3>
+<ul>
+    <li class="fragment"><span class='time-slot'>16:00 - 16:45</span> Introduction to SeqAn</li>
+    <li class="fragment"><span class='time-slot'>16:45 - 17:15</span> SetUp</li>
+    <li class="fragment"><em class='time-slot'>17:15 - 17:30 Short Break</em></li>
+    <li class="fragment"><span class='time-slot'>17:30 - 18:45</span> Read Mapper</li>
+    <li class="fragment"><span class='time-slot'>18:45 - 19:00</span> Evaluation & Wrap-Up</li>
+</ul>
+</section>
+
+<section> <!-- setup - start -->
+
+<section data-transition="none-in">
+<h3>Schedule<small>*</small>:</h3>
+<ul>
+    <li><span class='time-slot'>16:00 - 16:45</span> Introduction to SeqAn</li>
+    <li class="fragment highlight-blue grow"><span class='time-slot'>16:45 - 17:15</span> SetUp</li>
+    <li><em class='time-slot'>17:15 - 17:30 Short Break</em></li>
+    <li><span class='time-slot'>17:30 - 18:45</span> Read Mapper</li>
+    <li><span class='time-slot'>18:45 - 19:00</span> Evaluation & Wrap-Up</li>
+</ul>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Course Setup:
+
+* <!-- .element: class="fragment" -->
+  Slides can be found [here](https://seqan.github.io/learning-resources/doc/biocpp/presentation/).
+* <!-- .element: class="fragment" -->
+  We will be using Zoom, join us with the desktop app:
+  * <!-- .element: class="fragment" -->
+    [Click to join meeting](https://us02web.zoom.us/j/87238834421?pwd=a2kwdGs2a0kwQzNiZW9zSUF3U0FOQT09)
+  * <!-- .element: class="fragment" -->
+    Everyone of you has a breakout room.
+  * <!-- .element: class="fragment" -->
+    You can switch to that room and ask the host for help.
+  * <!-- .element: class="fragment" -->
+    You can talk to a co-host without interfering with others.
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Course Setup:
+
+* <!-- .element: class="fragment" -->
+  We have created a Google Doc for troubleshooting:
+  * <!-- .element: class="fragment" -->
+    [Click to open Google Doc](https://docs.google.com/document/d/1tNNfjS_niExaq6A0JboZLBwtzDcz8XQcpb-W0neVw_8/edit)
+  * <!-- .element: class="fragment" -->
+    We can collect common problems here.
+  * <!-- .element: class="fragment" -->
+    You can ask questions / give feedback.
+  * <!-- .element: class="fragment" -->
+    We can ask you questions as well :)
+  * <!-- .element: class="fragment" -->
+    We can copy/paste code.
+
+</textarea>
+</section>
+
+<div data-markdown style="display: none"> <!-- this part is commented out from the slides - begin -->
+<textarea data-template>
+###### Course Setup: (TODO)
+
+* <!-- .element: class="fragment" -->
+  We also have a Slack channel:
+  * <!-- .element: class="fragment" -->
+    [Click to join Slack](https://international-pll7528.slack.com/join/shared_invite/zt-fjw1i0g5-ogelj7jCcV8fYEy7afwfgg)
+  * <!-- .element: class="fragment" -->
+    [Click to join Channel](https://international-pll7528.slack.com/?redir=%2Farchives%2FC016GF9AM3M)
+</textarea>
+</div> <!-- this part is commented out from the slides - end -->
+
+<section data-markdown>
+<textarea data-template>
+###### Setup C++:
+
+You have two options to install C++:
+
+* <!-- .element: class="fragment" -->
+  Use your web browser.
+  * Recommended for <i class="fa fa-windows" aria-hidden="true"></i> Windows and
+  * people who want to keep a clean system.
+* <!-- .element: class="fragment" -->
+  Install C++ on your system.
+  * Recommended for <i class="fa fa-apple" aria-hidden="true"></i> macOS and
+    <i class="fa fa-linux" aria-hidden="true"></i> Linux
+* <!-- .element: style="display: none" class="fragment-disabled" -->
+  Use a VM.
+  * Recommended for <i class="fa fa-windows" aria-hidden="true"></i> Windows and
+  * people who want to keep a clean system.
+</textarea>
+</section>
+
+
+<section data-markdown>
+<textarea data-template>
+###### Setup C++: Use your web browser (I)
+
+<img src="img/gitpod.io.png" height="420" class="fragment">
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Setup C++: Use your web browser (I)
+
+* <!-- .element: class="fragment" -->
+  [Click to open the online editor](https://gitpod.io/#https://github.com/seqan/learning-resources)
+* <!-- .element: class="fragment" -->
+  It is free for 50h/month, more than enough time for this tutorial.
+* <!-- .element: class="fragment" -->
+  You need a [GitHub](https://github.com/) account. Create one if you don't have one.
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Setup C++: Install C++ on your system (II)
+
+* <!-- .element: class="fragment" -->
+  You will need:
+  * [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+  * GNU Compiler [GCC](https://docs.seqan.de/seqan/3-master-user/setup.html#autotoc_md98) with `g++` (--version) ≥ 7.4
+  * [CMake](https://cmake.org/download/) with `cmake` (--version) ≥ 3.4
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Setup C++: Install C++ on your system (II)
+
+<pre class="fragment"> <i class="fa fa-linux" aria-hidden="true"></i> Debian ≥ 10.0 (Buster) / Ubuntu ≥ 18.04 (bionic):<code class="plaintext hljs">sudo apt install g++ cmake git</code></pre>
+
+<pre class="fragment"> <i class="fa fa-linux" aria-hidden="true"></i> Ubuntu < 18.04 (bionic):<code class="plaintext hljs">sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt update
+sudo apt install g++-7 cmake git (or g++-8 or g++-9)
+</code></pre>
+
+<pre class="fragment"> <i class="fa fa-apple" aria-hidden="true"></i> macOS (XCode and <a href="https://brew.sh">https://brew.sh</a> installed):<code class="plaintext hljs">brew install gcc
+brew cask install cmake</code></pre>
+
+<pre class="fragment"> <i class="fa fa-windows" aria-hidden="true"></i> Windows:<code>use the browser ( ͡° ͜ʖ ͡°)</code></pre>
+
+</textarea>
+</section>
+
+
+<div data-markdown style="display: none"> <!-- this part is commented out from the slides (remove div back to section) - begin -->
+<textarea data-template>
+###### Setup C++: Use a VM (III)
+
+* <!-- .element: class="fragment" -->
+  <i class="fa fa-windows" aria-hidden="true"></i> Windows:
+  [Ubuntu on Windows](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6)
+  * Setup everything as described in the previous section.
+* <!-- .element: class="fragment" -->
+  <i class="fa fa-apple" aria-hidden="true"></i> macOS, <i class="fa fa-linux" aria-hidden="true"></i> Linux:
+  https://www.virtualbox.org/
+  * <!-- .element: class="fragment" -->
+    Download [image](http://ftp.seqan.de/workshop/2021/biocpp-vm.vdi) (~5GB).
+  * <!-- .element: class="fragment" -->
+    Everything is pre-installed, including an editor (https://atom.io/).
+
+</textarea>
+</div> <!-- this part is commented out from the slides (remove div back to section) - end -->
+
+<div data-markdown style="display: none"> <!-- this part is commented out from the slides (remove div back to section) - begin -->
+<textarea data-template>
+###### Setup C++: Use a VM, Virtual Box (III)
+
+* <!-- .element: class="fragment" -->
+  VirtualBox: Create a new VM (Machine / New)
+  * Name: biocpp
+  * Type: Linux
+  * Version: Ubuntu (64-bit)
+  * Memory size: ≥ 4Gb
+  * Use existing virtual hard disk drive file:
+    * Add `biocpp-vm.vdi`
+  * biocpp / Settings / Processor: ≥ 2
+    * enable PAE/NX, Nested VT-x/AMD-v if you can
+
+</textarea>
+</div> <!-- this part is commented out from the slides (remove div back to section) - end -->
+
+<section data-markdown>
+<textarea data-template>
+###### Setup Source Code and Data:
+
+```bash
+git clone https://github.com/seqan/learning-resources
+
+cd learning-resources
+git submodule update --init --recursive
+```
+<!-- .element: class="fragment" -->
+
+```bash
+mkdir build && cd build
+
+wget http://ftp.seqan.de/workshop/2021/biocpp-data.tar.gz
+tar -xvf biocpp-data.tar.gz
+```
+<!-- .element: class="fragment" -->
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Setup build folder:
+
+```bash
+# configure & build:
+cmake ../src/biocpp
+# or alternatively
+# cmake -DCMAKE_CXX_COMPILER=/path/to/g++ ../src/biocpp
+make -j 4
+```
+<!-- .element: class="fragment" -->
+
+<pre class="fragment"><code class="language-bash hljs" style="max-height: 300px">-- The CXX compiler identification is GNU 11.1.0
+-- Check for working CXX compiler: /usr/bin/g++-11
+-- Check for working CXX compiler: /usr/bin/g++-11 -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Finding SeqAn3 and checking requirements:
+--   SeqAn3 include dir found:   /home/biocpp/learning-resources/submodules/seqan3/include
+--   Detected as running from a repository checkout…
+--     …adding submodule include:  /home/biocpp/learning-resources/submodules/seqan3/submodules/cereal/include
+--     …adding submodule include:  /home/biocpp/learning-resources/submodules/seqan3/submodules/range-v3/include
+--     …adding submodule include:  /home/biocpp/learning-resources/submodules/seqan3/submodules/sdsl-lite/include
+--   C++ Standard-17 support:    builtin
+--   C++ Concepts support:       via -std=c++20
+--   C++ Filesystem header:      &amp;lt;filesystem>
+--   C++ Filesystem library:     builtin
+-- Check if compiler accepts -pthread
+-- Check if compiler accepts -pthread - yes
+--   Thread support:             via -pthread
+--   Required dependency:        Range-V3 found.
+--   Required dependency:        SDSL found.
+--   Optional dependency:        Cereal found.
+--   Optional dependency:        Lemon not found.
+--   Optional dependency:        ZLIB-1.2.11 found.
+--   Optional dependency:        BZip2-1.0.8 found.
+--   Optional dependency:        libexecinfo found.
+--   SeqAn3 platform.hpp build:  passed.
+-- Found SeqAn3: /home/biocpp/learning-resources/submodules/seqan3/include (Required is at least version "3.0.3")
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/biocpp/learning-resources/build
+</code></pre>
+</textarea>
+</section>
+
+</section> <!-- setup - end -->
+
+<section> <!-- introduction read mapper - start -->
+
+<section>
+<h3>Schedule<small>*</small>:</h3>
+<ul>
+    <li><span class='time-slot'>16:00 - 16:45</span> Introduction to SeqAn</li>
+    <li><span class='time-slot'>16:45 - 17:15</span> SetUp</li>
+    <li><em class='time-slot'>17:15 - 17:30 Short Break</em></li>
+    <li class="fragment highlight-blue grow"><span class='time-slot'>17:30 - 18:45</span> Read Mapper</li>
+    <li><span class='time-slot'>18:45 - 19:00</span> Evaluation & Wrap-Up</li>
+</ul>
+</section>
+
+<section data-transition="none-out">
+<h3>How does a Read-Mapper work?</h3>
+</section>
+
+<section data-transition="none-out">
+<h3>Read-Mapper</h3>
+<p>
+<object data="img/general-mapper-scheme1.svg#reference-sequence" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+<p>Reference Sequence</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Read-Mapper</h3>
+<p>
+<object data="img/general-mapper-scheme1.svg#query5" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+<p>Query Sequence</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Read-Mapper</h3>
+<p>
+<object data="img/general-mapper-scheme1.svg#read_location5" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+<p>Find rough Position in Reference Sequence</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Read-Mapper</h3>
+<p>
+<object data="img/general-mapper-scheme1.svg#query4" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+<p>&nbsp;</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Read-Mapper</h3>
+<p>
+<object data="img/general-mapper-scheme1.svg#read_location4" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+<p>&nbsp;</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Read-Mapper</h3>
+<p>
+<object data="img/general-mapper-scheme1.svg#query3" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+<p>&nbsp;</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Read-Mapper</h3>
+<p>
+<object data="img/general-mapper-scheme1.svg#read_location3" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+<p>&nbsp;</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Read-Mapper</h3>
+<p>
+<object data="img/general-mapper-scheme1.svg#query2" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+<p>&nbsp;</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Read-Mapper</h3>
+<p>
+<object data="img/general-mapper-scheme1.svg#read_location2" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+<p>&nbsp;</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Read-Mapper</h3>
+<p>
+<object data="img/general-mapper-scheme1.svg#query1" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+<p>&nbsp;</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Read-Mapper</h3>
+<p>
+<object data="img/general-mapper-scheme1.svg#read_location1" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+<p>&nbsp;</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Read-Mapper</h3>
+<p>
+<object data="img/general-mapper-scheme2.svg#query5" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+<p>Rough Position of Query within Reference</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Read-Mapper</h3>
+<p>
+<object data="img/general-mapper-scheme2.svg#read_location5-2" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+<p>Align Query with Reference-Window</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Read-Mapper</h3>
+<p>
+<object data="img/general-mapper-scheme2.svg#query4" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+<p>&nbsp;</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Read-Mapper</h3>
+<p>
+<object data="img/general-mapper-scheme2.svg#read_location4-2" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+<p>&nbsp;</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Read-Mapper</h3>
+<p>
+<object data="img/general-mapper-scheme2.svg#query3" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+<p>&nbsp;</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Read-Mapper</h3>
+<p>
+<object data="img/general-mapper-scheme2.svg#read_location3-2" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+<p>&nbsp;</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Read-Mapper</h3>
+<p>
+<object data="img/general-mapper-scheme2.svg#query2" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+<p>&nbsp;</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Read-Mapper</h3>
+<p>
+<object data="img/general-mapper-scheme2.svg#read_location2-2" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+<p>&nbsp;</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Read-Mapper</h3>
+<p>
+<object data="img/general-mapper-scheme2.svg#query1" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+<p>&nbsp;</p>
+</section>
+
+<section data-transition="none-in">
+<h3>Read-Mapper</h3>
+<p>
+<object data="img/general-mapper-scheme2.svg#read_location1-2" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+<p>&nbsp;</p>
+</section>
+
+<section>
+<h3>Read-Mapper: What do we need?</h3>
+<ul>
+<li class="fragment">We need an Indexer (for fm-index)</li>
+<li class="fragment">We need a Mapper (uses fm-index)</li>
+</ul>
+
+</section>
+
+</section> <!-- introduction read mapper - end -->
+
+<section> <!-- indexer - start -->
+
+<!--  data-transition="none-out none-in" -->
+<section data-transition="none-out">
+<h3>Indexer</h3>
+<p>
+<object data="img/indexer-scheme.svg#terminal-command" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Indexer</h3>
+<p>
+<object data="img/indexer-scheme.svg#fasta" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Indexer</h3>
+<p>
+<object data="img/indexer-scheme.svg#read-reference" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Indexer</h3>
+<p>
+<object data="img/indexer-scheme.svg#record" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Indexer</h3>
+<p>
+<object data="img/indexer-scheme.svg#build-fm-index" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Indexer</h3>
+<p>
+<object data="img/indexer-scheme.svg#fm-index" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Indexer</h3>
+<p>
+<object data="img/indexer-scheme.svg#store-fm-index" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Indexer</h3>
+<p>
+<object data="img/indexer-scheme.svg" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section>
+<p class=live-coding></p>
+</section>
+
+</section> <!-- indexer - end -->
+
+<section> <!-- mapper - start -->
+
+<!--  data-transition="none-out none-in" -->
+<section data-transition="none-out">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#terminal-command" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#app-index-file" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#read-reference-sequence" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#reference-sequence" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#read-fm-index" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#separator1" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#read-mapping-search" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#fastq-file" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#read-queries" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#queries" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#search-query" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#reference-sequence-position" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#separator2" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#read-mapping-alignment" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#use-reference-sequence" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#refrence-plus-position" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#reference-region" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#use-query" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#query-reference-alignment" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#separator3" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#write-alignment" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section data-transition="none-out none-in">
+<h3>Mapper</h3>
+<p>
+<object data="img/mapper-scheme.svg#write-sam-file" alt="" class="no-box" style="max-width: 100%"></object>
+</p>
+</section>
+
+<section>
+<p class=live-coding></p>
+</section>
+
+</section> <!-- mapper - end -->
+
+<section> <!-- evaluation - start -->
+
+<section>
+<h3>Schedule<small>*</small>:</h3>
+<ul>
+    <li><span class='time-slot'>16:00 - 16:45</span> Introduction to SeqAn</li>
+    <li><span class='time-slot'>16:45 - 17:15</span> SetUp</li>
+    <li><em class='time-slot'>17:15 - 17:30 Short Break</em></li>
+    <li><span class='time-slot'>17:30 - 18:45</span> Read Mapper</li>
+    <li class="fragment highlight-blue grow"><span class='time-slot'>18:45 - 19:00</span> Evaluation & Wrap-Up</li>
+</ul>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+###### Evaluation:
+
+* <!-- .element: class="fragment" -->
+  Please fill out the form and rate what you liked and what you didn't.
+* <!-- .element: class="fragment" -->
+  [Click to open de.NBI survey](https://de.surveymonkey.com/r/denbi-course?sc=cibi&id=000316)
+
+</script>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+###### Wrap-Up
+
+Today we learned:
+<!-- .element: class="fragment" -->
+
+* <!-- .element: class="fragment" -->
+    How to write two CLI applications in C++.
+* <!-- .element: class="fragment" -->
+    How to write a Read-Mapper App with Seqan3.
+</textarea>
+</section>
+
+</section> <!-- evaluation - end -->
+
+<section>
+<p><a href="https://twitter.com/seqanlib"><i class="fa fa-twitter" aria-hidden="true"></i> @SeqAnLib</a></p>
+<p><a href="https://github.com/seqan/"><i class="fa fa-github" aria-hidden="true"></i> github/seqan</a></p>
+<p><a href="https://www.seqan.de"><i class="fa fa-globe" aria-hidden="true"></i> seqan.de</a></p>
+</section>
+            </div>
+        </div>
+
+        <script src="../../biocpp/presentation/reveal.js/js/reveal.js"></script>
+
+        <script>
+            // More info about config & dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+            Reveal.initialize({
+                hash: true,
+                slideNumber: 'h.v',
+                dependencies: [
+                    { src: '../../biocpp/presentation/reveal.js/plugin/markdown/marked.js' },
+                    { src: '../../biocpp/presentation/reveal.js/plugin/markdown/markdown.js' },
+                    // { src: '../../biocpp/presentation/reveal.js/plugin/highlight/highlight.js' },
+                    { src: '../../biocpp/presentation/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: '../../biocpp/presentation/reveal.js/plugin/notes/notes.js', async: true }
+                ]
+            });
+        </script>
+    </body>
+</html>
