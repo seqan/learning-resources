@@ -3,8 +3,9 @@
 #include <seqan3/argument_parser/all.hpp>
 #include <seqan3/io/sam_file/output.hpp>
 #include <seqan3/io/sequence_file/input.hpp>
-#include <seqan3/search/fm_index/bi_fm_index.hpp>
 #include <seqan3/search/search.hpp>
+
+#include "app_index.hpp"
 
 struct cmd_arguments
 {
@@ -34,14 +35,11 @@ struct dna4_traits : seqan3::sequence_file_input_default_traits_dna
 
 void run_program(cmd_arguments const & arguments)
 {
-    reference_store_t storage{};
-    // we need the alphabet and text layout before loading
-    seqan3::bi_fm_index<seqan3::dna4, seqan3::text_layout::collection> index;
+    app_index index{};
 
     {
         std::ifstream is{arguments.index_path, std::ios::binary};
         cereal::BinaryInputArchive iarchive{is};
-        iarchive(storage);
         iarchive(index);
     }
 
@@ -55,7 +53,7 @@ void run_program(cmd_arguments const & arguments)
                                         seqan3::field::qual,
                                         seqan3::field::mapq>;
 
-    seqan3::sam_file_output sam_out{arguments.sam_path, sam_fields_t{}};
+    seqan3::sam_file_output sam_file_out{arguments.sam_path, sam_fields_t{}};
 
     namespace sc = seqan3::search_cfg;
     seqan3::configuration const search_config = sc::max_error_total{sc::error_count{arguments.errors}}
@@ -71,31 +69,36 @@ void run_program(cmd_arguments const & arguments)
                                              | ac::output_begin_position{}
                                              | ac::output_score{};
 
-    for (auto && record : query_file_in)
+    for (/*seqan3::sequence_record*/ auto && record : query_file_in)
     {
         auto & query = record.sequence();
-        for (auto && result : search(query, index, search_config))
+
+        auto search_results = search(query, index.fm_index, search_config);
+
+        for (seqan3::search_result result : search_results)
         {
             size_t const start = result.reference_begin_position();
-            auto reference_begin = storage.sequences[result.reference_id()].begin() + start;
+            auto reference_begin = index.sequences[result.reference_id()].begin() + start;
             auto reference_end = std::ranges::next(reference_begin,
                                                    query.size() + arguments.errors,
-                                                   storage.sequences[result.reference_id()].end());
+                                                   index.sequences[result.reference_id()].end());
             std::span reference_view{reference_begin, reference_end};
 
-            for (auto && alignment : seqan3::align_pairwise(std::tie(reference_view, query), align_config))
+            auto alignments = seqan3::align_pairwise(std::tie(reference_view, query), align_config);
+
+            for (/*seqan3::alignment_result*/ auto && alignment : alignments)
             {
                 auto const aligned_seq = alignment.alignment();
                 size_t const ref_offset = alignment.sequence1_begin_position() + start;
                 size_t const map_qual = 60u + alignment.score();
 
-                sam_out.emplace_back(query,
-                                     record.id(),
-                                     storage.ids[result.reference_id()],
-                                     ref_offset,
-                                     aligned_seq,
-                                     record.base_qualities(),
-                                     map_qual);
+                sam_file_out.emplace_back(query,
+                                          record.id(),
+                                          index.ids[result.reference_id()],
+                                          ref_offset,
+                                          aligned_seq,
+                                          record.base_qualities(),
+                                          map_qual);
             }
         }
     }

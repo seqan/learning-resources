@@ -1,6 +1,7 @@
 #include <seqan3/argument_parser/all.hpp>
 #include <seqan3/io/sequence_file/input.hpp>
-#include <seqan3/search/fm_index/bi_fm_index.hpp>
+
+#include "app_index.hpp"
 
 struct cmd_arguments
 {
@@ -8,42 +9,31 @@ struct cmd_arguments
     std::filesystem::path index_path{"out.index"};
 };
 
-struct reference_store_t
-{
-    std::vector<std::string> ids;
-    std::vector<std::vector<seqan3::dna4>> sequences;
-
-    template <typename archive_t>
-    void serialize(archive_t & archive)
-    {
-        archive(ids);
-        archive(sequences);
-    }
-};
-
 struct dna4_traits : seqan3::sequence_file_input_default_traits_dna
 {
     using sequence_alphabet = seqan3::dna4;
 };
 
-void read_reference(std::filesystem::path const & reference_path, reference_store_t & storage)
+void read_reference(std::filesystem::path const & reference_path, app_index & index)
 {
-    for (auto && record : seqan3::sequence_file_input<dna4_traits>{reference_path})
+    seqan3::sequence_file_input<dna4_traits> reference_file{reference_path};
+
+    for (/*seqan3::sequence_record*/ auto && record : reference_file)
     {
-        storage.ids.push_back(std::move(record.id()));
-        storage.sequences.push_back(std::move(record.sequence()));
+        index.ids.push_back(std::move(record.id()));
+        index.sequences.push_back(std::move(record.sequence()));
     }
 }
 
 void run_program(cmd_arguments const & arguments)
 {
-    reference_store_t storage{};
-    read_reference(arguments.reference_path, storage);
-    seqan3::bi_fm_index index{storage.sequences};
+    app_index index{};
+    read_reference(arguments.reference_path, index);
+
+    index.fm_index = seqan3::bi_fm_index{index.sequences};
 
     std::ofstream os{arguments.index_path, std::ios::binary};
     cereal::BinaryOutputArchive oarchive{os};
-    oarchive(storage);
     oarchive(index);
 }
 
