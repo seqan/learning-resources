@@ -209,7 +209,7 @@ seqan3::dna4_vector sequence{"ATGCCACGAGTTGAC"_dna4};
 auto complement = sequence | seqan3::views::complement;
 
 // 3′‑TACGGTGCTCAACTG‑5′ = "GTCAACTCGTGGCAT"_dna4
-auto reverse_complement = sequence | std::views::reverse;
+auto reverse_complement = complement | std::views::reverse;
 
 // Met-Pro-Arg-Val-Asp = "MPRVD"_aa27
 auto amino_acid_sequence = sequence
@@ -773,6 +773,9 @@ test/       APP tests
 </section> <!-- app-template - END -->
 
 <section>
+
+<h6>Next Part: Workshop,<br><a href="https://seqan.github.io/learning-resources/doc/read_mapper/presentation/#/">From an Idea to a single tool</a></h6>
+
 <p><a href="https://twitter.com/seqanlib"><i class="fa fa-twitter" aria-hidden="true"></i> @SeqAnLib</a></p>
 <p><a href="https://github.com/seqan/"><i class="fa fa-github" aria-hidden="true"></i> github/seqan</a></p>
 <p><a href="https://www.seqan.de"><i class="fa fa-globe" aria-hidden="true"></i> seqan.de</a></p>
