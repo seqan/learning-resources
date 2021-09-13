@@ -310,8 +310,8 @@ git submodule update --init --recursive
 ```bash
 mkdir build && cd build
 
-wget http://ftp.seqan.de/workshop/2021/biocpp-data.tar.gz
-tar -xvf biocpp-data.tar.gz
+wget https://ftp.imp.fu-berlin.de/pub/SeqAn/seqan3_read_mapper/reference.fasta
+wget https://ftp.imp.fu-berlin.de/pub/SeqAn/seqan3_read_mapper/query.fastq
 ```
 <!-- .element: class="fragment" -->
 
@@ -324,9 +324,9 @@ tar -xvf biocpp-data.tar.gz
 
 ```bash
 # configure & build:
-cmake ../src/biocpp
+cmake ../src/read_mapper
 # or alternatively
-# cmake -DCMAKE_CXX_COMPILER=/path/to/g++ ../src/biocpp
+# cmake -DCMAKE_CXX_COMPILER=/path/to/g++ ../src/read_mapper
 make -j 4
 ```
 <!-- .element: class="fragment" -->
