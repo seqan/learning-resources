@@ -15,19 +15,6 @@ struct cmd_arguments
     uint8_t errors{0};
 };
 
-struct reference_store_t
-{
-    std::vector<std::string> ids;
-    std::vector<std::vector<seqan3::dna4>> sequences;
-
-    template <typename archive_t>
-    void serialize(archive_t & archive)
-    {
-        archive(ids);
-        archive(sequences);
-    }
-};
-
 struct dna4_traits : seqan3::sequence_file_input_default_traits_dna
 {
     using sequence_alphabet = seqan3::dna4;
@@ -55,50 +42,57 @@ void run_program(cmd_arguments const & arguments)
 
     seqan3::sam_file_output sam_file_out{arguments.sam_path, sam_fields_t{}};
 
-    namespace sc = seqan3::search_cfg;
-    seqan3::configuration const search_config = sc::max_error_total{sc::error_count{arguments.errors}}
-                                              | sc::hit_all_best{};
+    seqan3::configuration const search_config
+        = seqan3::search_cfg::max_error_total{seqan3::search_cfg::error_count{arguments.errors}}
+        | seqan3::search_cfg::hit_all_best{};
 
-    namespace ac = seqan3::align_cfg;
-    seqan3::configuration const align_config = ac::method_global{ac::free_end_gaps_sequence1_leading{true},
-                                                                 ac::free_end_gaps_sequence2_leading{false},
-                                                                 ac::free_end_gaps_sequence1_trailing{true},
-                                                                 ac::free_end_gaps_sequence2_trailing{false}}
-                                             | ac::edit_scheme
-                                             | ac::output_alignment{}
-                                             | ac::output_begin_position{}
-                                             | ac::output_score{};
+    seqan3::configuration const align_config
+        = seqan3::align_cfg::method_global{seqan3::align_cfg::free_end_gaps_sequence1_leading{true},
+                                           seqan3::align_cfg::free_end_gaps_sequence2_leading{false},
+                                           seqan3::align_cfg::free_end_gaps_sequence1_trailing{true},
+                                           seqan3::align_cfg::free_end_gaps_sequence2_trailing{false}}
+        | seqan3::align_cfg::edit_scheme
+        | seqan3::align_cfg::output_alignment{}
+        | seqan3::align_cfg::output_begin_position{}
+        | seqan3::align_cfg::output_score{};
 
     for (/*seqan3::sequence_record*/ auto && record : query_file_in)
     {
-        auto & query = record.sequence();
+        auto & query_sequence = record.sequence();
 
-        auto search_results = search(query, index.fm_index, search_config);
+        auto search_results = search(query_sequence, index.fm_index, search_config);
 
         for (seqan3::search_result result : search_results)
         {
-            size_t const start = result.reference_begin_position();
-            auto reference_begin = index.sequences[result.reference_id()].begin() + start;
-            auto reference_end = std::ranges::next(reference_begin,
-                                                   query.size() + arguments.errors,
-                                                   index.sequences[result.reference_id()].end());
-            std::span reference_view{reference_begin, reference_end};
+            size_t const approximate_reference_begin_position = result.reference_begin_position();
+            size_t const region_size = query_sequence.size() + arguments.errors;
 
-            auto alignments = seqan3::align_pairwise(std::tie(reference_view, query), align_config);
+            seqan3::dna4_vector const & reference_sequence = index.sequences[result.reference_id()];
+
+            auto reference_region_begin = reference_sequence.begin() + approximate_reference_begin_position;
+            // either sets region_end = begin + region_size or end depending whether region_size goes out of bounds
+            auto reference_region_end = std::ranges::next(reference_region_begin,
+                                                          region_size,
+                                                          reference_sequence.end());
+
+            // conceptional the same as: std::pair<seqan3::dna4 const *, seqan3::dna4 const *>
+            std::span<seqan3::dna4 const> reference_region{reference_region_begin, reference_region_end};
+
+            auto alignments = seqan3::align_pairwise(std::tie(reference_region, query_sequence), align_config);
 
             for (/*seqan3::alignment_result*/ auto && alignment : alignments)
             {
-                auto const aligned_seq = alignment.alignment();
-                size_t const ref_offset = alignment.sequence1_begin_position() + start;
-                size_t const map_qual = 60u + alignment.score();
+                size_t const reference_position = approximate_reference_begin_position +
+                                                  alignment.sequence1_begin_position();
+                size_t const mapping_quality = 60u + alignment.score();
 
-                sam_file_out.emplace_back(query,
+                sam_file_out.emplace_back(query_sequence,
                                           record.id(),
                                           index.ids[result.reference_id()],
-                                          ref_offset,
-                                          aligned_seq,
+                                          reference_position,
+                                          alignment.alignment(),
                                           record.base_qualities(),
-                                          map_qual);
+                                          mapping_quality);
             }
         }
     }
