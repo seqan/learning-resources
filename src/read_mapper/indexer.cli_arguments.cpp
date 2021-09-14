@@ -15,7 +15,7 @@ int cli_arguments::parse(int const argc, char const ** argv)
     parser.add_option(this->reference_path, 'r', "reference", "The path to the reference.",
                       seqan3::option_spec::required,
                       seqan3::input_file_validator{{"fa","fasta"}});
-    parser.add_option(this->index_path, 'o', "output", "The output index file path.",
+    parser.add_option(this->output_path, 'o', "output", "The output index file path.",
                       seqan3::option_spec::standard,
                       seqan3::output_file_validator{seqan3::output_file_open_options::create_new, {"index"}});
 
