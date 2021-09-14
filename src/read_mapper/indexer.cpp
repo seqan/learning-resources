@@ -1,13 +1,7 @@
-#include <seqan3/std/filesystem>
-
-#include <seqan3/argument_parser/all.hpp>
-
+#include "app_index.hpp"
 #include "indexer.cli_arguments.hpp"
-
-void run_program(read_mapper::indexer::cli_arguments const & arguments)
-{
-
-}
+#include "indexer.build_app_index.hpp"
+#include "indexer.store_app_index.hpp"
 
 int main(int argc, char const ** argv)
 {
@@ -17,7 +11,8 @@ int main(int argc, char const ** argv)
     if (return_code != 0)
         return return_code;
 
-    run_program(arguments);
+    read_mapper::app_index app_index = build_app_index(arguments);
+    read_mapper::indexer::store_app_index(arguments, std::move(app_index));
 
     return 0;
 }

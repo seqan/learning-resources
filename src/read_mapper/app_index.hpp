@@ -4,6 +4,9 @@
 namespace read_mapper
 {
 
-struct app_index;
+struct app_index
+{
+
+};
 
 } // read_mapper
