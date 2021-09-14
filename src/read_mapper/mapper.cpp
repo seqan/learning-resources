@@ -17,7 +17,8 @@ int main(int argc, char const ** argv)
 
     read_mapper::app_index const app_index = read_mapper::mapper::read_app_index_file(arguments);
 
-    read_mapper::mapper::read_query_file(arguments, [&](std::string const & query_id, std::span<seqan3::dna4 const> const query_sequence) -> void
+    read_mapper::mapper::read_query_file(arguments, [&](std::string const & query_id,
+                                                        std::span<seqan3::dna4 const> const query_sequence) -> void
     {
         read_mapper::mapper::search_query(arguments, app_index, query_sequence, [&](size_t const reference_begin_position,
                                                                                     size_t const reference_index) -> void
