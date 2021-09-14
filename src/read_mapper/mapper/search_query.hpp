@@ -1,6 +1,11 @@
 
 #pragma once
 
+#include <functional>
+#include <seqan3/std/span>
+
+#include <seqan3/alphabet/nucleotide/dna4.hpp>
+
 #include "../app_index.hpp"
 
 namespace read_mapper::mapper
