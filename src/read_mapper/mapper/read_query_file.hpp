@@ -11,7 +11,8 @@
 namespace read_mapper::mapper
 {
 
-using read_query_file_callback = std::function<void(std::span<seqan3::dna4 const> const /*query_sequence*/)>;
+using read_query_file_callback = std::function<void(std::string const &  /*query_id*/,
+                                                    std::span<seqan3::dna4 const> const /*query_sequence*/)>;
 
 void read_query_file(cli_arguments const & arguments, read_query_file_callback callback);
 
