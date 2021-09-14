@@ -30,6 +30,10 @@ jobs:
           fetch-depth: 2
           submodules: recursive
 
+      - name: Configure APT
+        continue-on-error: true
+        run: bash ./learning_resources/submodules/seqan3/.github/workflows/scripts/configure_apt.sh
+
       - name: Install Doxygen
         run: bash ./learning_resources/submodules/seqan3/.github/workflows/scripts/install_doxygen.sh
 
