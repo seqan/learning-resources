@@ -1,5 +1,5 @@
 
-#include "indexer.store_app_index.hpp"
+#include "store_app_index.hpp"
 
 namespace read_mapper::indexer
 {

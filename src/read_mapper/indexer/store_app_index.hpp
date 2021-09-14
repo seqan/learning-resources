@@ -1,8 +1,8 @@
 
 #pragma once
 
-#include "app_index.hpp"
-#include "indexer.cli_arguments.hpp"
+#include "../app_index.hpp"
+#include "cli_arguments.hpp"
 
 namespace read_mapper::indexer
 {

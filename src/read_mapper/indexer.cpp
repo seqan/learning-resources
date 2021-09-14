@@ -1,7 +1,7 @@
 #include "app_index.hpp"
-#include "indexer.cli_arguments.hpp"
-#include "indexer.build_app_index.hpp"
-#include "indexer.store_app_index.hpp"
+#include "indexer/cli_arguments.hpp"
+#include "indexer/build_app_index.hpp"
+#include "indexer/store_app_index.hpp"
 
 int main(int argc, char const ** argv)
 {

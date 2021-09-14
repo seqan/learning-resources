@@ -5,9 +5,9 @@ find_package(SeqAn3 3.0.3 REQUIRED HINTS ../../submodules/seqan3/build_system/)
 
 add_executable(indexer
                indexer.cpp
-               indexer.cli_arguments.cpp
-               indexer.build_app_index.cpp
-               indexer.store_app_index.cpp)
+               indexer/cli_arguments.cpp
+               indexer/build_app_index.cpp
+               indexer/store_app_index.cpp)
 target_link_libraries(indexer seqan3::seqan3)
 
 add_executable(mapper

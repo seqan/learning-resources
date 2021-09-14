@@ -1,6 +1,6 @@
 #include <seqan3/argument_parser/all.hpp>
 
-#include "indexer.cli_arguments.hpp"
+#include "cli_arguments.hpp"
 
 namespace read_mapper::indexer
 {
