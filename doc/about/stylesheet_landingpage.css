@@ -1,0 +1,106 @@
+div.container{
+    width: 80%;
+    height:50%;
+    margin-top: 0%;
+    margin-left: 10%
+    position: absolute;
+}
+.logo{
+    opacity: 1;
+    width: 50%;
+}
+.logo:hover {
+    opacity: 0.8;
+}
+.btn-group .button {
+
+  background-color: white; /* Green */
+  color: white;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: auto;
+  cursor: pointer;
+  float: center;
+  align-self: stretch;
+}
+.button{
+    background-color: black;
+    border: none;
+    color: white;
+    width: 30%;
+    height: 70px;
+    border-radius: 4px;
+    text-decoration: none;
+    /* display: inline-block; */
+    font-size: 80%;
+    text-align: center;
+}
+.button:hover{
+    background-color: #fede09; /* black */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: underline;
+    /* display: inline-block; */
+    font-size: 80%;
+}
+button.links{
+    background-color: white; /* yellow */
+    border: 4px solid black;
+    color: black;
+    width: 40%;
+    height: 80px;
+    border-radius: 4px;
+    text-decoration: none;
+    /* display: inline-block; */
+    font-size: 80%;
+    text-align: center;
+}
+button.links:hover{
+    background-color: #fede09; /* yellow */
+    text-decoration: underline;
+}
+
+.h3{
+    color: grey;
+    width: auto;
+    text-align: center;
+}
+
+@media (orientation: portrait) {
+    div.container{
+        width: 100%;
+        margin-top: 30%;
+        margin-left: 0%
+        position: absolute;
+    }
+    .logo{
+        width: 70%;
+    }
+    .button{
+        height: 30px;
+        font-size: 50%;
+    }
+    .button:hover{
+        font-size: 50%;
+    }
+    button.links{
+        width: 80%;
+        height: 50px;
+        font-size: 70%;
+    }
+    .h3{
+        font-stretch: condensed;
+        font-size: 20px;
+    }
+}
+
+
+
+/*
+#seqan 3 hervorheben
+#learing material extra machen. mit ueberschrift und button
+
+impressum: https://www.fu-berlin.de/redaktion/impressum/index.html */
