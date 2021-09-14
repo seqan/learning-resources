@@ -13,7 +13,7 @@ int main(int argc, char const ** argv)
     if (return_code != 0)
         return return_code;
 
-    read_mapper::app_index app_index = read_mapper::mapper::read_app_index_file(arguments);
+    read_mapper::app_index const app_index = read_mapper::mapper::read_app_index_file(arguments);
 
     read_mapper::mapper::read_query_file(arguments, [&](std::span<seqan3::dna4 const> const query_sequence) -> void
     {
