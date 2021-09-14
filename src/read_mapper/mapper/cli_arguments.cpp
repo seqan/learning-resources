@@ -21,7 +21,7 @@ int cli_arguments::parse(int const argc, char const ** argv)
     parser.add_option(this->output_path, 'o', "output", "The output SAM file path.",
                       seqan3::option_spec::standard,
                       seqan3::output_file_validator{seqan3::output_file_open_options::create_new, {"sam"}});
-    parser.add_option(this->errors, 'e', "error", "Maximum allowed errors.",
+    parser.add_option(this->error, 'e', "error", "Maximum allowed errors.",
                       seqan3::option_spec::standard,
                       seqan3::arithmetic_range_validator{0, 4});
 
