@@ -1,3 +1,5 @@
+#include <seqan3/io/record.hpp>
+
 #include "app_index.hpp"
 #include "mapper/cli_arguments.hpp"
 #include "mapper/read_app_index_file.hpp"
@@ -15,15 +17,15 @@ int main(int argc, char const ** argv)
 
     read_mapper::app_index const app_index = read_mapper::mapper::read_app_index_file(arguments);
 
-    read_mapper::mapper::read_query_file(arguments, [&](std::span<seqan3::dna4 const> const query_sequence) -> void
+    read_mapper::mapper::read_query_file(arguments, [&](std::string const & query_id, std::span<seqan3::dna4 const> const query_sequence) -> void
     {
         read_mapper::mapper::search_query(arguments, app_index, query_sequence, [&](size_t const reference_begin_position,
-                                                                                    size_t const reference_id) -> void
+                                                                                    size_t const reference_index) -> void
         {
-            std::span<seqan3::dna4 const> const reference_region{};
+            std::span<seqan3::dna4 const> const reference_sequence_region{};
 
             read_mapper::mapper::align_query_to_reference(query_sequence,
-                                                          reference_region,
+                                                          reference_sequence_region,
                                                           [&](int const score,
                                                               size_t const sequence1_begin_position,
                                                               read_mapper::mapper::alignment_t const & alignment)
