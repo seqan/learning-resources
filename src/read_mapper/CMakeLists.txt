@@ -10,5 +10,11 @@ add_executable(indexer
                indexer.store_app_index.cpp)
 target_link_libraries(indexer seqan3::seqan3)
 
-add_executable(mapper mapper.cpp)
+add_executable(mapper
+               mapper.cpp
+               mapper/cli_arguments.cpp
+               mapper/read_app_index_file.cpp
+               mapper/read_query_file.cpp
+               mapper/search_query.cpp
+               mapper/align_query_to_reference.cpp)
 target_link_libraries(mapper seqan3::seqan3)
