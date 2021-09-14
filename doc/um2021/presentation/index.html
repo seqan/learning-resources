@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-        <title>UM2021 - SeqAn - From an Idea to a single tool</title>
+        <title>UM2021 - SeqAn - Introduction to SeqAn</title>
 
         <link rel="stylesheet" href="../../biocpp/presentation/reveal.js/css/reset.css">
         <link rel="stylesheet" href="../../biocpp/presentation/reveal.js/css/reveal.css">
@@ -104,6 +104,12 @@
     height: 1em;
     vertical-align: sub;
 }
+.right-batch
+{
+    position: absolute;
+    right: 0;
+    top: 0px;
+}
 </style>
 
         <!-- Printing and PDF exports -->
@@ -136,7 +142,7 @@
   * <!-- .element: class="fragment" -->
     [Berlin code of conduct](https://berlincodeofconduct.org/)
   * <!-- .element: class="fragment" -->
-    [Academic Honour Code](https://www.fu-berlin.de/forschung/service/Ehrenkodex-ab292002.pdf)
+    [Academic Honour Code](https://www.fu-berlin.de/service/zuvdocs/amtsblatt/2002/ab292002.pdf)
 </textarea>
 </section>
 
@@ -146,25 +152,512 @@
 <img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 4em"></img><br/>
 <a href="https://github.com/seqan/seqan3"><i class="fa fa-github" aria-hidden="true"></i> seqan/seqan3</a>
 </p>
+
+<h6>Library Overview</h6>
 </section>
 
 <section>
-<p style="text-align: right">
+<p class="right-batch">
 <img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
 </p>
 
 <ul>
     <li>Quick Facts:
     <ul>
-        <li><img src="img/octicons/repo-24.svg" class="no-box inline-img"></img> <b><u>Seq</u></b>uence <b><u>An</u></b>alysis Library</li>
-        <li><img src="img/octicons/code-24.svg" class="no-box inline-img"></img> C++17/20 Code with concepts</li>
-        <li><img src="img/octicons/law-24.svg" class="no-box inline-img"></img> BSD 3-Clause License</li>
-        <li><img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.0.3</li>
+        <li class="fragment"><img src="img/octicons/repo-24.svg" class="no-box inline-img"></img> <b><u>Seq</u></b>uence <b><u>An</u></b>alysis Library</li>
+        <li class="fragment"><img src="img/octicons/code-24.svg" class="no-box inline-img"></img> C++17/20 Code with concepts</li>
+        <li class="fragment"><img src="img/octicons/law-24.svg" class="no-box inline-img"></img> BSD 3-Clause License</li>
+        <li class="fragment"><img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.0.3</li>
+        <li class="fragment"><img src="img/octicons/rocket-24.svg" class="no-box inline-img"></img> Mature Test Infrastructure</li>
+        <li class="fragment"><img src="img/octicons/shield-check-24.svg" class="no-box inline-img"></img> ~98% Code Coverage</li>
     </ul>
     </li>
 </ul>
 </section>
+
+<section data-transition="none-out">
+<p>
+<img src="img/seqan-library-structure.svg" src="SeqAn3" class="no-box" style="height: 10em"></img>
+</p>
+</section>
+
+<section data-transition="none-in">
+<p>
+<object data="img/seqan-library-structure.svg#alphabet" alt="SeqAn3" class="no-box" style="height: 10em"></object>
+</p>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul>
+    <li><a href="https://docs.seqan.de/seqan/3-master-user/group__alphabet.html">Alphabet Module</a>
+    <ul>
+        <li class="fragment">Biological Sequence Representation</li>
+        <li class="fragment">Sequence Transformation</li>
+    </ul>
+    </li>
+</ul>
+
+<pre class="fragment"><code data-trim data-noescape>
+// 5′‑ATGCCACGAGTTGAC‑3′
+seqan3::dna4_vector sequence{"ATGCCACGAGTTGAC"_dna4};
+
+// 5′‑TACGGTGCTCAACTG‑3′
+auto complement = sequence | seqan3::views::complement;
+
+// 3′‑TACGGTGCTCAACTG‑5′ = "GTCAACTCGTGGCAT"_dna4
+auto reverse_complement = complement | std::views::reverse;
+
+// Met-Pro-Arg-Val-Asp = "MPRVD"_aa27
+auto amino_acid_sequence = sequence
+                         | seqan3::views::translate_single;
+</code></pre>
+</section>
+
+<section>
+<p>
+<object data="img/seqan-library-structure.svg#alignment" alt="SeqAn3" class="no-box" style="height: 10em"></object>
+</p>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul>
+    <li><a href="https://docs.seqan.de/seqan/3-master-user/group__alignment.html">Alignment Module</a>
+    <ul>
+        <li class="fragment">Pairwise Sequence Alignment</li>
+        <li class="fragment">Different Algorithms depending on Configuration</li>
+        <li class="fragment">Gapped Sequence Representation</li>
+    </ul>
+    </li>
+</ul>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul style="display: block;">
+    <li><a href="https://docs.seqan.de/seqan/3-master-user/group__alignment.html#autotoc_md192">Alignment Configuration</a></li>
+</ul>
+
+<pre><code data-trim data-noescape class="language-cpp">
+auto scoring_scheme = seqan3::nucleotide_scoring_scheme{
+    seqan3::match_score{4},
+    seqan3::mismatch_score{-5}};
+
+auto config =
+    seqan3::align_cfg::method_global{} |
+    seqan3::align_cfg::scoring_scheme{scoring_scheme} |
+    seqan3::align_cfg::gap_cost_affine{
+        seqan3::align_cfg::open_score{0},
+        seqan3::align_cfg::extension_score{-1}
+    } |
+    seqan3::align_cfg::parallel{5} |
+    seqan3::align_cfg::output_score |
+    seqan3::align_cfg::output_alignment;
+</code></pre>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul style="display: block;">
+    <li><a href="https://docs.seqan.de/seqan/3-master-user/group__alignment.html#autotoc_md191">Pairwise Sequence Alignment</a></li>
+</ul>
+
+<pre><code data-trim data-noescape class="language-cpp" style="max-height: inherit">
+auto sequence1 = "ATGCCACGAGTTGAC"_dna4;
+auto sequence2 = "ACGCCACGAGTGAC"_dna4;
+auto sequence_pair = std::tie(sequence1, sequence2);
+
+auto alignments =
+    seqan3::align_pairwise(sequence_pair, config);
+
+for (seqan3::alignment_result & result: alignments)
+{
+    // ATGCCACGAGTTGAC
+    // | ||||||||| |||
+    // ACGCCACGAGT-GAC
+    auto & [gapped_sequence1, gapped_sequence2]
+        = result.alignment();
+
+    // matches: 13, mismatches: 1, indel: 1
+    // score: 13 * 4 + 1 * - 5 + 1 * -1 = 46
+    std::signed_integral auto score = result.score();
+}
+</code></pre>
+</section>
+
+<section>
+<p>
+<object data="img/seqan-library-structure.svg#search" alt="SeqAn3" class="no-box" style="height: 10em"></object>
+</p>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul>
+    <li><a href="https://docs.seqan.de/seqan/3-master-user/group__search.html">Search Module</a>
+    <ul>
+        <li class="fragment">Indexed Based Full-Text Search</li>
+        <li class="fragment">Storing/Loading Indices</li>
+        <li class="fragment">Different Algorithms depending on Configuration</li>
+    </ul>
+    </li>
+</ul>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul style="display: block;">
+    <li><a href="https://docs.seqan.de/seqan/3-master-user/classseqan3_1_1fm__index.html#details">Index Creation</a></li>
+</ul>
+
+<pre><code data-trim data-noescape class="language-cpp" style="max-height: inherit">
+seqan3::dna4_vector genome{
+    "ATCTGACGAAGGCTAGCTAGCTAAGGGA"_dna4};
+seqan3::fm_index index{genome}; // build index
+
+{ // storing the index
+    std::ofstream os{"my_index.index", std::ios::binary};
+    cereal::BinaryOutputArchive oarchive{os};
+    oarchive(index);
+}
+
+{ // loading the index
+    std::ifstream is{"my_index.index", std::ios::binary};
+    cereal::BinaryInputArchive iarchive{is};
+    iarchive(index);
+}
+</code></pre>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul style="display: block;">
+    <li><a href="https://docs.seqan.de/seqan/3-master-user/group__search__configuration.html">Search Configuration</a></li>
+</ul>
+
+<pre><code data-trim data-noescape class="language-cpp" style="max-height: inherit">
+auto config =
+    seqan3::search_cfg::hit_all{} |
+    seqan3::search_cfg::max_error_total{
+        seqan3::search_cfg::error_count{1}} |
+    seqan3::search_cfg::parallel{8} |
+    seqan3::search_cfg::output_query_id{} |
+    seqan3::search_cfg::output_reference_id{} |
+    seqan3::search_cfg::output_reference_begin_position{};
+</code></pre>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul style="display: block;">
+    <li><a href="https://docs.seqan.de/seqan/3-master-user/group__search.html">Full-Text Search</a></li>
+</ul>
+
+<pre><code data-trim data-noescape class="language-cpp" style="max-height: inherit">
+std::vector&lt;seqan3::dna4_vector> queries{
+    "GCT"_dna4, "ACCC"_dna4};
+
+auto results = seqan3::search(queries, index, config);
+
+for (seqan3::search_result & result : results)
+{
+    // 0 - GCT
+    size_t query_id = result.query_id();
+
+    // ATCTGACGAAG<u>GCT</u>A<u>GCT</u>A<u>GCT</u>AAGGGA
+    // e.g. 11, 15, 19
+    size_t position = result.reference_begin_position();
+}
+</code></pre>
+</section>
+
+<section>
+<p>
+<object data="img/seqan-library-structure.svg#io" alt="SeqAn3" class="no-box" style="height: 10em"></object>
+</p>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul>
+    <li><a href="https://docs.seqan.de/seqan/3-master-user/group__io.html">Input/Output Module</a>
+    <ul>
+        <li class="fragment">Read/Write Files</li>
+        <li class="fragment">Convert Files</li>
+        <li class="fragment"> File Formats
+            <ul>
+                <li>Sequence Files (<code>.fa,.fq,.embl,.gbk</code>)</li>
+                <li>SAM Files (<code>.sam,.bam</code>)</li>
+            </ul>
+        </li>
+    </ul>
+    </li>
+</ul>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul style="display: block;">
+    <li><a href="https://docs.seqan.de/seqan/3-master-user/classseqan3_1_1sequence__file__input.html">Read Files</a></li>
+</ul>
+
+<pre><code data-trim data-noescape class="language-cpp" style="max-height: inherit">
+seqan3::sequence_file_input fin{"my.fastq"};
+
+for (seqan3::sequence_record & record : fin)
+{
+    // e.g. "sequence1"
+    std::string id = record.id();
+
+    // e.g. "ATCTGACGAAGGCTAGCTAGCTAAGGGA"_dna5
+    seqan3::dna5_vector sequence = record.sequence();
+
+    // e.g. "##!!####!!####!!####!!####!!"_phred42
+    std::vector&lt;seqan3::phred42> qualities
+        = record.base_qualities();
+}
+</code></pre>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul style="display: block;">
+    <li><a href="https://docs.seqan.de/seqan/3-master-user/classseqan3_1_1sequence__file__output.html">Write Files</a></li>
+</ul>
+
+<pre><code data-trim data-noescape class="language-cpp" style="max-height: inherit">
+seqan3::sequence_file_input fin{"my.fastq"};
+seqan3::sequence_file_output fout{"my.fasta"};
+
+for (seqan3::sequence_record & record : fin)
+{
+    fout.push_back(record);
+}
+</code></pre>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul style="display: block;">
+    <li><a href="https://docs.seqan.de/seqan/3-master-user/classseqan3_1_1sequence__file__output.html">Convert Files</a></li>
+</ul>
+
+<pre><code data-trim data-noescape class="language-cpp" style="max-height: inherit">
+seqan3::sequence_file_input fin{"my.fastq"};
+seqan3::sequence_file_output fout{"my.fasta"};
+fout = fin;
+</code></pre>
+</section>
+
 </section> <!-- seqan3 - END -->
+
+<section> <!-- seqan3 test infrastructure - BEGIN -->
+<section>
+<p>
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 4em"></img><br/>
+<a href="https://github.com/seqan/seqan3"><i class="fa fa-github" aria-hidden="true"></i> seqan/seqan3</a>
+</p>
+
+<h6>Test Infrastructure</h6>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul>
+    <li><a href="https://app.codecov.io/gh/seqan/seqan3">Code Coverage</a></li>
+</ul>
+
+<img src="img/seqan3-coverage.png"></img>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul>
+    <li><a href="https://github.com/seqan/seqan3/actions">Test Infrastructure</a></li>
+</ul>
+
+<img src="img/github-actions.png"></img>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul>
+    <li><a href="https://github.com/seqan/seqan3/tree/master/test/api_stability">API Stability</a>
+    <ul>
+        <li class="fragment">How to ensure that we do not break our API?</li>
+        <li class="fragment">Idea:
+        <ul>
+            <li>Use the <code>test</code>s of the last release</li>
+            <li>and build them with the current library version.</li>
+        </ul>
+        </li>
+    </ul>
+    </li>
+</ul>
+</section>
+
+</section> <!-- seqan3 test infrastructure - END -->
+
+<section> <!-- seqan3 - Version 3.0.3 - BEGIN -->
+<section>
+<p>
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 4em"></img><br/>
+<a href="https://github.com/seqan/seqan3"><i class="fa fa-github" aria-hidden="true"></i> seqan/seqan3</a>
+</p>
+
+<h6>What's new?</h6>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul>
+    <li><img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.0.3 <a href="https://github.com/seqan/seqan3/compare/3.0.2...3.0.3">statistics</a></li>
+    <ul>
+        <li class="fragment">7 months</li>
+        <li class="fragment">11 contributors</li>
+        <li class="fragment">923 commits</li>
+        <li class="fragment">1,750 file changes</li>
+        <li class="fragment">75,000 insertions / 50,000 deletions</li>
+    </ul>
+</ul>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul>
+    <li><img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.0.3 milestones</li>
+    <ul>
+        <li class="fragment">First release that should <em>just compile</em><sup>TM</sup> after upgrading</li>
+        <li class="fragment">We made a great push for the first stable <img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.1.0 release!</li>
+        <li class="fragment">Declared many entities as API-stable / experimental</li>
+    </ul>
+</ul>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul>
+    <li><img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.0.3 new features</li>
+    <ul>
+        <li class="fragment">New Phred Quality Score alphabet <code>seqan3::phred94</code></li>
+        <li class="fragment">New <code>seqan3::literals</code> namespace
+        <pre><code data-trim data-noescape class="language-cpp" style="max-height: inherit">
+            using namespace seqan3::literals;
+            seqan3::dna4 adenine = 'A'_dna4;
+        </code></pre></li>
+        <li class="fragment">Records of I/O files have member functions
+        <pre><code data-trim data-noescape class="language-cpp" style="max-height: inherit">
+            seqan3::sequence_file_input fin{"my.fastq"};
+
+            for (seqan3::sequence_record & record: fin)
+                std::cout << "id: " << record.id() << '\n';
+        </code></pre></li>
+    </ul>
+</ul>
+</section>
+
+</section> <!-- seqan3 - Version 3.0.3 - END -->
+
+
+<section> <!-- seqan3 - Version >3.1.0 - BEGIN -->
+<section>
+<p>
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 4em"></img><br/>
+<a href="https://github.com/seqan/seqan3"><i class="fa fa-github" aria-hidden="true"></i> seqan/seqan3</a>
+</p>
+
+<h6>A peek at future releases</h6>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul>
+    <li><img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.1.0</li>
+    <ul>
+        <li class="fragment">Release Candidate <img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> <a href="https://github.com/seqan/seqan3/releases/tag/3.1.0-rc.1">v3.1.0-rc.1</a> already published.</li>
+        <li class="fragment">Basically <img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.0.3, but without all the "deprecated" files.</li>
+        <li class="fragment">Will be the first "stable" Release.</li>
+        <li class="fragment">Last Release with g++-7/8 support.</li>
+    </ul>
+</ul>
+</section>
+
+<section>
+<p class="right-batch">
+<img src="img/seqan3-repo.svg" src="SeqAn3" class="no-box" style="height: 1.5em"></img>
+</p>
+
+<ul>
+    <li><img src="img/octicons/tag-24.svg" class="no-box inline-img"></img> v3.2.x</li>
+    <ul>
+        <li class="fragment">Requires ≥ g++-9.</li>
+        <li class="fragment">Will iron-out non-standard C++20 code.</li>
+        <li class="fragment">A re-write of our internal iterator/ranges/views implementation.</li>
+        <li class="fragment">Will support <a href="https://clang.llvm.org/">clang</a> for the first time.</li>
+        <li class="fragment">And with that the complete llvm eco-system (hopefully).</li>
+    </ul>
+</ul>
+</section>
+
+</section> <!-- seqan3 - Version >3.1.0 - END -->
 
 <section> <!-- app-template - BEGIN -->
 <section>
@@ -189,7 +682,7 @@ src/        APP source files
 test/       APP tests
 </code></pre>
     </li>
-    <li>Open Software Stack:
+    <li class="fragment">Open Software Stack:
     <ul>
         <li><img src="img/cmake.svg" class="no-box inline-img" style="height: 1em"></img> <a href="https://cmake.org/">CMake</a></li>
         <li><img src="img/actions-icon-actions.svg" class="no-box inline-img"></img> <a href="https://github.com/features/actions">GitHub Actions</a></li>
@@ -214,7 +707,7 @@ test/       APP tests
     data/       Test Data
     </code></pre>
     </li>
-    <li>Reproducible Benchmarks</li>
+    <li class="fragment">Reproducible Benchmarks</li>
 </ul>
 </section>
 
@@ -226,12 +719,13 @@ test/       APP tests
 <ul>
     <li> Continuous integration (CI)
         <ul>
-            <li><img src="img/actions-icon-actions.svg" class="no-box inline-img"></img> <a href="https://github.com/features/actions">GitHub Actions</a></li>
+            <li class="fragment"><img src="img/actions-icon-actions.svg" class="no-box inline-img"></img> <a href="https://github.com/features/actions">GitHub Actions</a>
             <ul>
                 <li><i class="fa fa-apple" aria-hidden="true"></i> MacOS</li>
                 <li><i class="fa fa-linux" aria-hidden="true"></i> Linux</li>
                 <li><i class="fa fa-book" aria-hidden="true"></i> Documentation</li>
             </ul>
+            </li>
         </ul>
     </li>
 </ul>
@@ -245,9 +739,9 @@ test/       APP tests
 <ul>
     <li>Successful use cases:
         <ul>
-            <li><i class="fa fa-desktop" aria-hidden="true"></i> SeqAn3 Apps</li>
-            <li><i class="fa fa-desktop" aria-hidden="true"></i> SeqAn2 Apps</li>
-            <li><img src="img/octicons/book-24.svg" class="no-box inline-img"></img> C++ Library</li>
+            <li class="fragment"><i class="fa fa-desktop" aria-hidden="true"></i> SeqAn3 Apps</li>
+            <li class="fragment"><i class="fa fa-desktop" aria-hidden="true"></i> SeqAn2 Apps</li>
+            <li class="fragment"><img src="img/octicons/book-24.svg" class="no-box inline-img"></img> C++ Library</li>
         </ul>
     </li>
 </ul>
@@ -261,9 +755,9 @@ test/       APP tests
 <ul>
     <li>Future Features (planned):
         <ul>
-            <li>App Template-Updater (PR on new Release)</li>
-            <li>Continuous Deployment (CD)</a>
-            <li>Easier deployment to <a href="https://bioconda.github.io/"><img src="img/bioconda.png" class="no-box inline-img"></img></a>
+            <li class="fragment">App Template-Updater (PR on new Release)</li>
+            <li class="fragment">Continuous Deployment (CD)</a>
+            <li class="fragment">Easier deployment to <a href="https://bioconda.github.io/"><img src="img/bioconda.png" class="no-box inline-img"></img></a>
             <pre><code data-trim data-noescape>
             git clone https://github.com/seqan/raptor
             mkdir raptor/build && cd raptor/build
@@ -279,6 +773,9 @@ test/       APP tests
 </section> <!-- app-template - END -->
 
 <section>
+
+<h6>Next Part: Workshop,<br><a href="https://seqan.github.io/learning-resources/doc/read_mapper/presentation/#/">From an Idea to a single tool</a></h6>
+
 <p><a href="https://twitter.com/seqanlib"><i class="fa fa-twitter" aria-hidden="true"></i> @SeqAnLib</a></p>
 <p><a href="https://github.com/seqan/"><i class="fa fa-github" aria-hidden="true"></i> github/seqan</a></p>
 <p><a href="https://www.seqan.de"><i class="fa fa-globe" aria-hidden="true"></i> seqan.de</a></p>
