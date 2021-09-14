@@ -17,8 +17,8 @@ int main(int argc, char const ** argv)
 
     read_mapper::mapper::read_query_file(arguments, [&](std::span<seqan3::dna4 const> const query_sequence) -> void
     {
-        read_mapper::mapper::search_query(app_index, query_sequence, [&](size_t const reference_begin_position,
-                                                                         size_t const reference_id) -> void
+        read_mapper::mapper::search_query(arguments, app_index, query_sequence, [&](size_t const reference_begin_position,
+                                                                                    size_t const reference_id) -> void
         {
             std::span<seqan3::dna4 const> const reference_region{};
 
