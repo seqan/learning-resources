@@ -4,14 +4,14 @@
 
 #include "indexer.cli_arguments.hpp"
 
-void run_program(indexer_cli_arguments const & arguments)
+void run_program(read_mapper::indexer::cli_arguments const & arguments)
 {
 
 }
 
 int main(int argc, char const ** argv)
 {
-    indexer_cli_arguments arguments{};
+    read_mapper::indexer::cli_arguments arguments{};
 
     int return_code = arguments.parse(argc, argv);
     if (return_code != 0)

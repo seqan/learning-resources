@@ -2,7 +2,10 @@
 
 #include "indexer.cli_arguments.hpp"
 
-int indexer_cli_arguments::parse(int const argc, char const ** argv)
+namespace read_mapper::indexer
+{
+
+int cli_arguments::parse(int const argc, char const ** argv)
 {
     seqan3::argument_parser parser("Indexer", argc, argv, seqan3::update_notifications::off);
 
@@ -28,3 +31,5 @@ int indexer_cli_arguments::parse(int const argc, char const ** argv)
 
     return 0;
 }
+
+} // read_mapper::indexer
