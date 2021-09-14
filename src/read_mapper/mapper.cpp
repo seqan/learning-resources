@@ -20,7 +20,7 @@ int main(int argc, char const ** argv)
         read_mapper::mapper::search_query(app_index, query_sequence, [&](size_t const reference_begin_position,
                                                                          size_t const reference_id) -> void
         {
-            std::span<seqan3::dna4 const> reference_region{};
+            std::span<seqan3::dna4 const> const reference_region{};
 
             read_mapper::mapper::align_query_to_reference(query_sequence,
                                                           reference_region,

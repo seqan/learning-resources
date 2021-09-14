@@ -3,7 +3,7 @@
 namespace read_mapper::mapper
 {
 
-void read_query_file(cli_arguments & arguments, read_query_file_callback callback)
+void read_query_file(cli_arguments const & arguments, read_query_file_callback callback)
 {
 }
 
